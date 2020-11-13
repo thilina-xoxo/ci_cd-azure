@@ -3,8 +3,7 @@ import './App.css';
 import  {BrowserRouter as Router,Switch,Route} from 'react-router-dom'
 
 import NavbarPage from './components/layouts/Navbar';
-
-
+import SignInSide from './components/auth/login'
 
 
 const App=()=> {
@@ -13,7 +12,7 @@ const App=()=> {
 
 <Router>
 <NavbarPage/>
-
+<SignInSide/>
 </Router>
 
 
