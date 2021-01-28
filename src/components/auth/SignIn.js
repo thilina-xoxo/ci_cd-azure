@@ -13,9 +13,6 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { lightBlue } from '@material-ui/core/colors';
-import ForgotPassword from './ForgotPassword';
-import { Router } from 'react-router-dom';
-import { Linkto } from 'react-router-dom';
 
 function Copyright() {
   return (
