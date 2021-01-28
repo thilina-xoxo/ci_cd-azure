@@ -1,25 +1,29 @@
-import React,{Fragment} from 'react'
+import React from 'react';
 import './App.css';
-import  {BrowserRouter as Router,Switch,Route} from 'react-router-dom'
-import NavbarPage from './components/layouts/Navbar';
-import SignIn from './components/auth/SignIn'
-import SignUp from './components/auth/SignUp'
-import ForgotPassword from './components/auth/ForgotPassword';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
+import Navbar from './components/Navbar/NavbarIndex';
+import Home from './components/Pages/Home';
+import About from './components/Pages/About';
+import Services from './components/Pages/Services';
+import SignIn from './components/auth/SignIn';
+import SignUp from './components/auth/Signup';
 
-const App=()=> {
+import LisiItems from './components/layouts/AdminDashboard/lisiItems';
+
+const App = () => {
   return (
-
-<Router>
-<NavbarPage/>
-<Switch>
-<Route path='/login' exact render={props => <SignIn {...props} />} />
-<Route path='/signup' exact render={props => <SignUp {...props} />} />
-<Route path='/forgotpassword' exact render={props => <ForgotPassword {...props} />} />
-</Switch>
-</Router>
-
+    <Router>
+      <Navbar />
+      <Switch>
+        <Route path='/' exact component={Home} />
+        <Route path='/about' component={About} />
+        <Route path='/services' component={Services} />
+        <Route path='/signin' component={SignIn} />
+        <Route path='/sign-up' component={SignUp} />
+      </Switch>
+    </Router>
   );
-}
+};
 
 export default App;
