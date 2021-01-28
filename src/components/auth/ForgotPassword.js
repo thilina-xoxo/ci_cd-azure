@@ -12,9 +12,9 @@ import { pink } from '@material-ui/core/colors';
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
+    <Typography variant='body2' color='textSecondary' align='center'>
       {'Copyright © '}
-      <Link color="primary" href="#">
+      <Link color='primary' href='#'>
         NoQueue Website
       </Link>{' '}
       {new Date().getFullYear()}
@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     margin: theme.spacing(8, 4),
     display: 'flex',
-    flexDirection:'column',
+    flexDirection: 'column',
     alignItems: 'center',
   },
   avatar: {
@@ -42,79 +42,77 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
   },
   submit: {
-    margin: theme.spacing(3,0,2),
+    margin: theme.spacing(3, 0, 2),
   },
-
 }));
 
 export default function ForgotPassword() {
   const classes = useStyles();
 
   return (
-    
-        <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
-          </Avatar>
+    <div className={classes.paper}>
+      <Avatar className={classes.avatar}>
+        <LockOutlinedIcon />
+      </Avatar>
 
-          <Typography component="h1" variant="h5">
-            Reset Password
-          </Typography>
+      <Typography component='h1' variant='h5'>
+        Reset Password
+      </Typography>
 
-          <form className={classes.form} noValidate>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-            />
+      <form className={classes.form} noValidate>
+        <TextField
+          variant='outlined'
+          margin='normal'
+          required
+          fullWidth
+          id='email'
+          label='Email Address'
+          name='email'
+        />
 
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="New Password"
-              type="password"
-              id="password"
-            />
+        <TextField
+          variant='outlined'
+          margin='normal'
+          required
+          fullWidth
+          name='password'
+          label='New Password'
+          type='password'
+          id='password'
+        />
 
-              <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Confirm Password"
-              type="password"
-              id="password"
-            />
+        <TextField
+          variant='outlined'
+          margin='normal'
+          required
+          fullWidth
+          name='password'
+          label='Confirm Password'
+          type='password'
+          id='password'
+        />
 
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-            >
-              
-            Reset
-            </Button>
-            <Grid container>
-              <Grid item>
-                <Link href="signup" variant="body2">
-                  {"Not a member? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
-            <Box mt={4}>
-              <Copyright />
-            </Box>
-          </form>
-        </div>
+        <Button
+          type='submit'
+          fullWidth
+          variant='contained'
+          color='primary'
+          className={classes.submit}
+        >
+          Reset
+        </Button>
+        <Grid container>
+          <Grid item>
+            <Link href='signup' variant='body2'>
+              {'Not a member? Sign Up'}
+            </Link>
+          </Grid>
+        </Grid>
+
+        <Box mt={4}>
+          <Copyright />
+        </Box>
+      </form>
+    </div>
   );
 }
