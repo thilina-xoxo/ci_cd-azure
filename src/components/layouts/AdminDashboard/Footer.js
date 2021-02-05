@@ -18,7 +18,7 @@ class Footer extends Component {
           spacing={0}
           className={classNames(classes.footerText, classes.footerSections)}
         >
-          <Grid item xs={12} sm={4}>
+          <Grid item xs={12} sm={3}>
             <div vocab="http://schema.org/" typeof="Organization">
               <span property="name">About Us</span>
               <div style={{fontSize:'14px'}} property="address" typeof="PostalAddress">
@@ -29,7 +29,7 @@ class Footer extends Component {
             </div>
           </Grid>
           
-          <Grid className={classes.flexContainer} item xs={4}>
+          <Grid className={classes.flexContainer} item xs={3}>
      
          
             <Grid style={{marginLeft:'20px', alignItems:'center'}}  >
@@ -58,7 +58,7 @@ class Footer extends Component {
 
 
           
-          <Grid item xs={12} sm={4}>
+          <Grid item xs={12} sm={3}>
             <ul style={{ listStyle: 'none', margin: 0 }}>
               <li>
                 <Link
@@ -110,6 +110,20 @@ class Footer extends Component {
               </li>
             </ul>
           </Grid>
+
+          <Grid item xs={12} sm={3}>
+            <div vocab="http://schema.org/" typeof="Organization">
+              <span property="name">About Us</span>
+              <div style={{fontSize:'14px'}} property="address" typeof="PostalAddress">
+               Lorem, ipsum dolor sit amet consectetur 
+               adipisicing elit. Modi, cupiditate illo repudiandae cum at eveniet recusandae ullam dolorem impedit reiciendis ratione voluptatem explicabo officiis eius dolorum deleniti, rerum accusamus fugiat?
+              </div>
+            
+            </div>
+          </Grid>
+          
+
+
         </Grid>
         <Grid className={classes.subFooter} item xs={12}>
           <Typography
