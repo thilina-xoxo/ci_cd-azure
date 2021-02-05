@@ -1,6 +1,8 @@
 import React from 'react';
 import './Navbar.css';
-import { Router } from 'react-router-dom';
+
+import logo from '../../assests/abc.jpeg'
+
 import {
   Nav,
   NavLink,
@@ -13,10 +15,10 @@ import {
 const Navbar = () => {
   return (
     <>
-      <Nav>
+      <Nav color='primary'>
         <NavLink to='/'>
           {' '}
-          <img src={require('../Images/Logo.svg')} alt='logo' />
+          <img src={logo} alt='logo' className='logo' style={{height:'100px'}} />
         </NavLink>
         <Bars />
         <NavMenu>
@@ -29,13 +31,16 @@ const Navbar = () => {
           <NavLink to='/contact-us' activeStyle>
             Contact Us
           </NavLink>
-          <NavLink to='/sign-up' activeStyle>
+          <NavLink to='/signup' activeStyle>
             Sign Up
+          </NavLink>
+       {/*  <NavLink to='/admin' activeStyle>
+            AdminDashboard
           </NavLink>
           {/* Second Nav */}
           {/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}
         </NavMenu>
-        <NavBtn>
+        <NavBtn >
           <NavBtnLink to='/signin'>Sign In</NavBtnLink>
         </NavBtn>
       </Nav>
