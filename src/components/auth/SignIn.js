@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -13,6 +13,10 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { lightBlue } from '@material-ui/core/colors';
+import {connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import {login} from '../../actions/auth'
+import { Redirect } from 'react-router-dom';
 
 function Copyright() {
   return (
@@ -62,8 +66,38 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn() {
+ const  SignIn=({login,isAuthenticated})=> {
+
+
+  
   const classes = useStyles();
+
+  const [formData, setFormData] = useState({
+  
+    email:"",
+    password:""
+    
+  })
+
+const{email,password}=formData
+
+const onChange=e=>setFormData(
+  {
+    ...formData, [e.target.name]:e.target.value
+  }
+)
+
+const onSubmit=async e=>{
+  e.preventDefault()
+  login(email,password)
+}
+
+if(isAuthenticated){
+  return <Redirect to="/about"/>
+}
+
+
+
 
   return (
     <Grid container component='main' className={classes.root}>
@@ -76,7 +110,7 @@ export default function SignIn() {
           <Typography component='h1' variant='h5'>
             Sign in
           </Typography>
-          <form className={classes.form} noValidate>
+          <form onSubmit={e=>onSubmit(e)}  className={classes.form} noValidate>
             <TextField
               variant='outlined'
               margin='normal'
@@ -85,7 +119,9 @@ export default function SignIn() {
               id='email'
               label='Email Address'
               name='email'
+              onChange={e=>onChange(e)} 
               autoComplete='email'
+              value={email}
               autoFocus
             />
             <TextField
@@ -97,6 +133,8 @@ export default function SignIn() {
               label='Password'
               type='password'
               id='password'
+              onChange={e=>onChange(e)}
+              value={password}
               autoComplete='current-password'
             />
             <FormControlLabel
@@ -132,3 +170,15 @@ export default function SignIn() {
     </Grid>
   );
 }
+
+
+SignIn.propTypes={
+
+  login:PropTypes.func.isRequired,
+  isAuthenticated:PropTypes.bool,
+}
+
+const mapStateToProps=state=>({
+  isAuthenticated:state.auth.isAuthenticated
+})
+export default connect(mapStateToProps,{login})(SignIn);
