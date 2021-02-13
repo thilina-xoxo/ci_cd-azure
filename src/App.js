@@ -12,7 +12,7 @@ import Home from './components/Pages/Home';
 import About from './components/Pages/About';
 import Services from './components/Pages/Services';
 import SignIn from './components/auth/SignIn';
-import SignUp from './components/auth/Signup';
+import SignUp from './components/auth/SignUp';
 import ForgotPassword from './components/auth/ForgotPassword'
 import Contact from './components/Pages/Contact'
 import Dashboard from './components/layouts/AdminDashboard/Navbar'
