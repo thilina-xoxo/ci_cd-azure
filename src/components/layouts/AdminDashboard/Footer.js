@@ -1,181 +1,59 @@
-import Grid from '@material-ui/core/Grid'
-import { withStyles } from '@material-ui/core/styles'
-import Typography from '@material-ui/core/Typography'
-import classNames from 'classnames'
-import Link from '@material-ui/core/Link';
-import React, { Component } from 'react'
+import React from 'react'
 
-
-
-class Footer extends Component {
-  render () {
-    const { classes } = this.props
-    const currentYear = new Date().getFullYear()
+function Footer() {
     return (
-      <div className={classes.root}>
-        <Grid
-          container
-          spacing={0}
-          className={classNames(classes.footerText, classes.footerSections)}
-        >
-          <Grid item xs={12} sm={3}>
-            <div vocab="http://schema.org/" typeof="Organization">
-              <span property="name">About Us</span>
-              <div style={{fontSize:'14px'}} property="address" typeof="PostalAddress">
-               Lorem, ipsum dolor sit amet consectetur 
-               adipisicing elit. Modi, cupiditate illo repudiandae cum at eveniet recusandae ullam dolorem impedit reiciendis ratione voluptatem explicabo officiis eius dolorum deleniti, rerum accusamus fugiat?
-              </div>
-            
+      
+      
+        <div className='footer bottom-auto'>
+              <div className="flex flex-wrap justify-center bg-blue-600 p-6">
+      <div className="flex flex-wrap mb-4 w-full">
+        <div className="w-full sm:w-1/2 md:w-1/2 lg:w-1/4 ">
+          <h2 className="text-md py-4">About Us</h2>
+          <p className='text-sm text-white'> NoQueue is an application designed focusing on medical centers to provide an easy to use solution to avoid unnecessary exposure to crowds in waiting rooms. 
+          </p>
+        </div>
+        <div className="w-full sm:w-1/2 md:w-1/2 lg:w-1/4 md:pl-32">
+          <h3 className=" text-md py-3">Links</h3>
+          <ul className='text-xs'>
+            <li><a className='hover:text-white' href="#!">Link</a></li>
+            <li><a className='hover:text-white' href="#!">Link</a></li>
+            <li><a className='hover:text-white' href="#!">Link</a></li>
+            <li><a className='hover:text-white' href="#!">Link</a></li>
+            <li><a className='hover:text-white' href="#!">Link</a></li>
+          </ul>
+        </div>
+        <div className="w-full sm:w-1/2 md:w-1/2 lg:w-1/4 ">
+          <h3 className="text-md py-3">Links</h3>
+          <ul className='text-xs'>
+          <li><a className='hover:text-white' href="#!">Link</a></li>
+            <li><a className='hover:text-white' href="#!">Link</a></li>
+            <li><a className='hover:text-white' href="#!">Link</a></li>
+            <li><a className='hover:text-white' href="#!">Link</a></li>
+            <li><a className='hover:text-white' href="#!">Link</a></li>
+          </ul>
+        </div>
+        <div className="w-full sm:w-1/2 md:w-1/2 lg:w-1/4">
+          <h3 className="text-sm py-2">Subscribe</h3>
+          <form action="#">
+            <div className="mb-4">
+              <input className="bg-gray-200  text-xs appearance-none border-2 border-gray-200 rounded w-full py-2 px-2  text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="text" placeholder="Email"/>
             </div>
-          </Grid>
-          
-          <Grid className={classes.flexContainer} item xs={3}>
-     
-         
-            <Grid style={{marginLeft:'20px', alignItems:'center'}}  >
-            <Link to=":https://www.facebook.com" target="blank" className='white-text'>
-              <i className='fa fa-facebook fa-2x px-1'  style={{color:'#4267B2',marginRight:'10px'}}></i>
-            </Link>
-            <Link to="https://www.twitter.com" target="blank" className='white-text'>
-              <i className='fa fa-twitter fa-2x px-1'  style={{color:'#00acee', marginRight:'10px'}}></i>
-            </Link>
-            <Link to="https://www.linkdin.com" target="blank" className='white-text'>
-              <i className='fa fa-linkedin fa-2x px-1'  style={{color:'#0e76a8',marginRight:'10px'}} ></i>
-            </Link>
-            <Link to="https://www.googleplus.com" target="blank" className='white-text'>
-              <i className='fa fa-google-plus fa-2x px-1'  style={{color:'#db4a39',marginRight:'10px'}}></i>
-            </Link>
-         
-            </Grid>
-              
-              
-             
-          
-           
-              
-            
-          </Grid>
-
-
-          
-          <Grid item xs={12} sm={3}>
-            <ul style={{ listStyle: 'none', margin: 0 }}>
-              <li>
-                <Link
-                  prefetch={true}
-                  as="/contact"
-                  href="#"
-                >
-                  <a className={classes.white} style={{ fontWeight: 400 }}>
-                    Contact
-                  </a>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  prefetch={true}
-                  as="/ferpa"
-                  href="#"
-                >
-                  <a className={classes.white} style={{ fontWeight: 400 }}>
-                    Privacy Policy
-                  </a>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  prefetch={true}
-                  as="/directions-and-attractions"
-                  href="#"
-                >
-                  <a className={classes.white} style={{ fontWeight: 400 }}>
-                    Directions
-                  </a>
-                </Link>
-              </li>
-              <li>
-               
-  
-              </li>
-              <li>
-                <Link
-                  prefetch={true}
-                  as="/consumer-information"
-                  href="#"
-                >
-                  <a className={classes.white} style={{ fontWeight: 400 }}>
-                    Consumer Information
-                  </a>
-                </Link>
-              </li>
-            </ul>
-          </Grid>
-
-          <Grid item xs={12} sm={3}>
-            <div vocab="http://schema.org/" typeof="Organization">
-              <span property="name">About Us</span>
-              <div style={{fontSize:'14px'}} property="address" typeof="PostalAddress">
-               Lorem, ipsum dolor sit amet consectetur 
-               adipisicing elit. Modi, cupiditate illo repudiandae cum at eveniet recusandae ullam dolorem impedit reiciendis ratione voluptatem explicabo officiis eius dolorum deleniti, rerum accusamus fugiat?
-              </div>
-            
-            </div>
-          </Grid>
-          
-
-
-        </Grid>
-        <Grid className={classes.subFooter} item xs={12}>
-          <Typography
-            className={classes.white}
-            variant="subheading"
-            component={'span'}
-          >
-            © {currentYear} NoQueue
-          </Typography>
-        </Grid>
+            <button  className="bg-pink-600 hover:bg-red-800 text-xs text-white font-bold py-2 px-4 rounded" type="submit">Submit</button>
+          </form>
+        </div>
       </div>
+    </div>
+
+    <div className="bg-blue-900 p-2 pl-6">
+      <p className="bottom text-xs ">&copy; {new Date().getFullYear()} Copyright: <a href="Hasitha Kumarasinghe" className='text-gray-500'>NoQueue</a></p>
+    </div>
+
+    </div>
     )
-  }
 }
 
-const styles = theme => ({
-  root: {
-    marginTop: 30,
-    backgroundColor: '#303f9f',
-    borderTop: 'solid 3px #998643',
-    paddingTop: '16px',
-    overflowX: 'hidden'
-  },
-  footerSections: {
-    margin: '0 16px'
-  },
-  subFooter: {
-    backgroundColor: '#1a237e',
-    padding: '8px 16px 8px 16px',
-    marginTop: '8px'
-  },
-  footerText: {
-    color: '#fff',
-    fontSize: '18px',
-    lineHeight: 1.5
-  },
-  invertedBtnDark: {
-    color: '#fff',
-    backgroundColor: '#ec407a',
-    border: '2px #fff solid',
-    boxShadow: 'none',
-    margin: '8px'
-  },
-  white: {
-    color: '#fff'
-  },
-  flexContainer: {
-    display: 'flex-end'
-  }
-})
+export default Footer
 
-export default withStyles(styles)(Footer)
 
 
 
