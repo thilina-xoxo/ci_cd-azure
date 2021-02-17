@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -12,6 +12,12 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { pink } from '@material-ui/core/colors';
+import axios from 'axios';
+// redux
+import { connect } from 'react-redux';
+import { setAlert } from '../../actions/alert';
+import PropTypes from 'prop-types';
+import { register } from '../../actions/auth';
 
 function Copyright() {
   return (
@@ -55,12 +61,32 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignUp() {
+const SignUp = ({ setAlert, register }) => {
   const classes = useStyles();
+
+  const [formData, setFormData] = useState({
+    UserName: '',
+    email: '',
+    password: '',
+    ConfirmPassword: '',
+  });
+
+  const { UserName, email, password, ConfirmPassword } = formData;
+  const onChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    if (password != ConfirmPassword) {
+      setAlert('Password do not match', 'danger');
+    } else {
+      register(UserName, email, password, ConfirmPassword);
+    }
+  };
 
   return (
     <Grid container component='main' className={classes.root}>
-      <Grid item xs={false} sm={4} md={7} className={classes.image} />
+      <Grid it em xs={false} sm={4} md={7} className={classes.image} />
 
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
@@ -72,48 +98,56 @@ export default function SignUp() {
             Sign Up
           </Typography>
 
-          <form className={classes.form} noValidate>
+          <form
+            className={classes.form}
+            className={classes.submit}
+            onSubmit={(e) => onSubmit(e)}
+          >
             <TextField
               variant='outlined'
               margin='normal'
-              required
               fullWidth
               id='fullname'
               label='Full Name'
-              name='fullname'
+              name='UserName'
+              value={UserName}
+              onChange={(e) => onChange(e)}
             />
 
             <TextField
               variant='outlined'
               margin='normal'
-              required
               fullWidth
               name='email'
               label='Email'
               type='eamil'
               id='email'
+              value={email}
+              onChange={(e) => onChange(e)}
             />
 
             <TextField
               variant='outlined'
               margin='normal'
-              required
               fullWidth
               name='password'
               label='Password'
               type='password'
               id='password'
+              value={password}
+              onChange={(e) => onChange(e)}
             />
 
             <TextField
               variant='outlined'
               margin='normal'
-              required
               fullWidth
-              name='confirm'
+              name='ConfirmPassword'
               label='Confirm Password'
               type='password'
               id='confirm'
+              value={ConfirmPassword}
+              onChange={(e) => onChange(e)}
             />
 
             <FormControlLabel
@@ -121,13 +155,7 @@ export default function SignUp() {
               label='I agree all statements in terms of service'
             />
 
-            <Button
-              type='submit'
-              fullWidth
-              variant='contained'
-              color='primary'
-              className={classes.submit}
-            >
+            <Button type='submit' fullWidth variant='contained' color='primary'>
               Sign Up
             </Button>
 
@@ -148,4 +176,11 @@ export default function SignUp() {
       </Grid>
     </Grid>
   );
-}
+};
+
+SignUp.prototype = {
+  setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired,
+};
+
+export default connect(null, { setAlert, register })(SignUp);
