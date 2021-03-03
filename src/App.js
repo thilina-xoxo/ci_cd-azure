@@ -20,6 +20,8 @@ import Dashboard from './components/layouts/AdminDashboard/Navbar';
 import Footer from './components/layouts/AdminDashboard/Footer';
 import BusinessRegister from './components/Pages/BusinessRegister';
 import setAuthToken from './utils/setAuthtoken';
+import Map from './components/layouts/AdminDashboard/maphome/Map'
+
 
 const App = () => {
   return (
@@ -35,7 +37,7 @@ const App = () => {
           <Route path='/forgetpassword' component={ForgotPassword} />
           <Route path='/admin' component={Dashboard} />
           <Private path='/business' component={BusinessRegister} />
-          <Route path='/contact' component={Contact} />
+          <Route path='/contact' component={Map} />
         </Switch>
         <Footer />
       </Router>

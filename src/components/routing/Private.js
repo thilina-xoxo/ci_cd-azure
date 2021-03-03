@@ -4,13 +4,13 @@ import {connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 const Private = ({ component: Component,
-    auth:{loading},
+    auth:{loading, isAuthenticted},
      ...rest 
     }) => (
     <Route 
     {...rest}   
     render={props =>
-        !loading ?
+        !isAuthenticted && loading ?
         (<Redirect to='/signin'/>
         ):(
         <Component {...props}/>)
