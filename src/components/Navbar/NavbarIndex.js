@@ -31,8 +31,8 @@ const Navbar = () => {
           <NavLink to='/contact' activeStyle>
             Contact Us
           </NavLink>
-          <NavLink to='/signup' activeStyle>
-            Sign Up
+          <NavLink to='/business' activeStyle>
+           Business Registration
           </NavLink>
        {/*  <NavLink to='/admin' activeStyle>
             AdminDashboard
