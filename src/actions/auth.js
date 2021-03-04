@@ -47,6 +47,57 @@ export const register = (UserName, Email, Password, ConfirmPassword) => async (
   }
 };
 
+// REGISTER BUSINESS
+
+export const registerBusiness = (
+  BusinessType,
+  BusinessName,
+  TotalCrowd,
+  CurrentCrowd,
+  PostalCode,
+  PhoneNumber,
+  Email,
+  Summary
+) => async (dispatch) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  const body = JSON.stringify({
+    BusinessType,
+    BusinessName,
+    TotalCrowd,
+    CurrentCrowd,
+    PostalCode,
+    PhoneNumber,
+    Email,
+    Summary,
+  });
+
+  try {
+    const res = await axios.post(
+      'https://localhost:5001/api/business',
+      body,
+      config,
+      console.log('Thilina')
+    );
+    dispatch({
+      type: REGISTER_SUCCESS,
+      //payload: res.data,
+    });
+  } catch (err) {
+    //const errors = err.response.data.errors;
+    //console.log(errors);
+    dispatch(setAlert('Something wrong at your end', 'danger'));
+
+    //dispatch({
+    //type: REGISTER_FAIL,
+    //});
+  }
+};
+
 //LOAD USER
 
 export const loadUser = () => async (dispatch) => {

@@ -11,7 +11,7 @@ import store from './Store';
 import Navbar from './components/Navbar/NavbarIndex';
 import Home from './components/Pages/Home';
 import About from './components/Pages/About';
-import Services from './components/Pages/Services';
+import Appointment from './components/Pages/BusinessPage/Appointment';
 import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
 import ForgotPassword from './components/auth/ForgotPassword';
@@ -20,8 +20,7 @@ import Dashboard from './components/layouts/AdminDashboard/Navbar';
 import Footer from './components/layouts/AdminDashboard/Footer';
 import BusinessRegister from './components/Pages/BusinessRegister';
 import setAuthToken from './utils/setAuthtoken';
-import Map from './components/layouts/AdminDashboard/maphome/Map'
-
+import Map from './components/layouts/AdminDashboard/maphome/Map';
 
 const App = () => {
   return (
@@ -31,7 +30,7 @@ const App = () => {
         <Switch>
           <Route path='/' exact component={Home} />
           <Route path='/about' component={About} />
-          <Route path='/services' component={Services} />
+          <Route path='/appointment' component={Appointment} />
           <Route path='/signin' component={SignIn} />
           <Route path='/signup' component={SignUp} />
           <Route path='/forgetpassword' component={ForgotPassword} />
