@@ -13,7 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { pink } from '@material-ui/core/colors';
 import { connect } from 'react-redux';
-import { setAlert } from '../../actions/alert';
+import { setAlert } from '../../../actions/alert';
 import PropTypes from 'prop-types';
 
 function Copyright() {
@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
   },
   image: {
-    backgroundImage: 'url(https://invention.si.edu/sites/default/files/styles/story_banner_image/public/blog-guest-fox-susannah-2017-03-09-shutterstock_189632216-banner-edit.jpg?itok=eNxGJoO4)',
+    backgroundImage: 'url(https://img.freepik.com/free-photo/woman-typing-keyboard-laptop-account-login-screen-working-office-table-background-safety-concepts-about-internet-use_2034-1339.jpg?size=626&ext=jpg)',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
   },
@@ -58,14 +58,14 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const SignIn = ({setAlert}) => {
+const AdminSignin = ({setAlert}) => {
 
   const [formData, setFormData] = useState({
-    email:"",
-    password:"",
+    adminemail:"",
+    adminpassword:"",
   })
 
-const{email,password}=formData; 
+const{adminemail,adminpassword}=formData; 
 
 const onChange=e=>setFormData(
   {
@@ -75,7 +75,7 @@ const onChange=e=>setFormData(
 
 const onSubmit=e=>{
   e.preventDefault();
-  if (email && password) {
+  if (adminemail && adminpassword) {
     console.log('SUCCESS');}
         else{
           setAlert('Please fill all the fileds','warning');
@@ -97,7 +97,7 @@ const onSubmit=e=>{
           </Avatar>
 
           <Typography component="h1" variant="h5">
-            Sign in
+            Admin Sign in
           </Typography>
 
           <form onSubmit = { e=>onSubmit(e)} className={classes.form} noValidate>
@@ -107,10 +107,10 @@ const onSubmit=e=>{
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              value={email}
+              id="adminemail"
+              label="Admin Email Address"
+              name="adminemail"
+              value={adminemail}
             />
 
             <TextField
@@ -119,11 +119,11 @@ const onSubmit=e=>{
               margin="normal"
               required
               fullWidth
-              name="password"
-              label="Password"
+              name="adminpassword"
+              label="Admin Password"
               type="password"
-              id="password"
-              value={password}
+              id="adminpassword"
+              value={adminpassword}
             />
 
             <FormControlLabel
@@ -143,13 +143,13 @@ const onSubmit=e=>{
 
             <Grid container>
               <Grid item xs>
-                <Link href="forgotpassword" variant="body2">
+                <Link href="ForgotPassword" variant="body2">
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
 
-                <Link href="signup" variant="body2">
+                <Link href="#" variant="body2">
                   {"Not a member? Sign Up"}
                 </Link>
               </Grid>
@@ -166,8 +166,8 @@ const onSubmit=e=>{
   );
 }
 
-SignIn.propTypes={
+AdminSignin.propTypes={
   setAlert:PropTypes.func.isRequired
 };
 
-export default connect(null, { setAlert })(SignIn);
+export default connect(null, { setAlert })(AdminSignin);
