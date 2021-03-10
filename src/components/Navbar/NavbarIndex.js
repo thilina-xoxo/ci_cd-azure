@@ -22,7 +22,7 @@ const Navbar = () => {
             src={logo}
             alt='logo'
             className='logo'
-            style={{ height: '100px' }}
+            style={{ height: '80px' }}
           />
         </NavLink>
         <Bars />
@@ -33,10 +33,13 @@ const Navbar = () => {
           <NavLink to='/appointment' activeStyle>
             Appointment
           </NavLink>
-          <NavLink to='/contact' activeStyle>
+          <NavLink to='/map' activeStyle>
+            Map
+          </NavLink>
+          <NavLink to='/contactus' activeStyle>
             Contact Us
           </NavLink>
-          <NavLink to='/business' activeStyle>
+          <NavLink to='/AdminSignin' activeStyle>
             Business Registration
           </NavLink>
           {/*  <NavLink to='/admin' activeStyle>

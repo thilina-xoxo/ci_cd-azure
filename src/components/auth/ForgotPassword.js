@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -9,12 +9,15 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { pink } from '@material-ui/core/colors';
+import { connect } from 'react-redux';
+import { setAlert } from '../../actions/alert';
+import PropTypes from 'prop-types';
 
 function Copyright() {
   return (
     <Typography variant='body2' color='textSecondary' align='center'>
       {'Copyright © '}
-      <Link color='primary' href='#'>
+      <Link color='primary' href='./'>
         NoQueue Website
       </Link>{' '}
       {new Date().getFullYear()}
@@ -46,7 +49,37 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ForgotPassword() {
+const ForgotPassword = ({setAlert}) => {
+
+  const [formData, setFormData] = useState({
+    email:"",
+    password:"",
+    password2:""
+  })
+
+const{email,password,password2}=formData; 
+
+const onChange=e=>setFormData(
+  {
+    ...formData, [e.target.name]:e.target.value
+  }
+)
+
+const onSubmit=e=>{
+  e.preventDefault();
+  if (email && password) {
+    if (password !== password2) {
+      setAlert('Password do not match' , 'danger');
+        }else{
+          console.log('SUCCESS');
+        }}
+        else{
+          setAlert('Please fill all the required fileds','warning');
+        }
+      }
+
+        
+
   const classes = useStyles();
 
   return (
@@ -59,8 +92,9 @@ export default function ForgotPassword() {
         Reset Password
       </Typography>
 
-      <form className={classes.form} noValidate>
+      <form onSubmit = { e=>onSubmit(e)} className={classes.form} noValidate>
         <TextField
+          onChange={e=>onChange(e)}
           variant='outlined'
           margin='normal'
           required
@@ -68,9 +102,11 @@ export default function ForgotPassword() {
           id='email'
           label='Email Address'
           name='email'
+          value={email}
         />
 
         <TextField
+          onChange={e=>onChange(e)}
           variant='outlined'
           margin='normal'
           required
@@ -79,17 +115,20 @@ export default function ForgotPassword() {
           label='New Password'
           type='password'
           id='password'
+          value={password}
         />
 
         <TextField
+          onChange={e=>onChange(e)}
           variant='outlined'
           margin='normal'
           required
           fullWidth
-          name='password'
+          name='password2'
           label='Confirm Password'
           type='password'
-          id='password'
+          id='password2'
+          value={password2}
         />
 
         <Button
@@ -116,3 +155,10 @@ export default function ForgotPassword() {
     </div>
   );
 }
+
+ForgotPassword.propTypes={
+  setAlert:PropTypes.func.isRequired
+};
+
+export default connect(null, { setAlert })(ForgotPassword);
+
