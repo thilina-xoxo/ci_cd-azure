@@ -1,7 +1,7 @@
 import React from 'react';
 import './Navbar.css';
 
-import logo from '../../assests/abc.jpeg'
+import logo from '../../assests/abc.jpeg';
 
 import {
   Nav,
@@ -18,15 +18,20 @@ const Navbar = () => {
       <Nav color='primary'>
         <NavLink to='/'>
           {' '}
-          <img src={logo} alt='logo' className='logo' style={{height:'100px'}} />
+          <img
+            src={logo}
+            alt='logo'
+            className='logo'
+            style={{ height: '80px' }}
+          />
         </NavLink>
         <Bars />
         <NavMenu>
           <NavLink to='/about' activeStyle>
             About
           </NavLink>
-          <NavLink to='/services' activeStyle>
-            Services
+          <NavLink to='/appointment' activeStyle>
+            Appointment
           </NavLink>
           <NavLink to='/map' activeStyle>
             Map
@@ -34,16 +39,16 @@ const Navbar = () => {
           <NavLink to='/contactus' activeStyle>
             Contact Us
           </NavLink>
-          <NavLink to='/business' activeStyle>
-           Business Registration
+          <NavLink to='/AdminSignin' activeStyle>
+            Business Registration
           </NavLink>
-       {/*  <NavLink to='/admin' activeStyle>
+          {/*  <NavLink to='/admin' activeStyle>
             AdminDashboard
           </NavLink>
           {/* Second Nav */}
           {/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}
         </NavMenu>
-        <NavBtn >
+        <NavBtn>
           <NavBtnLink to='/signin'>Sign In</NavBtnLink>
         </NavBtn>
       </Nav>

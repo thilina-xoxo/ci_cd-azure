@@ -1,44 +1,51 @@
 import React, { useEffect } from 'react';
-
+import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Private from './components/routing/Private';
 //redux
 import { Provider } from 'react-redux';
 import store from './Store';
+import Alert from './components/layouts/AdminDashboard/Alert';
 //import { loadUser } from './actions/auth';
 
 //
 import Navbar from './components/Navbar/NavbarIndex';
 import Home from './components/Pages/Home';
 import About from './components/Pages/About';
-import Services from './components/Pages/Services';
+import Appointment from './components/Pages/BusinessPage/Appointment';
 import SignIn from './components/auth/SignIn';
-import SignUp from './components/auth/SignUp';
+import SignUp from './components/auth/Signup';
+import AppointmentMaking from './components/Pages/AppointmentMaking.js';
 import ForgotPassword from './components/auth/ForgotPassword';
 import Contact from './components/Pages/Contact';
+import Services from './components/Pages/Services';
+import AdminSignin from './components/layouts/AdminDashboard/AdminSignin';
 import Dashboard from './components/layouts/AdminDashboard/Navbar';
 import Footer from './components/layouts/AdminDashboard/Footer';
 import BusinessRegister from './components/Pages/BusinessRegister';
 import setAuthToken from './utils/setAuthtoken';
-import Map from './components/layouts/AdminDashboard/maphome/Map'
-
+import Map from './components/layouts/AdminDashboard/maphome/Map';
 
 const App = () => {
   return (
     <Provider store={store}>
       <Router>
         <Navbar />
+        <Alert/>
         <Switch>
           <Route path='/' exact component={Home} />
           <Route path='/about' component={About} />
           <Route path='/services' component={Services} />
+          <Route path='/appointment' component={Appointment} />
           <Route path='/signin' component={SignIn} />
           <Route path='/signup' component={SignUp} />
-          <Route path='/forgetpassword' component={ForgotPassword} />
+          <Route path='/appointmentmaking' component={AppointmentMaking} />
+          <Route path='/forgotpassword' component={ForgotPassword} />
+          <Route path='/Adminsignin' component={AdminSignin} />
           <Route path='/admin' component={Dashboard} />
+          <Route path='/contactus' component={Contact} />
           <Private path='/business' component={BusinessRegister} />
           <Route path='/map' component={Map} />
-          <Route path='/contactus' component={Contact} />
         </Switch>
         <Footer />
       </Router>
