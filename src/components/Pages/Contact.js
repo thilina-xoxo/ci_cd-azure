@@ -10,6 +10,9 @@ const Contact = () => {
         height: '90vh',
       }}
     >
+
+
+      
       <h3>Contact page is under construction </h3>
     </div>
   );

@@ -37,7 +37,8 @@ const App = () => {
           <Route path='/forgetpassword' component={ForgotPassword} />
           <Route path='/admin' component={Dashboard} />
           <Private path='/business' component={BusinessRegister} />
-          <Route path='/contact' component={Map} />
+          <Route path='/map' component={Map} />
+          <Route path='/contactus' component={Contact} />
         </Switch>
         <Footer />
       </Router>

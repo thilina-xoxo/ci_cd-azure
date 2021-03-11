@@ -9,7 +9,7 @@ import {
 
 import 
     usePlacesAutocomplete,{
-        getGeoCode,
+        getGeocode,
         getLatLng,
     } 
  from 'use-places-autocomplete';
@@ -68,13 +68,21 @@ const onMapLoad= useCallback(
     [],
 )
 
+const panTo=useCallback(
+    ({lat,lng}) => {
+      mapRef.current.panTo({lat ,lng});
+      mapRef.current.setZoom(14);
+    },
+    [],
+)
+
 if (loadError) return "Error loading Maps";
 if (!isLoaded) return "Loading Maps";
 
 return <div>
 
 
-   <Search/>
+   <Search panTo={panTo}/>
 
 
 
@@ -113,7 +121,7 @@ onClick={()=>{
    
 }
 
-function Search () {
+function Search ({panTo}) {
 
     const {ready,
         value,
@@ -130,7 +138,17 @@ function Search () {
        
 <div className ='z-20'>
         
-      <Combobox onSelect={(address)=>{
+      <Combobox
+       onSelect={ async(address)=>{
+try {
+    const result =await getGeocode({address});
+    const {lat ,lng} =await getLatLng(result[0]);
+    panTo({lat,lng});
+} catch (error) {
+    console.log("error!")
+}
+       
+
           console.log(address)
           }}>
 <ComboboxInput 
