@@ -33,15 +33,15 @@ const App = () => {
         <Navbar />
         <Alert/>
         <Switch>
-          <Route path='/' exact component={Home} />
+          <Route path='/index' exact component={Home} />
           <Route path='/about' component={About} />
           <Route path='/services' component={Services} />
           <Route path='/appointment' component={Appointment} />
           <Route path='/signin' component={SignIn} />
           <Route path='/signup' component={SignUp} />
-          <Route path='/appointmentmaking' component={AppointmentMaking} />
+          <Private path='/appointmentmaking' component={AppointmentMaking} />
           <Route path='/forgotpassword' component={ForgotPassword} />
-          <Route path='/Adminsignin' component={AdminSignin} />
+
           <Route path='/admin' component={Dashboard} />
           <Route path='/contactus' component={Contact} />
           <Private path='/business' component={BusinessRegister} />

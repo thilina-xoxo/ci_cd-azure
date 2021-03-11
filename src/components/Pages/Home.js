@@ -6,7 +6,7 @@ import { blue } from '@material-ui/core/colors';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
-import 'moment-timezone';
+
 import Carousel from '../layouts/Carousel';
 import img from '../../assests/abc.jpeg';
 import imge from '../../assests/images.jpg';

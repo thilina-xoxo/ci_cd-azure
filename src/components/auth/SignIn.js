@@ -15,6 +15,8 @@ import { pink } from '@material-ui/core/colors';
 import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alert';
 import PropTypes from 'prop-types';
+import {login} from '../../actions/auth'
+import { Redirect } from 'react-router-dom'
 
 function Copyright() {
   return (
@@ -58,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const SignIn = ({setAlert}) => {
+const SignIn = ({setAlert,login,isAuthenticated}) => {
 
   const [formData, setFormData] = useState({
     email:"",
@@ -74,16 +76,23 @@ const onChange=e=>setFormData(
 )
 
 const onSubmit=e=>{
+
   e.preventDefault();
   if (email && password) {
-    console.log('SUCCESS');}
+    login(email,password)
+  
+  }
         else{
           setAlert('Please fill all the fileds','warning');
         }
       }
 
-  const classes = useStyles();
+     
 
+  const classes = useStyles();
+  if(isAuthenticated){
+    return <Redirect to="/business"/>
+  }
   return (
     <Grid container component="main" className={classes.root}>
      
@@ -167,7 +176,14 @@ const onSubmit=e=>{
 }
 
 SignIn.propTypes={
-  setAlert:PropTypes.func.isRequired
+  login:PropTypes.func.isRequired,
+  setAlert:PropTypes.func.isRequired,
+  isAuthenticated:PropTypes.bool,
 };
 
-export default connect(null, { setAlert })(SignIn);
+const mapStateToProps=state=>({
+  isAuthenticated:state.auth.isAuthenticated
+})
+
+
+export default connect(mapStateToProps,{login,setAlert})(SignIn);

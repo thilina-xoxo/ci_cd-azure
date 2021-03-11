@@ -39,13 +39,13 @@ export default function (state = initialState, action) {
         loading: false,
       };
 
-    //case USER_LOADED:
-    // return {
-    // ...state,
-    //isAuthenticated: true,
-    //loading: false,
-    //user: JSON.parse(atob(payload.token.split('.')[1])),
-    // };
+    case USER_LOADED:
+     return {
+   ...state,
+    isAuthenticated: true,
+    loading: false,
+    user: JSON.parse(atob(payload.token.split('.')[1])),
+     };
 
     case AUTH_ERROR:
     case LOGIN_FAIL:
@@ -55,7 +55,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         token: null,
-        isAuthenticated: null,
+        isAuthenticated: false,
         loading: false,
         user: null,
       };
