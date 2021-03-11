@@ -1,6 +1,8 @@
-import React from 'react';
+import React, {useState,Fragment} from 'react';
 import './Navbar.css';
-
+import {connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import {logout} from '../../actions/auth'
 import logo from '../../assests/abc.jpeg';
 
 import {
@@ -12,11 +14,13 @@ import {
   NavBtnLink,
 } from './NavbarElements';
 
-const Navbar = () => {
-  return (
-    <>
-      <Nav color='primary'>
-        <NavLink to='/'>
+const Navbar = ({auth:{isAuthenticated,loading},logout}) => {
+
+
+const authLinks=(
+
+<Fragment>
+<NavLink to='/index'>
           {' '}
           <img
             src={logo}
@@ -26,6 +30,10 @@ const Navbar = () => {
           />
         </NavLink>
         <Bars />
+
+        <NavLink to='/index' activeStyle>
+            Home
+          </NavLink>
         <NavMenu>
           <NavLink to='/about' activeStyle>
             About
@@ -39,7 +47,7 @@ const Navbar = () => {
           <NavLink to='/contactus' activeStyle>
             Contact Us
           </NavLink>
-          <NavLink to='/AdminSignin' activeStyle>
+          <NavLink to='/business' activeStyle>
             Business Registration
           </NavLink>
           {/*  <NavLink to='/admin' activeStyle>
@@ -49,11 +57,82 @@ const Navbar = () => {
           {/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}
         </NavMenu>
         <NavBtn>
+        <a onClick={logout} href='signin'>
+          Logout
+        </a>
+        </NavBtn>
+</Fragment>
+
+
+)
+
+
+const guestLinks=(
+
+<Fragment>
+<NavLink to='/index'>
+          {' '}
+          <img
+            src={logo}
+            alt='logo'
+            className='logo'
+            style={{ height: '80px' }}
+          />
+        </NavLink>
+        <Bars />
+        <NavMenu>
+
+        <NavLink to='/index' activeStyle>
+            Home
+          </NavLink>
+          <NavLink to='/about' activeStyle>
+            About
+          </NavLink>
+          <NavLink to='/signin' activeStyle>
+            Appointment
+          </NavLink>
+          <NavLink to='/map' activeStyle>
+            Map
+          </NavLink>
+          <NavLink to='/contactus' activeStyle>
+            Contact Us
+          </NavLink>
+         
+          {/*  <NavLink to='/admin' activeStyle>
+            AdminDashboard
+          </NavLink>
+          {/* Second Nav */}
+          {/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}
+        </NavMenu>
+        <NavBtn>
           <NavBtnLink to='/signin'>Sign In</NavBtnLink>
         </NavBtn>
+</Fragment>
+
+)
+
+  return (
+    <>
+      <Nav color='primary'>
+      {(<Fragment>{isAuthenticated && !loading ? authLinks:guestLinks}</Fragment>)}
       </Nav>
     </>
   );
 };
 
-export default Navbar;
+
+Navbar.propTypes={
+
+  auth:PropTypes.object.isRequired,
+  logout:PropTypes.func.isRequired,
+
+}
+
+const mapStateToProps=state=>({
+  auth:state.auth,
+ 
+ 
+ })
+
+
+export default connect(mapStateToProps,{logout})(Navbar);
