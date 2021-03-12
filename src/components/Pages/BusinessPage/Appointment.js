@@ -1,6 +1,6 @@
 import { Directions } from '@material-ui/icons';
 import React from 'react';
-import ImgMediaCard from './BusinessComponet';
+import Album from './BusinessComponet';
 
 const Services = () => {
   return (
@@ -13,12 +13,7 @@ const Services = () => {
           justifyContent: 'center',
         }}
       >
-        <ImgMediaCard />
-        <ImgMediaCard />
-        <ImgMediaCard />
-        <ImgMediaCard />
-        <ImgMediaCard />
-        <ImgMediaCard />
+        <Album />
       </div>
     </div>
   );
