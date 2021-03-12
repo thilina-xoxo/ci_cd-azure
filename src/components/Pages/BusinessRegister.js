@@ -1,24 +1,24 @@
 import React, { useState, Fragment } from 'react';
+import axios from 'axios';
 
-// redux
-import { connect } from 'react-redux';
-import { setAlert } from '../../actions/alert';
 import PropTypes from 'prop-types';
-import { registerBusiness } from '../../actions/auth';
 
-const CreateProfile = ({ setAlert, registerBusiness }) => {
+const initialFieldValues = {
+  BusinessType: '',
+  BusinessName: '',
+  TotalCrowd: '',
+  CurrentCrowd: '',
+  PostalCode: '',
+  PhoneNumber: '',
+  Email: '',
+  Summary: '',
+};
+
+const CreateProfile = () => {
   // state goes here
 
-  const [formData, setFormData] = useState({
-    BusinessType: '',
-    BusinessName: '',
-    TotalCrowd: '',
-    CurrentCrowd: '',
-    PostalCode: '',
-    PhoneNumber: '',
-    Email: '',
-    Summary: '',
-  });
+  const [values, setValues] = useState(initialFieldValues);
+  const [errors, setErrors] = useState({});
 
   const {
     BusinessType,
@@ -29,26 +29,63 @@ const CreateProfile = ({ setAlert, registerBusiness }) => {
     PhoneNumber,
     Email,
     Summary,
-  } = formData;
-  const onChange = (e) =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  } = values;
 
-  const onSubmit = async (e) => {
+  const onChange = (e) =>
+    setValues({ ...values, [e.target.name]: e.target.value });
+
+  // check validation errors
+  const validate = () => {
+    // let temp = {};
+    // temp.BusinessName = values.Business == '' ? false : true;
+    // setErrors(temp);
+    // return Object.values(temp).every((x) => x == true);
+    return true;
+  };
+
+  //reset Form
+  const resetForm = () => {
+    setValues(initialFieldValues);
+    //setErrors({});
+  };
+
+  // form submit
+  const handleFormSubmit = (e) => {
     e.preventDefault();
-    try {
-      registerBusiness(
-        BusinessType,
-        BusinessName,
-        TotalCrowd,
-        CurrentCrowd,
-        PostalCode,
-        PhoneNumber,
-        Email,
-        Summary
-      );
-    } catch (error) {
-      console.log(error);
+    if (validate()) {
+      const formData = new FormData();
+      formData.append('BusinessType', values.BusinessType);
+      formData.append('BusinessName', values.BusinessName);
+      formData.append('TotalCrowd', values.TotalCrowd);
+      formData.append('CurrentCrowd', values.CurrentCrowd);
+      formData.append('PostalCode', values.PostalCode);
+      formData.append('PhoneNumber', values.PhoneNumber);
+      formData.append('Email', values.Email);
+      formData.append('Summary', values.Summary);
+      addOrEdit(formData, resetForm);
     }
+  };
+
+  // apply error class
+  const applyErrorClass = (field) =>
+    field in errors && errors[field] == false ? ' invalid-field' : '';
+
+  const addOrEdit = (formData, onSuccess) => {
+    employeeAPI()
+      .create(formData)
+      .then((res) => {
+        onSuccess();
+      })
+      .catch((err) => console.log(err));
+  };
+  //API
+  const employeeAPI = (url = 'https://localhost:5001/api/business') => {
+    return {
+      //fetchAll: () => axios.get(url),
+      create: (newRecord) => axios.post(url, newRecord),
+      //update: (id, updatedRecord) => axios.put(url + id, updatedRecord),
+      //delete: id => axios.delete(url + id)
+    };
   };
 
   return (
@@ -61,7 +98,7 @@ const CreateProfile = ({ setAlert, registerBusiness }) => {
         <form
           className='mb-6 mx-3'
           //className={classes.submit}
-          onSubmit={(e) => onSubmit(e)}
+          onSubmit={handleFormSubmit}
         >
           <p className='text-red-500 text-xs italic mb-2'>
             **Please fill out all the fields.
@@ -109,7 +146,7 @@ const CreateProfile = ({ setAlert, registerBusiness }) => {
               </label>
               <input
                 className='appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
-                id='bname'
+                id='BusinessName'
                 name='BusinessName'
                 value={BusinessName}
                 type='text'
@@ -264,9 +301,4 @@ const CreateProfile = ({ setAlert, registerBusiness }) => {
   );
 };
 
-CreateProfile.prototype = {
-  setAlert: PropTypes.func.isRequired,
-  registerBusiness: PropTypes.func.isRequired,
-};
-
-export default connect(null, { setAlert, registerBusiness })(CreateProfile);
+export default CreateProfile;
