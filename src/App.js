@@ -25,13 +25,14 @@ import Footer from './components/layouts/AdminDashboard/Footer';
 import BusinessRegister from './components/Pages/BusinessRegister';
 import setAuthToken from './utils/setAuthtoken';
 import Map from './components/layouts/AdminDashboard/maphome/Map';
+import Proffile from './components/Pages/BusinessPage/Proffile';
 
 const App = () => {
   return (
     <Provider store={store}>
       <Router>
         <Navbar />
-        <Alert/>
+        <Alert />
         <Switch>
           <Route path='/index' exact component={Home} />
           <Route path='/about' component={About} />
@@ -45,6 +46,7 @@ const App = () => {
           <Route path='/admin' component={Dashboard} />
           <Route path='/contactus' component={Contact} />
           <Private path='/business' component={BusinessRegister} />
+          <Route path='/businessproffile' component={Proffile} />
           <Route path='/map' component={Map} />
         </Switch>
         <Footer />

@@ -11,6 +11,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import axios from 'axios';
 
+import { useHistory } from 'react-router-dom';
+
 const useStyles = makeStyles((theme) => ({
   icon: {
     marginRight: theme.spacing(2),
@@ -45,11 +47,28 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Album() {
   const classes = useStyles();
+  const history = useHistory();
 
   // API --------------------------------
   //- api methods to retirve data
   const [employeeList, setEmployeeList] = useState([]);
   const cards = Array.from(employeeList);
+
+  // onclick
+  const routeChange = () => {
+    let path = 'businessproffile';
+    history.push(path);
+  };
+
+  const routeChange1 = () => {
+    let path = 'map';
+    history.push(path);
+  };
+
+  const routeChange2 = () => {
+    let path = 'contactus';
+    history.push(path);
+  };
 
   useEffect(() => {
     refreshEmployeeList();
@@ -93,11 +112,8 @@ export default function Album() {
                     <Typography>{employeeList[i].summary}</Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size='small' color='primary'>
-                      View
-                    </Button>
-                    <Button size='small' color='primary'>
-                      Edit
+                    <Button size='small' color='primary' onClick={routeChange}>
+                      More Info
                     </Button>
                   </CardActions>
                 </Card>
@@ -140,12 +156,20 @@ export default function Album() {
             <div className={classes.heroButtons}>
               <Grid container spacing={2} justify='center'>
                 <Grid item>
-                  <Button variant='contained' color='primary'>
-                    Go to Home
+                  <Button
+                    variant='contained'
+                    color='primary'
+                    onClick={routeChange1}
+                  >
+                    Find Location
                   </Button>
                 </Grid>
                 <Grid item>
-                  <Button variant='outlined' color='primary'>
+                  <Button
+                    variant='outlined'
+                    color='primary'
+                    onClick={routeChange2}
+                  >
                     Contact Us
                   </Button>
                 </Grid>

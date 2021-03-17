@@ -12,6 +12,7 @@ const initialFieldValues = {
   PhoneNumber: '',
   Email: '',
   Summary: '',
+  UserId: '',
 };
 
 const CreateProfile = () => {
