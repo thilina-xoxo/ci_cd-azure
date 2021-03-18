@@ -6,7 +6,7 @@ import Private from './components/routing/Private';
 import { Provider } from 'react-redux';
 import store from './Store';
 import Alert from './components/layouts/AdminDashboard/Alert';
-//import { loadUser } from './actions/auth';
+
 
 //
 import Navbar from './components/Navbar/NavbarIndex';
@@ -26,11 +26,24 @@ import BusinessRegister from './components/Pages/BusinessRegister';
 import setAuthToken from './utils/setAuthtoken';
 import Map from './components/layouts/AdminDashboard/maphome/Map';
 import Proffile from './components/Pages/BusinessPage/Proffile';
+import {loadUser} from './actions/auth'
+
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
+
 
 const App = () => {
+
+  useEffect(()=>{
+    store.dispatch(loadUser())
+  }, []) 
+
   return (
     <Provider store={store}>
       <Router>
+
+        
         <Navbar />
         <Alert />
         <Switch>

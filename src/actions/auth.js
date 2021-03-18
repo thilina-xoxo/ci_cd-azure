@@ -1,7 +1,7 @@
-import React from 'react';
+
 import axios from 'axios';
 import { setAlert } from './alert';
-
+import jwt_decode from "jwt-decode";
 import setAuthToken from '../utils/setAuthtoken';
 
 import {
@@ -100,23 +100,27 @@ export const registerBusiness = (
 
 //LOAD USER
 
+
 export const loadUser = () => async (dispatch) => {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
-  }
+    var decoded = jwt_decode(localStorage.token);
+   
+}
 
   try {
-    const res = await axios.get('api/');
+   const res = await axios.get(`https://localhost:5001/api/auth/user/${decoded.Id}`);
     dispatch({
-      type: USER_LOADED,
-      payload: res.data,
+     type: USER_LOADED,
+     payload: res.data,
     });
-  } catch (err) {
+ } catch (err) {
     dispatch({
       type: AUTH_ERROR,
-    });
-  }
+  });
+}
 };
+
 
 //login user
 

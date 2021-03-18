@@ -1,7 +1,8 @@
 import axios from 'axios'
 import React from 'react'
 import { setAlert } from '../actions/alert';
-
+import jwt_decode from "jwt-decode";
+import setAuthToken from '../utils/setAuthtoken';
 
 import {
  GET_PROFILE,
@@ -18,8 +19,13 @@ CLEAR_PHOTO
 
 export const  getCurrentProfile=()=>async dispatch=>{
 
+  if (localStorage.token) {
+    setAuthToken(localStorage.token);
+    var decoded = jwt_decode(localStorage.token);  
+}
+
 try {
-    const res= await axios.get('https://localhost:5001/api/auth/business')
+    const res= await axios.get(`https://localhost:5000/api/business/email/${decoded.Email}`)
 
     dispatch({
         type:GET_PROFILE,
@@ -28,7 +34,7 @@ try {
 } catch (err) {
     dispatch({
         type:PROFILE_ERROR,
-        payload:{msg:err.response.statusText,status:err.response.status}
+        payload:'errors'
     })
 }
 
@@ -58,19 +64,26 @@ export const  getProfiles=()=>async dispatch=>{
 
 //Get  profile by id
 
-export const  getProfilebyID=(userId)=>async dispatch=>{
+export const  getProfilebyID=()=>async dispatch=>{
+
+  if (localStorage.token) {
+    setAuthToken(localStorage.token);
+    var decoded = jwt_decode(localStorage.token);  
+    console.log(decoded.Email)
+}
+
 
   try {
-      const res= await axios.get(`/api/profile/user/${userId}`)
+      const res= await axios.get(`https://localhost:5000/api/business/email/${decoded.Email}`)
   
       dispatch({
-          type:GET_PROFILES,
+          type:GET_PROFILE,
           payload:res.data
       })
   } catch (err) {
       dispatch({
           type:PROFILE_ERROR,
-          payload:{msg:err.response.statusText,status:err.response.status}
+          payload:'error'
       })
   }
   

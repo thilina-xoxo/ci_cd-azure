@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const SignIn = ({setAlert,login,isAuthenticated}) => {
+const SignIn = ({setAlert,login,isAuthenticated,user}) => {
 
   const [formData, setFormData] = useState({
     email:"",
@@ -75,7 +75,7 @@ const onChange=e=>setFormData(
   }
 )
 
-const onSubmit=e=>{
+const onSubmit=async e=>{
 
   e.preventDefault();
   if (email && password) {
@@ -90,9 +90,18 @@ const onSubmit=e=>{
      
 
   const classes = useStyles();
+
+
   if(isAuthenticated){
+
+if(user.Role === 'User')
+return <Redirect to="index"/>
+else if(
+user.Role ==='Admin'
+)
     return <Redirect to="/business"/>
   }
+
   return (
     <Grid container component="main" className={classes.root}>
      
@@ -179,10 +188,12 @@ SignIn.propTypes={
   login:PropTypes.func.isRequired,
   setAlert:PropTypes.func.isRequired,
   isAuthenticated:PropTypes.bool,
+  user: PropTypes.object.isRequired,
 };
 
 const mapStateToProps=state=>({
-  isAuthenticated:state.auth.isAuthenticated
+  isAuthenticated:state.auth.isAuthenticated,
+  user: state.auth.user,
 })
 
 

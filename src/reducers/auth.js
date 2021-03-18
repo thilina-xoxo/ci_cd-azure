@@ -44,7 +44,7 @@ export default function (state = initialState, action) {
    ...state,
     isAuthenticated: true,
     loading: false,
-    user: JSON.parse(atob(payload.token.split('.')[1])),
+    user: payload,
      };
 
     case AUTH_ERROR:

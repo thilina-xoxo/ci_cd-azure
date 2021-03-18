@@ -12,12 +12,14 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { pink } from '@material-ui/core/colors';
-import axios from 'axios';
+
 // redux
 import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alert';
 import PropTypes from 'prop-types';
 import { register } from '../../actions/auth';
+import { Redirect } from 'react-router-dom'
+
 
 function Copyright() {
   return (
@@ -61,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SignUp = ({ setAlert, register }) => {
+const SignUp = ({ setAlert, register,isAuthenticated }) => {
   const classes = useStyles();
 
   const [formData, setFormData] = useState({
@@ -73,17 +75,31 @@ const SignUp = ({ setAlert, register }) => {
 
   const { UserName, email, password, ConfirmPassword } = formData;
   const onChange = (e) =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData
+    ({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = async (e) => {
+  const onSubmit = async (e) =>
+  
+  {
     e.preventDefault();
-    if (password != ConfirmPassword) {
-      setAlert('Password do not match', 'danger');
+if(UserName && email && password && ConfirmPassword){
+ if (password === ConfirmPassword) {
+  register(UserName, email, password, ConfirmPassword);
+     
     } else {
-      register(UserName, email, password, ConfirmPassword);
+      setAlert('Password do not match', 'danger');
     }
-  };
+  } else{
+    setAlert('Please fill all the fileds','warning');
+  }
+  }
 
+
+
+
+  if(isAuthenticated){
+    return <Redirect to="/index"/>
+  }
   return (
     <Grid container component="main" className={classes.root}>
       <Grid it em xs={false} sm={4} md={7} className={classes.image} />
@@ -182,6 +198,12 @@ const SignUp = ({ setAlert, register }) => {
 SignUp.prototype = {
   setAlert: PropTypes.func.isRequired,
   register: PropTypes.func.isRequired,
+  isAuthenticated:PropTypes.bool,
 };
 
-export default connect(null, { setAlert, register })(SignUp);
+
+const mapStateToProps=state=>({
+  isAuthenticated:state.auth.isAuthenticated
+})
+
+export default connect(mapStateToProps, { setAlert, register })(SignUp);
