@@ -3,6 +3,8 @@ import axios from 'axios';
 
 import PropTypes from 'prop-types';
 
+const defaultImageSrc = '/img/image_placeholder.png';
+
 const initialFieldValues = {
   BusinessType: '',
   BusinessName: '',
@@ -12,7 +14,9 @@ const initialFieldValues = {
   PhoneNumber: '',
   Email: '',
   Summary: '',
-  UserId: '',
+  ImageName: '',
+  ImageSrc: defaultImageSrc,
+  ImageFile: null,
 };
 
 const CreateProfile = () => {
@@ -30,6 +34,9 @@ const CreateProfile = () => {
     PhoneNumber,
     Email,
     Summary,
+    ImageName,
+    ImageSrc,
+    ImageFile,
   } = values;
 
   const onChange = (e) =>
@@ -44,9 +51,31 @@ const CreateProfile = () => {
     return true;
   };
 
+  // show preview image
+  const showPreview = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      let imageFile = e.target.files[0];
+      const reader = new FileReader();
+      reader.onload = (x) => {
+        setValues({
+          ...values,
+          ImageFile: imageFile,
+          ImageSrc: x.target.result,
+        });
+      };
+      reader.readAsDataURL(imageFile);
+    } else {
+      setValues({
+        ...values,
+        ImageFile: null,
+        ImageSrc: defaultImageSrc,
+      });
+    }
+  };
   //reset Form
   const resetForm = () => {
     setValues(initialFieldValues);
+    document.getElementById('image-uploader').value = null;
     //setErrors({});
   };
 
@@ -63,6 +92,8 @@ const CreateProfile = () => {
       formData.append('PhoneNumber', values.PhoneNumber);
       formData.append('Email', values.Email);
       formData.append('Summary', values.Summary);
+      formData.append('ImageName', values.ImageName);
+      formData.append('ImageFile', values.ImageFile);
       addOrEdit(formData, resetForm);
     }
   };
@@ -285,6 +316,26 @@ const CreateProfile = () => {
               />
               <p className='text-gray-600 text-xs italic'>
                 Make it more simpler
+              </p>
+            </div>
+          </div>
+
+          <div className='flex flex-wrap -mx-3 mb-6'>
+            <div className='w-full'>
+              <div class='bg-white rounded shadow border p-6 w-64'>
+                <img src={values.ImageSrc} />
+                <div>
+                  <input
+                    type='file'
+                    accept='image/*'
+                    onChange={showPreview}
+                    id='image-uploader'
+                  />
+                </div>
+              </div>
+
+              <p className='text-gray-600 text-xs italic'>
+                Upload your business card image
               </p>
             </div>
           </div>
