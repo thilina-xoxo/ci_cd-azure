@@ -57,6 +57,7 @@ export default function Album() {
   // onclick
   const routeChange = () => {
     let path = 'businessproffile';
+
     history.push(path);
   };
 
@@ -74,7 +75,7 @@ export default function Album() {
     refreshEmployeeList();
   }, []);
 
-  const employeeAPI = (url = 'https://localhost:5001/api/business') => {
+  const employeeAPI = (url = 'https://localhost:5001/api/business/card') => {
     return {
       fetchAll: () => axios.get(url),
     };
@@ -102,7 +103,7 @@ export default function Album() {
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
-                    image='https://source.unsplash.com/random'
+                    image={employeeList[i].imageSrc}
                     title='Image title'
                   />
                   <CardContent className={classes.cardContent}>
