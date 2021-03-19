@@ -8,7 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
 
 import Carousel from '../layouts/Carousel';
-import img from '../../assests/abc.jpeg';
+import img from '../../assests/logo.png';
 import imge from '../../assests/images.jpg';
 
 function Copyright() {
@@ -251,15 +251,9 @@ export default function Home() {
                           Rajapaksha RTM
                         </h5>
                         <p className="mt-1 text-sm text-gray-500 uppercase font-semibold">
-                          Web Developer
+                          Back End Developer
                         </p>
                         <div className="mt-6">
-                          <button
-                            className="bg-blue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                            type="button"
-                          >
-                            <i className="fab fa-twitter"></i>
-                          </button>
                           <button
                             className="bg-blue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
                             type="button"
@@ -267,11 +261,12 @@ export default function Home() {
                             <i className="fab fa-facebook-f"></i>
                           </button>
                           <button
-                            className="bg-pink-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                            className="bg-blue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
                             type="button"
                           >
-                            <i className="fab fa-dribbble"></i>
+                            <i class="fab fa-linkedin-in"></i>
                           </button>
+                        
                         </div>
                       </div>
                     </div>
@@ -289,20 +284,20 @@ export default function Home() {
                         Kumarasinghe WKH
                         </h5>
                         <p className="mt-1 text-sm text-gray-500 uppercase font-semibold">
-                          Marketing Specialist
+                          Front End Developer
                         </p>
                         <div className="mt-6">
-                          <button
-                            className="bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                            type="button"
-                          >
-                            <i className="fab fa-google"></i>
-                          </button>
-                          <button
+                        <button
                             className="bg-blue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
                             type="button"
                           >
                             <i className="fab fa-facebook-f"></i>
+                          </button>
+                          <button
+                            className="bg-blue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                            type="button"
+                          >
+                            <i class="fab fa-linkedin-in"></i>
                           </button>
                         </div>
                       </div>
@@ -321,26 +316,20 @@ export default function Home() {
                        Tennakoon TMGK
                         </h5>
                         <p className="mt-1 text-sm text-gray-500 uppercase font-semibold">
-                          UI Designer
+                          Front End Developer
                         </p>
                         <div className="mt-6">
-                          <button
-                            className="bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                        <button
+                            className="bg-blue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
                             type="button"
                           >
-                            <i className="fab fa-google"></i>
+                            <i className="fab fa-facebook-f"></i>
                           </button>
                           <button
                             className="bg-blue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
                             type="button"
                           >
-                            <i className="fab fa-twitter"></i>
-                          </button>
-                          <button
-                            className="bg-gray-800 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                            type="button"
-                          >
-                            <i className="fab fa-instagram"></i>
+                            <i class="fab fa-linkedin-in"></i>
                           </button>
                         </div>
                       </div>
@@ -359,32 +348,20 @@ export default function Home() {
                           Siribaddana KT
                         </h5>
                         <p className="mt-1 text-sm text-gray-500 uppercase font-semibold">
-                          App Developer
+                          Back End Developer
                         </p>
                         <div className="mt-6">
-                          <button
-                            className="bg-pink-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                        <button
+                            className="bg-blue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
                             type="button"
                           >
-                            <i className="fab fa-dribbble"></i>
-                          </button>
-                          <button
-                            className="bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                            type="button"
-                          >
-                            <i className="fab fa-google"></i>
+                            <i className="fab fa-facebook-f"></i>
                           </button>
                           <button
                             className="bg-blue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
                             type="button"
                           >
-                            <i className="fab fa-twitter"></i>
-                          </button>
-                          <button
-                            className="bg-gray-800 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                            type="button"
-                          >
-                            <i className="fab fa-instagram"></i>
+                            <i class="fab fa-linkedin-in"></i>
                           </button>
                         </div>
                       </div>
