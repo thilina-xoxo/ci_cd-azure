@@ -97,3 +97,11 @@
   font-family: 'Arial';
   align-items: center;
 }
+.pic {
+  height:30px ;
+}
+
+.back {
+  height: 250px;
+  opacity: .8;
+}

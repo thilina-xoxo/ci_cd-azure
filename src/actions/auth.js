@@ -11,6 +11,8 @@ import {
   AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
+  GET_USERS,
+  USERS_ERROR,
   LOGOUT,
 } from './types';
 
@@ -151,6 +153,27 @@ export const login = (email, password) => async (dispatch) => {
     });
   }
 };
+
+//getallusers
+
+export const  getAllUsers=()=>async dispatch=>{
+
+try {
+    const res= await axios.get('https://localhost:5001/api/auth/users')
+
+    dispatch({
+        type:GET_USERS,
+        payload:res.data
+    })
+} catch (err) {
+    dispatch({
+        type:USERS_ERROR,
+        payload:'errors'
+    })
+}
+
+}
+
 
 //logout
 export const logout = () => (dispatch) => {

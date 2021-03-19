@@ -17,3 +17,5 @@ export const UPDATE_PHOTO = 'UPDATE_PHOTO';
 export const GET_PHOTO = 'GET_PHOTO';
 export const PHOTO_ERROR = 'PHOTO_ERROR';
 export const CLEAR_PHOTO = 'CLEAR_PHOTO';
+export const GET_USERS = 'GET_USERS';
+export const USERS_ERROR = 'USERS_ERROR';

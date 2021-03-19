@@ -17,7 +17,7 @@ CLEAR_PHOTO
 
 //gET THE CURRENT USERS PROFILE
 
-export const  getCurrentProfile=()=>async dispatch=>{
+export const  getCurrentProfile=(email)=>async dispatch=>{
 
   if (localStorage.token) {
     setAuthToken(localStorage.token);
@@ -25,7 +25,7 @@ export const  getCurrentProfile=()=>async dispatch=>{
 }
 
 try {
-    const res= await axios.get(`https://localhost:5000/api/business/email/${decoded.Email}`)
+    const res= await axios.get(`https://localhost:5000/api/business/email/${email}`)
 
     dispatch({
         type:GET_PROFILE,
@@ -46,7 +46,7 @@ try {
 export const  getProfiles=()=>async dispatch=>{
  
   try {
-      const res= await axios.get('/api/profile')
+      const res= await axios.get('https://localhost:5001/api/business')
   
       dispatch({
           type:GET_PROFILES,
@@ -64,17 +64,12 @@ export const  getProfiles=()=>async dispatch=>{
 
 //Get  profile by id
 
-export const  getProfilebyID=()=>async dispatch=>{
+export const  getProfilebyID=(email)=>async dispatch=>{
 
-  if (localStorage.token) {
-    setAuthToken(localStorage.token);
-    var decoded = jwt_decode(localStorage.token);  
-    console.log(decoded.Email)
-}
-
+  
 
   try {
-      const res= await axios.get(`https://localhost:5000/api/business/email/${decoded.Email}`)
+      const res= await axios.get(`https://localhost:5001/api/business/email/${email}`)
   
       dispatch({
           type:GET_PROFILE,

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Private from './components/routing/Private';
+
 //redux
 import { Provider } from 'react-redux';
 import store from './Store';
@@ -27,6 +28,7 @@ import setAuthToken from './utils/setAuthtoken';
 import Map from './components/layouts/AdminDashboard/maphome/Map';
 import Proffile from './components/Pages/BusinessPage/Proffile';
 import {loadUser} from './actions/auth'
+import Allusers from './components/Pages/Showallusers'
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -43,8 +45,7 @@ const App = () => {
     <Provider store={store}>
       <Router>
 
-        
-        <Navbar />
+      <Route exact render={props=> <Navbar {...props}/>}/>
         <Alert />
         <Switch>
           <Route path='/index' exact component={Home} />
@@ -55,11 +56,10 @@ const App = () => {
           <Route path='/signup' component={SignUp} />
           <Private path='/appointmentmaking' component={AppointmentMaking} />
           <Route path='/forgotpassword' component={ForgotPassword} />
-
-          <Route path='/admin' component={Dashboard} />
           <Route path='/contactus' component={Contact} />
           <Private path='/business' component={BusinessRegister} />
-          <Route path='/businessproffile' component={Proffile} />
+          <Route exact path='/businessproffile/:email' component={Proffile} />
+          <Route path='/allusers' component={Allusers} />
           <Route path='/map' component={Map} />
         </Switch>
         <Footer />
