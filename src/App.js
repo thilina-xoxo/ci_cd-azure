@@ -29,6 +29,7 @@ import Map from './components/layouts/AdminDashboard/maphome/Map';
 import Proffile from './components/Pages/BusinessPage/Proffile';
 import {loadUser} from './actions/auth'
 import Allusers from './components/Pages/Showallusers'
+import Appointments from './components/Pages/BusinessPage/Appointments';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -58,7 +59,8 @@ const App = () => {
           <Route path='/forgotpassword' component={ForgotPassword} />
           <Route path='/contactus' component={Contact} />
           <Private path='/business' component={BusinessRegister} />
-          <Route exact path='/businessproffile/:email' component={Proffile} />
+          <Route exact path='/businessproffile/:businessId' component={Proffile} />
+          <Route path='/appointments' component={Appointments} />
           <Route path='/allusers' component={Allusers} />
           <Route path='/map' component={Map} />
         </Switch>

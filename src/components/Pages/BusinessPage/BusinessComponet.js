@@ -31,7 +31,7 @@ import ProfileItem from './ProfileItem'
       <Fragment>
  {loading ? <h4>Loading...</h4>:
  <Fragment>
-   <h1 className='large'> Business Profiles</h1>
+   <h1 className='large'> </h1>
    </Fragment>}
    <div className='card' >
         {profiles.length>0 ?(

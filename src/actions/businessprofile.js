@@ -17,7 +17,7 @@ CLEAR_PHOTO
 
 //gET THE CURRENT USERS PROFILE
 
-export const  getCurrentProfile=(email)=>async dispatch=>{
+export const  getCurrentProfile=(businessId)=>async dispatch=>{
 
   if (localStorage.token) {
     setAuthToken(localStorage.token);
@@ -25,7 +25,7 @@ export const  getCurrentProfile=(email)=>async dispatch=>{
 }
 
 try {
-    const res= await axios.get(`https://localhost:5000/api/business/email/${email}`)
+    const res= await axios.get(`https://localhost:5000/api/business/${businessId}`)
 
     dispatch({
         type:GET_PROFILE,
@@ -64,12 +64,12 @@ export const  getProfiles=()=>async dispatch=>{
 
 //Get  profile by id
 
-export const  getProfilebyID=(email)=>async dispatch=>{
+export const  getProfilebyID=(businessId)=>async dispatch=>{
 
   
 
   try {
-      const res= await axios.get(`https://localhost:5001/api/business/email/${email}`)
+      const res= await axios.get(`https://localhost:5001/api/business/${businessId}`)
   
       dispatch({
           type:GET_PROFILE,

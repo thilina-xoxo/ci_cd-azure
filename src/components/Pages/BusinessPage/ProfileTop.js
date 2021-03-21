@@ -8,7 +8,7 @@ const ProfileTop =({profile: {
     phoneNumber,
     postalCode,
     logo,
-    picture,
+    imageFile,
     summary
 }}) => {
     return (

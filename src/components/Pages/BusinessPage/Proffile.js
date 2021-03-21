@@ -10,7 +10,7 @@ import { getProfilebyID} from '../../../actions/businessprofile'
 const Profile = ({ match,getProfilebyID,user,auth,profile:{ profile, loading}}) => {
 
 useEffect(()=>{
-  getProfilebyID(match.params.email)
+  getProfilebyID(match.params.businessId)
 },[getProfilebyID])
 
 
@@ -40,7 +40,7 @@ useEffect(()=>{
     
 
 Profile.propTypes = {
-  getProfilebyID:PropTypes.func.isRequired,
+getProfilebyID:PropTypes.func.isRequired,
 profile:PropTypes.object.isRequired,
 auth:PropTypes.object.isRequired,
 user: PropTypes.object.isRequired,
