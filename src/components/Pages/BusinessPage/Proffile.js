@@ -48,7 +48,7 @@ useEffect(()=>{
     
 
 Profile.propTypes = {
-  getProfilebyID:PropTypes.func.isRequired,
+getProfilebyID:PropTypes.func.isRequired,
 profile:PropTypes.object.isRequired,
 auth:PropTypes.object.isRequired,
 user: PropTypes.object.isRequired,

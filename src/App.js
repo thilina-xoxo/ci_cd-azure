@@ -30,6 +30,9 @@ import Proffile from './components/Pages/BusinessPage/Proffile';
 import {loadUser} from './actions/auth'
 import Allusers from './components/Pages/Showallusers'
 import EditProfile from './components/Pages/BusinessPage/EditProfile'
+import Appointments from './components/Pages/BusinessPage/Appointments';
+
+
 if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
@@ -57,8 +60,9 @@ const App = () => {
           <Private exact path='/appointmentmaking' component={AppointmentMaking} />
           <Route path='/forgotpassword' component={ForgotPassword} />
           <Route path='/contactus' component={Contact} />
-          <Private  path='/business' component={BusinessRegister} />
+          <Private path='/business' component={BusinessRegister} />
           <Route exact path='/businessproffile/:businessId' component={Proffile} />
+          <Route path='/appointments' component={Appointments} />
           <Route path='/allusers' component={Allusers} />
           <Route path='/map' component={Map} />
            <Route path='/adminlog' component={AdminSignin} />
@@ -71,3 +75,5 @@ const App = () => {
 };
 
 export default App;
+
+

@@ -51,7 +51,7 @@ export default function Home() {
   const classes = useStyles();
 
   return (
-      
+    
       <Grid item xs={12} component={Paper} square>
         <div className={classes.paper}>
           <Carousel/>
