@@ -38,6 +38,7 @@ export const register = (UserName, Email, Password, ConfirmPassword) => async (
       type: REGISTER_SUCCESS,
       payload: res.data,
     });
+    dispatch(loadUser())
   } catch (err) {
     const errors = err.response.data.errors;
     console.log(errors);
@@ -111,7 +112,7 @@ export const loadUser = () => async (dispatch) => {
 }
 
   try {
-   const res = await axios.get(`https://localhost:5001/api/auth/user/${decoded.Id}`);
+   const res = await axios.get(`https://localhost:5001/api/auth/user/${decoded.userId}`);
     dispatch({
      type: USER_LOADED,
      payload: res.data,
@@ -146,6 +147,7 @@ export const login = (email, password) => async (dispatch) => {
       type: LOGIN_SUCCESS,
       payload: res.data,
     });
+    dispatch(loadUser())
   } catch (err) {
     dispatch(setAlert('Invalid email or password', 'danger'));
     dispatch({

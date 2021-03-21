@@ -149,7 +149,7 @@ const Navbar = ({ auth: { isAuthenticated, loading,user }, logout }) => {
         {
           <Fragment>
             
-            {isAuthenticated && !loading ? ((user.Role=='Admin') ? adminLinks:authLinks):guestLinks}
+            {isAuthenticated && !loading ? ((user.userRole=='Admin') ? adminLinks:authLinks):guestLinks}
           </Fragment>
         }
       </Nav>
