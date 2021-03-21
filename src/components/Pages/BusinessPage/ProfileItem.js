@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom'
 import Appointments from '../../layouts/AdminDashboard/Appointments'
 
 function ProfileItem({ profile:{
+    businessId,
     name,
     email,
     totalCrowd,
@@ -26,7 +27,7 @@ function ProfileItem({ profile:{
             <h2>{email}</h2>
 
 
-            <Link to={`/businessproffile/${email}`}>
+            <Link to={`/businessproffile/${businessId}`}>
                 View Profile
             </Link>
         </div>

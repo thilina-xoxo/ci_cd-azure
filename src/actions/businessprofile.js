@@ -17,15 +17,10 @@ CLEAR_PHOTO
 
 //gET THE CURRENT USERS PROFILE
 
-export const  getCurrentProfile=(email)=>async dispatch=>{
-
-  if (localStorage.token) {
-    setAuthToken(localStorage.token);
-    var decoded = jwt_decode(localStorage.token);  
-}
+export const  getCurrentProfile=(businessId)=>async dispatch=>{
 
 try {
-    const res= await axios.get(`https://localhost:5000/api/business/email/${email}`)
+    const res= await axios.get(`https://localhost:5001/api/business/${businessId}`)
 
     dispatch({
         type:GET_PROFILE,
@@ -64,12 +59,12 @@ export const  getProfiles=()=>async dispatch=>{
 
 //Get  profile by id
 
-export const  getProfilebyID=(email)=>async dispatch=>{
+export const  getProfilebyID=(businessId)=>async dispatch=>{
 
   
 
   try {
-      const res= await axios.get(`https://localhost:5001/api/business/email/${email}`)
+      const res= await axios.get(`https://localhost:5001/api/business/${businessId}`)
   
       dispatch({
           type:GET_PROFILE,
@@ -85,12 +80,15 @@ export const  getProfilebyID=(email)=>async dispatch=>{
   }
 
 
-//Create or update a Profile
+//update a Profile
 
-export const createProfile = (
+export const editProfile = (
+  businessId,
   formData,
   history,
-  edit = false
+  edit=false
+ 
+
 ) => async dispatch => {
   try {
 
@@ -99,28 +97,26 @@ export const createProfile = (
         'Content-Type':'application/json'
       }
     }
-    const res = await axios.post('/api/profile', formData,config);
+    const res = await axios.put(`https://localhost:5001/api/business/${businessId}/`, formData,config);
 
     dispatch({
       type: GET_PROFILE,
       payload: res.data
     });
-
-    dispatch(setAlert( edit ? 'Profile Updated': 'Profile Created' ,'success',<i className="material-icons">done</i>));
-
+    
     if (!edit) {
-      history.push('/home');
+      history.push('/index');
     }
   } catch (err) {
     const errors =err.response.data.errors;
 
     if (errors) {
-    dispatch(setAlert(errors,'danger',  <i className="material-icons">report</i>));
+      dispatch(setAlert('Something wrong at your end', 'danger'));
     }
 
     dispatch({
       type: PROFILE_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      payload: "somthing went wrong"
     });
   }
 };

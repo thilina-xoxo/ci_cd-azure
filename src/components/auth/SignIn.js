@@ -94,13 +94,23 @@ const onSubmit=async e=>{
 
   if(isAuthenticated){
 
-if(user.Role === 'User')
+if(user.userRole === 'User')
 return <Redirect to="index"/>
 else if(
-user.Role ==='Admin'
+user.userRole ==='Admin'
 )
-    return <Redirect to="/business"/>
+    return <Redirect to="/allusers"/>
+
+
+    else if(
+      user.userRole ==='Business'
+      )
+          return <Redirect to="/business"/>
+        
+      
   }
+
+  
 
   return (
     <Grid container component="main" className={classes.root}>

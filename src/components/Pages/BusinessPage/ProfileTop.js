@@ -1,15 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import img from '../../../assests/NewLanka.jpg'
-
+import {Link} from 'react-router-dom'
 const ProfileTop =({profile: {
     name,
     email,
     phoneNumber,
     postalCode,
     logo,
-    picture,
-    summary
+businessId,
+    summary,
+    imageName
 }}) => {
     return (
 <div className='container-around'>
@@ -24,11 +25,9 @@ const ProfileTop =({profile: {
         <div className=" mx-auto px-4">
           <div className="items-center flex flex-wrap">
             <div className="w-full md:w-4/12 ml-auto mr-auto px-4">
-              <img
-                alt="..."
-                className="max-w-full col-6 rounded-lg "
-                src={img}
-              />
+              
+                {imageName}
+            
             </div>
             <div className="w-full md:w-5/12 ml-auto mr-auto px-4">
               <div className="md:pr-12">
@@ -85,6 +84,10 @@ const ProfileTop =({profile: {
             </div>
           </div>
         </div>
+
+        <Link to= {`/editProfile/${businessId}`}className="bg-green-500 hover:bg-blue-800 text-xs text-white font-bold py-1 px-4 rounded">
+     Edit Profile
+    </Link>
       </section>
 
         </div>

@@ -29,7 +29,7 @@ import Map from './components/layouts/AdminDashboard/maphome/Map';
 import Proffile from './components/Pages/BusinessPage/Proffile';
 import {loadUser} from './actions/auth'
 import Allusers from './components/Pages/Showallusers'
-
+import EditProfile from './components/Pages/BusinessPage/EditProfile'
 if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
@@ -54,13 +54,15 @@ const App = () => {
           <Route path='/appointment' component={Appointment} />
           <Route path='/signin' component={SignIn} />
           <Route path='/signup' component={SignUp} />
-          <Private path='/appointmentmaking' component={AppointmentMaking} />
+          <Private exact path='/appointmentmaking' component={AppointmentMaking} />
           <Route path='/forgotpassword' component={ForgotPassword} />
           <Route path='/contactus' component={Contact} />
-          <Private path='/business' component={BusinessRegister} />
-          <Route exact path='/businessproffile/:email' component={Proffile} />
+          <Private  path='/business' component={BusinessRegister} />
+          <Route exact path='/businessproffile/:businessId' component={Proffile} />
           <Route path='/allusers' component={Allusers} />
           <Route path='/map' component={Map} />
+           <Route path='/adminlog' component={AdminSignin} />
+           <Route path='/editProfile/:businessId' component={EditProfile} />
         </Switch>
         <Footer />
       </Router>

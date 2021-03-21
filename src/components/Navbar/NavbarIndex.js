@@ -72,8 +72,8 @@ const Navbar = ({ auth: { isAuthenticated, loading,user }, logout }) => {
       </NavLink>
       <Bars />
 
-      <NavLink to='/index' activeStyle>
-        Home
+      <NavLink to='/allusers' activeStyle>
+        Show Users
       </NavLink>
       <NavMenu>
         <NavLink to='/appointment' activeStyle>
@@ -149,7 +149,7 @@ const Navbar = ({ auth: { isAuthenticated, loading,user }, logout }) => {
         {
           <Fragment>
             
-            {isAuthenticated && !loading ? ((user.Role=='Admin') ? adminLinks:authLinks):guestLinks}
+            {isAuthenticated && !loading ? ((user.userRole=='Admin') ? adminLinks:authLinks):guestLinks}
           </Fragment>
         }
       </Nav>

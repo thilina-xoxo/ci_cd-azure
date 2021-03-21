@@ -113,8 +113,8 @@ const CreateProfile = () => {
   //API
   const employeeAPI = (url = 'https://localhost:5001/api/business') => {
     return {
-      //fetchAll: () => axios.get(url),
-      create: (newRecord) => axios.post(url, newRecord),
+      fetchAll: () => axios.get(url),
+      //create: (newRecord) => axios.post(url, newRecord),
       //update: (id, updatedRecord) => axios.put(url + id, updatedRecord),
       //delete: id => axios.delete(url + id)
     };
@@ -265,6 +265,7 @@ const CreateProfile = () => {
                 type='number'
                 name='PhoneNumber'
                 value={PhoneNumber}
+                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                 onChange={(e) => onChange(e)}
                 placeholder='phone'
               />

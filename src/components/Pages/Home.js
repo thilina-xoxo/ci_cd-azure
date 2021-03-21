@@ -112,7 +112,7 @@ export default function Home() {
                           Best doctors with best equipments supply their efficient service to serve you. Make your appointment at the nearest location where you can reach easily.
                         </p>
                       </div>
-                      <a href="appointmentmaking" className='text-gray-500'>
+                      <a href="/appointmentmaking" className='text-gray-500'>
                       <button  className="bg-green-700 hover:bg-blue-800 text-xs text-white font-bold py-2 px-4 rounded" type="submit">Make Appointment
                       </button>
                       </a>
