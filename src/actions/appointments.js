@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { setAlert } from '../actions/alert';
+import { setAlert } from './alert';
 import jwt_decode from "jwt-decode";
 import setAuthToken from '../utils/setAuthtoken';
 
@@ -71,3 +71,46 @@ export const  getAppointments=()=>async dispatch=>{
           });
         }
       }
+
+    //Get  appointment by id
+
+export const  getAppointmentbyID=(businessId)=>async dispatch=>{
+
+  
+
+    try {
+        const res= await axios.get(`https://localhost:5001/api/appoinment/${businessId}`)
+    
+        dispatch({
+            type:GET_APPOINTMENT,
+            payload:res.data
+        })
+    } catch (err) {
+        dispatch({
+            type:APPOINTMENT_ERROR,
+            payload:'error'
+        })
+    }
+    
+    }
+
+    //gET THE CURRENT USERS PROFILE
+
+export const  getCurrentAppointment=(businessId)=>async dispatch=>{
+
+    try {
+        const res= await axios.get(`https://localhost:5001/api/appoinment/${businessId}`)
+    
+        dispatch({
+            type:GET_APPOINTMENT,
+            payload:res.data
+        })
+    } catch (err) {
+        dispatch({
+            type:APPOINTMENT_ERROR,
+            payload:'errors'
+        })
+    }
+    
+    }
+

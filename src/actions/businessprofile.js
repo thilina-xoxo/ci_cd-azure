@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React from 'react'
-import { setAlert } from '../actions/alert';
+import { setAlert } from './alert';
 import jwt_decode from "jwt-decode";
 import setAuthToken from '../utils/setAuthtoken';
 

@@ -12,11 +12,10 @@ import Alert from './components/layouts/AdminDashboard/Alert';
 //
 import Navbar from './components/Navbar/NavbarIndex';
 import Home from './components/Pages/Home';
-import About from './components/Pages/UserPages/About';
-
+import About from './components/Pages/UserPages/About'
 import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/Signup';
-import AppointmentMaking from './components/Pages/UserPages/AppointmentMaking.js';
+import AppointmentMaking from './components/Pages/UserPages/AppointmentMaking';
 import ForgotPassword from './components/auth/ForgotPassword';
 import Contact from './components/Pages/UserPages/Contact';
 import Services from './components/Pages/UserPages/Services';
@@ -33,6 +32,8 @@ import EditProfile from './components/Pages/BusinessPage/EditProfile'
 import Appointments from './components/Pages/AdminPages/Appointments';
 import BusinessComponet from './components/Pages/BusinessPage/BusinessComponet';
 
+import AppointmentById from './components/Pages/BusinessPage/Appointments/AppointmentById';
+import TreatmentById from './components/Pages/BusinessPage/TreatmentById';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -63,6 +64,8 @@ const App = () => {
           <Private path='/business' component={BusinessRegister} />
           <Route exact path='/businessproffile/:businessId' component={Proffile} />
           <Route path='/appointment' component={BusinessComponet} />
+          <Route exact path='/appoint/:businessId' component={AppointmentById} />
+          <Route exact path='/treatment/:businessId' component={TreatmentById} />
           <Route path='/appointments' component={Appointments} />
           <Route path='/allusers' component={Allusers} />
           <Route path='/map' component={Map} />

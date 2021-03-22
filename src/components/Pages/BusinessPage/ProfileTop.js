@@ -17,7 +17,7 @@ const ProfileTop =({createAppointments,history,profile: {
     phoneNumber,
     postalCode,
     logo,
-businessId,
+    businessId,
     summary,
     imageName,
   

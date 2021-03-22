@@ -1,7 +1,6 @@
 import { GET_APPOINTMENTS, APPOINTMENT_ERROR, GET_APPOINTMENT, UPDATE_APPOINTMENT,MAKE_APPOINTMENT ,CLEAR_APPOINTMENT} from "../actions/types"
 
 const initalState={ 
-  
     appointment:[],
     appointments:[],
     loading:true,
@@ -17,8 +16,10 @@ export default function (state=initalState,action){
             return{
                 ...state,
                 appointment:payload,
-                loading:false
-            }
+                loading:false 
+             };
+
+       
 
          case  GET_APPOINTMENTS:
              
