@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
-import Appointments from '../../layouts/AdminDashboard/Appointments'
+import Appointments from '../../../layouts/AdminDashboard/Appointments'
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
@@ -16,11 +16,10 @@ import { useHistory } from 'react-router-dom';
 import {connect} from 'react-redux'
 import Paper from '@material-ui/core/Paper';
 import { blue } from '@material-ui/core/colors';
-import ProfileItemTop from './ProfileItemTop';
+import ProfileItemTop from '../ProfileItemTop';
 import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles((theme) => ({
-  
     cardContent: {
         flexGrow: 1,
       },
@@ -30,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: 'column',
       },
       cardMedia: {
-        paddingTop: '58%',
+        paddingTop: '56.25%',
         flexDirection:'row'
       },
       cardGrid: {
@@ -40,21 +39,8 @@ const useStyles = makeStyles((theme) => ({
 
     }));
 
-function ProfileItem({ profile:{
-    name,
-    email,
-    totalCrowd,
-    currentCrowd,
-    phoneNumber,
-    postalCode,
-    businessType,
-    summary,
-    openingHours,
-    Appointments,
-    treatments,
-    imageName,
-    imageFile,
-    imageSrc,
+function AppointmentItem({ appointment:{
+   
     businessId
 
 }}) 
@@ -62,9 +48,7 @@ function ProfileItem({ profile:{
 
 
 {
-    
- 
-   
+     
     const classes = useStyles();
   
     
@@ -75,39 +59,17 @@ return(
 
         <section className="relative bg-white w-full">
       <Container className={classes.cardGrid} maxWidth='md'>
-          <Grid container spacing={2}>
-
-        
-              <Grid item xs={12}>
-                <Card className={classes.card}>
-                  <CardMedia
-                    className={classes.cardMedia}
-                    image='https://media.gettyimages.com/photos/doctors-walking-in-clinic-picture-id941762276?s=612x612'
-                    
-                  />
+          
 
 
 
-        <CardContent className={classes.cardContent}>
-                    <Typography gutterBottom variant='h5' component='h2'>
-                      {name}
-                    </Typography>
-                    <Typography>{email}</Typography>
-                  </CardContent>
-                  <CardActions>
+       
                     <Button size='small' color='primary'>
-                    <Link to={`/businessproffile/${businessId}`}>
-                    More Info
+                    <Link to={`/appointment/${businessId}`}>
+                    Appointment
                    </Link> 
                     </Button>
-                  </CardActions>
-                  
-                  
-
-                  </Card>
-              </Grid>
-            
-                  </Grid>     
+                
                  
                   </Container></section>
                   </div>
@@ -119,10 +81,10 @@ return(
 
 
 
-ProfileItem.propTypes = {
-profile:PropTypes.object.isRequired,
+AppointmentItem.propTypes = {
+appointment:PropTypes.object.isRequired,
 }
 
 
 
-export default ProfileItem
+export default AppointmentItem
