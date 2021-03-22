@@ -24,16 +24,6 @@ useEffect(()=>{
   <div><Link to='/appointment' className="bg-green-500 hover:bg-blue-800 text-xs text-white font-bold py-1 px-4 rounded">
   Back to Businesses</Link>
   
- 
-  
-  {auth.isAuthenticated &&
-  auth.loading === false}
-
-    {<Link to='/AppointmentMaking' className="bg-green-500 hover:bg-blue-800 text-xs text-white font-bold py-1 px-4 rounded">
-      Make Your Appointment
-    </Link>}
-  
-   
 
 </div>
   <div class="profile-grid my-1">

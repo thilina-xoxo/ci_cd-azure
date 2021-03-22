@@ -100,7 +100,7 @@ export const editProfile = (
     const res = await axios.put(`https://localhost:5001/api/business/${businessId}/`, formData,config);
 
     dispatch({
-      type: GET_PROFILE,
+      type: UPDATE_PROFILE,
       payload: res.data
     });
     

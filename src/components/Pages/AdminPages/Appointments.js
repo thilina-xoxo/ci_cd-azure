@@ -13,7 +13,7 @@ const Appointments = ({getAppointments,appointment:{appointments,loading}}) => {
 
 Appointments.propTypes = {
     getAppointments:PropTypes.func.isRequired,
-    appointment:PropTypes.object.isRequired
+    appointment:PropTypes.object.isRequired,
 }
 
 const mapStateToProps=state=>({

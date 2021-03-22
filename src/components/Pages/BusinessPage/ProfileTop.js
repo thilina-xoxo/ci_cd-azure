@@ -1,8 +1,17 @@
-import React from 'react'
+import React,{useState,Fragment,useEffect} from 'react'
 import PropTypes from 'prop-types'
-import img from '../../../assests/NewLanka.jpg'
-import {Link} from 'react-router-dom'
-const ProfileTop =({profile: {
+import {connect} from 'react-redux'
+import {createAppointments} from '../../../actions/appointments'
+import {withRouter, Link} from 'react-router-dom'
+import AppointmentMaking from '../UserPages/AppointmentMaking'
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+
+
+
+
+
+const ProfileTop =({createAppointments,history,profile: {
     name,
     email,
     phoneNumber,
@@ -10,9 +19,35 @@ const ProfileTop =({profile: {
     logo,
 businessId,
     summary,
-    imageName
+    imageName,
+  
 }}) => {
+
+  const [formData, setFormData] = useState({
+    firstname:'',
+    lastname:'',
+    businessId:''
+   
+   })
+ 
+ const [displayAppointment, toggleAppointments] = useState(false) 
+ 
+ 
+ const{
+  firstname,
+  lastname,
+ }=formData; 
+
+  
+const onChange=e=>setFormData({...formData,[e.target.name]:e.target.value})
+
+  const onSubmit=e=>{
+      e.preventDefault()
+      createAppointments(formData,history)
+  }
+
     return (
+      <Fragment>
 <div className='container-around'>
         <section className="relative py-20">
         <div
@@ -90,12 +125,94 @@ businessId,
     </Link>
       </section>
 
+
+<button onClick={()=>toggleAppointments(!displayAppointment)} type="button"
+                  className='btn btn-sm rounded shadow-none bg-blue-900 py-3 ml-3 px-2'
+                
+                >
+                
+                  <span className='center text-white'>Make Appointments</span>
+                </button>
+
+{
+  displayAppointment && <Fragment>
+
+
+<form onSubmit = { e=>onSubmit(e)}  noValidate>
+            <TextField
+             onChange={e=>onChange(e)}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="First Name"
+              label="First Name"
+              name="firstname"
+              value={firstname}
+            />       
+
+<TextField
+             onChange={e=>onChange(e)}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="Last Name"
+              label="Last Name"
+              name="lastname"
+              value={lastname}
+            />     
+
+
+
+<TextField
+             onChange={e=>onChange(e)}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="Business ID"
+              label="Business ID"
+              name="businessId"
+              value={businessId}
+            />   
+
+
+
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+            
+            >  
+            Submit Form
+            </Button>
+         
+          </form>
+
+
+  </Fragment>
+}
+
+
+
+
+
+
+
+
+
+
         </div>
+
+        </Fragment>
     )
 }
 
 ProfileTop.propTypes = {
-profile: PropTypes.object.isRequired
+profile: PropTypes.object.isRequired,
+createAppointments:PropTypes.func.isRequired,
 }
 
-export default ProfileTop
+export default  connect(null,{createAppointments})((ProfileTop))

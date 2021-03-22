@@ -3,7 +3,7 @@ import React,{Fragment,useEffect} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import ShowUserItem from './ShowUserItem'
-import  {getAllUsers} from '../../actions/auth'
+import  {getAllUsers} from '../../../actions/users'
 
 
 const Allusers = ({ getAllUsers,users:{users,loading}}) => {

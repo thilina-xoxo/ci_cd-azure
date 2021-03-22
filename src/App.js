@@ -12,25 +12,26 @@ import Alert from './components/layouts/AdminDashboard/Alert';
 //
 import Navbar from './components/Navbar/NavbarIndex';
 import Home from './components/Pages/Home';
-import About from './components/Pages/About';
-import Appointment from './components/Pages/BusinessPage/Appointment';
+import About from './components/Pages/UserPages/About';
+
 import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/Signup';
-import AppointmentMaking from './components/Pages/AppointmentMaking.js';
+import AppointmentMaking from './components/Pages/UserPages/AppointmentMaking.js';
 import ForgotPassword from './components/auth/ForgotPassword';
-import Contact from './components/Pages/Contact';
-import Services from './components/Pages/Services';
+import Contact from './components/Pages/UserPages/Contact';
+import Services from './components/Pages/UserPages/Services';
 import AdminSignin from './components/layouts/AdminDashboard/AdminSignin';
 import Dashboard from './components/layouts/AdminDashboard/Navbar';
 import Footer from './components/layouts/AdminDashboard/Footer';
-import BusinessRegister from './components/Pages/BusinessRegister';
+import BusinessRegister from './components/Pages/BusinessPage/BusinessRegister';
 import setAuthToken from './utils/setAuthtoken';
 import Map from './components/layouts/AdminDashboard/maphome/Map';
 import Proffile from './components/Pages/BusinessPage/Proffile';
 import {loadUser} from './actions/auth'
-import Allusers from './components/Pages/Showallusers'
+import Allusers from './components/Pages/AdminPages/Showallusers'
 import EditProfile from './components/Pages/BusinessPage/EditProfile'
-import Appointments from './components/Pages/BusinessPage/Appointments';
+import Appointments from './components/Pages/AdminPages/Appointments';
+import BusinessComponet from './components/Pages/BusinessPage/BusinessComponet';
 
 
 if (localStorage.token) {
@@ -54,14 +55,14 @@ const App = () => {
           <Route path='/index' exact component={Home} />
           <Route path='/about' component={About} />
           <Route path='/services' component={Services} />
-          <Route path='/appointment' component={Appointment} />
           <Route path='/signin' component={SignIn} />
           <Route path='/signup' component={SignUp} />
-          <Private exact path='/appointmentmaking' component={AppointmentMaking} />
+          <Route exact path='/appointmentmaking' component={AppointmentMaking} />
           <Route path='/forgotpassword' component={ForgotPassword} />
           <Route path='/contactus' component={Contact} />
           <Private path='/business' component={BusinessRegister} />
           <Route exact path='/businessproffile/:businessId' component={Proffile} />
+          <Route path='/appointment' component={BusinessComponet} />
           <Route path='/appointments' component={Appointments} />
           <Route path='/allusers' component={Allusers} />
           <Route path='/map' component={Map} />

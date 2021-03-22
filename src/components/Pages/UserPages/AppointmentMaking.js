@@ -15,8 +15,11 @@ import Checkbox from '@material-ui/core/Checkbox';
 import { lightBlue } from '@material-ui/core/colors';
 import { blueGrey } from '@material-ui/core/colors';
 import { connect } from 'react-redux';
-import { setAlert } from '../../actions/alert';
+import { setAlert } from '../../../actions/alert';
 import PropTypes from 'prop-types';
+import {withRouter} from 'react-router-dom'
+import {createAppointments} from '../../../actions/appointments'
+
 
 function Copyright() {
   return (
@@ -60,11 +63,12 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const AppointmentMaking = ({setAlert}) => {
+const AppointmentMaking = ({setAlert,createAppointments,history}) => {
 
   const [formData, setFormData] = useState({
-    name:"",
-    age:"",
+   firstname:"",
+   lastname:"",
+   businessId:"",
     phonenumber:'',
     email:"",
     date:"",
@@ -77,7 +81,7 @@ const AppointmentMaking = ({setAlert}) => {
     appdate:"",
   })
 
-const{name,age,phonenumber,email,date,line1,line2,city,state,zip,docname,appdate}=formData; 
+const{firstname,lastname,businessId,age,phonenumber,email,date,line1,line2,city,state,zip,docname,appdate}=formData; 
 
 const onChange=e=>setFormData(
   {
@@ -87,8 +91,11 @@ const onChange=e=>setFormData(
 
 const onSubmit=e=>{
   e.preventDefault();
-  if (name && age && phonenumber && email && date && line1 && city && state && zip && docname && appdate) {
-    console.log('SUCCESS');}
+  if (firstname && lastname && businessId ) {
+
+    e.preventDefault()
+    createAppointments(formData,history)
+  }
         else{
           setAlert('Please fill all the required fileds','warning');
         }
@@ -113,11 +120,39 @@ const onSubmit=e=>{
               margin="normal"
               required
               fullWidth
-              id="fullname"
-              label="Full Name"
-              name="name"
-              value={name}
+              id="First Name"
+              label="First Name"
+              name="firstname"
+              value={firstname}
             />       
+
+<TextField
+             onChange={e=>onChange(e)}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="Last Name"
+              label="Last Name"
+              name="lastname"
+              value={lastname}
+            />     
+
+
+
+<TextField
+             onChange={e=>onChange(e)}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="Business ID"
+              label="Business ID"
+              name="businessId"
+              value={businessId}
+            />   
+
+            
 
 <Box mt={1}></Box>
 <Grid item xs={12}>
@@ -334,7 +369,8 @@ Address
 }
 
 AppointmentMaking.propTypes={
-  setAlert:PropTypes.func.isRequired
+  setAlert:PropTypes.func.isRequired,
+  createAppointments:PropTypes.func.isRequired,
 };
 
-export default connect(null, { setAlert })(AppointmentMaking);
+export default connect(null, { setAlert,createAppointments })(AppointmentMaking);
