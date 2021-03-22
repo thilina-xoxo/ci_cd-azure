@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { pink } from '@material-ui/core/colors';
 import { connect } from 'react-redux';
-import { setAlert } from '../../actions/alert';
+import { setAlert } from '../../../actions/alert';
 import PropTypes from 'prop-types';
 
 function Copyright() {

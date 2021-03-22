@@ -1,8 +1,8 @@
-import { GET_APPOINTMENTS, APPOINTMENT_ERROR, GET_APPOINTMENT, UPDATE_APPOINTMENT, CLEAR_APPOINTMENT} from "../actions/types"
+import { GET_TREATMENTS, TREATMENT_ERROR, GET_TREATMENT, UPDATE_TREATMENT, CLEAR_TREATMENT} from "../actions/types"
 
 const initalState={ 
-    appointment:[],
-    appointments:[],
+    treatment:[],
+    treatments:[],
     loading:true,
     error:{}
     
@@ -12,14 +12,8 @@ export default function (state=initalState,action){
     const{type,payload}=action
 
     switch(type){
-        case GET_APPOINTMENT:
-            return{
-                ...state,
-                appointment:payload,
-                loading:false 
-             };
-
-        case GET_APPOINTMENTS:
+        case GET_TREATMENT:
+        case GET_TREATMENTS:
             return{
                ...state,
                appointments:payload,
@@ -27,7 +21,7 @@ export default function (state=initalState,action){
             };
        
        
-        case APPOINTMENT_ERROR:
+        case TREATMENT_ERROR:
             return{
                 ...state,
                 error:payload,

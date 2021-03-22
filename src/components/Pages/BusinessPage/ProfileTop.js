@@ -8,7 +8,7 @@ const ProfileTop =({profile: {
     phoneNumber,
     postalCode,
     logo,
-businessId,
+    businessId,
     summary,
     imageName
 }}) => {

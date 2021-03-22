@@ -15,7 +15,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import { lightBlue } from '@material-ui/core/colors';
 import { blueGrey } from '@material-ui/core/colors';
 import { connect } from 'react-redux';
-import { setAlert } from '../../actions/alert';
+import { setAlert } from '../../../actions/alert';
 import PropTypes from 'prop-types';
 
 function Copyright() {
