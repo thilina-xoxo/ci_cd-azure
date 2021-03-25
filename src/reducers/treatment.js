@@ -13,10 +13,16 @@ export default function (state=initalState,action){
 
     switch(type){
         case GET_TREATMENT:
+            return{
+                ...state,
+                treatment:payload,
+                loading:false 
+             };
+
         case GET_TREATMENTS:
             return{
                ...state,
-               appointments:payload,
+               treatments:payload,
                loading:false 
             };
        

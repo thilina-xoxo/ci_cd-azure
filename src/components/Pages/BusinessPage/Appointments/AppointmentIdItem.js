@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
-import Appointments from '../../../layouts/AdminDashboard/Appointments'
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
@@ -16,8 +15,8 @@ import { useHistory } from 'react-router-dom';
 import {connect} from 'react-redux'
 import Paper from '@material-ui/core/Paper';
 import { blue } from '@material-ui/core/colors';
-import ProfileItemTop from '../ProfileItemTop';
 import Box from '@material-ui/core/Box';
+import { Fragment } from 'react';
 
 const useStyles = makeStyles((theme) => ({
     cardContent: {
@@ -39,12 +38,13 @@ const useStyles = makeStyles((theme) => ({
 
     }));
 
-function AppointmentItem({ appointment:{
+function AppointmentIdItem({appointment:{
    
-    businessId
+    businessId,
+    firstName,
+    lastName
 
 }}) 
-
 
 
 {
@@ -53,38 +53,25 @@ function AppointmentItem({ appointment:{
   
     
 return(
-  
+  <Fragment>
     <div>
-      
-
-        <section className="relative bg-white w-full">
+        
       <Container className={classes.cardGrid} maxWidth='md'>
-          
-
-
-
-       
-                    <Button size='small' color='primary'>
-                    <Link to={`/appointment/${businessId}`}>
-                    Appointment
-                   </Link> 
-                    </Button>
-                
+          <Typography>Business Id: {businessId}</Typography>
+          <Typography>First Name: {firstName}</Typography>
+          <Typography>Last Name: {lastName}</Typography>
                  
-                  </Container></section>
-                  </div>
+                  </Container>
+                  </div></Fragment>
           
         )
       
 }
 
 
-
-
-AppointmentItem.propTypes = {
-appointment:PropTypes.object.isRequired,
+AppointmentIdItem.propTypes = {
+appointment:PropTypes.array.isRequired,
 }
 
 
-
-export default AppointmentItem
+export default AppointmentIdItem
