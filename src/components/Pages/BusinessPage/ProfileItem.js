@@ -26,12 +26,13 @@ const useStyles = makeStyles((theme) => ({
       },
       card: {
         height: '100%',
+        width:'80%',
         display: 'flex',
         flexDirection: 'column',
       },
       cardMedia: {
         paddingTop: '58%',
-        flexDirection:'row'
+        flexDirection:'row',
       },
       cardGrid: {
         paddingTop: theme.spacing(8),
@@ -53,7 +54,6 @@ function ProfileItem({ profile:{
     Appointments,
     treatments,
     imageName,
-    imageFile,
     imageSrc,
     businessId
 
@@ -73,13 +73,13 @@ return(
     <div>
       
 
-        <section className="relative bg-white w-full">
-      <Container className={classes.cardGrid} maxWidth='md'>
+          <Grid item xs={12} component={Paper} square>
+      <Container align='center' className={classes.cardGrid} maxWidth='md'>
           <Grid container spacing={2}>
 
         
               <Grid item xs={12}>
-                <Card className={classes.card}>
+                <Card align='left' className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
                     image='https://media.gettyimages.com/photos/doctors-walking-in-clinic-picture-id941762276?s=612x612'
@@ -102,14 +102,14 @@ return(
                     </Button>
                   </CardActions>
                   
-                  
-
+                 
                   </Card>
+                  
               </Grid>
             
                   </Grid>     
                  
-                  </Container></section>
+                  </Container></Grid>
                   </div>
           
         )

@@ -17,28 +17,78 @@ import {connect} from 'react-redux'
 import Paper from '@material-ui/core/Paper';
 import { blue } from '@material-ui/core/colors';
 import Box from '@material-ui/core/Box';
+import { createMuiTheme } from '@material-ui/core/styles';
 
+const useStyles = makeStyles((theme) => ({
+      Paper:{
+      height:'100%',
+      width:'100%',
+      alignContent:'center',
+      margin: theme.spacing(0,0),
+      display: 'flex',
+      flexDirection:'column',
+      backgroundColor: blue[100],
+      paddingBottom:'20'
+     },
+      cardContent: {
+        flexGrow: 1,
+      },
+      card: {
+        height: '100%',
+        width:'50%',  
+        display: 'flex',
+        flexDirection: 'row',
+      },
+      cardMedia: {
+        paddingTop: '60%',
+        flexDirection:'row',
+        align:'left'
+      },
+      cardGrid: {
+        paddingTop: theme.spacing(8),
+        paddingBottom: theme.spacing(8),
+      },
 
+    }));
 
 function AppointmentItem({appointment:{  
     businessId,
-    firstname,
-    lastname
+    firstName,
+    lastName
 }})
 
 
 { 
+
+    const classes = useStyles();
     
 return(
-  
-    <div>
-      
-                    <Typography>{businessId}</Typography>
-                    <Typography>{firstname}</Typography>
-                    <Typography>{lastname}</Typography>
+        <Typography>
+  <Grid item xs={12} component={Paper} square>
+  <div align='center' className={classes.paper}>
+
+                     <Card className={classes.card} variant="outlined">
+                   
+                    <CardContent align="left" className={classes.cardContent}>
+                    <Typography gutterBottom variant='h5' component='h2'>
+                  
+                    </Typography>
+                    <Typography> Business Id: {businessId}</Typography>
+                    <Typography>Name:  {firstName} {lastName}</Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button size='small' color='primary'>
+                    <Link to={`/appoint/${businessId}`}>
+                   All appointments of the business
+                   </Link> 
+                    </Button>
+                  </CardActions>
+                  </Card>
                  
-                  </div>
-          
+                 </div>
+                  </Grid>
+                 
+                  </Typography>
         )
       
 }

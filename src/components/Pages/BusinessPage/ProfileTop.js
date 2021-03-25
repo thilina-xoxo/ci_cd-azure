@@ -1,9 +1,17 @@
 import React,{useState,Fragment,useEffect} from 'react'
 import PropTypes from 'prop-types'
-import { Link} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {createAppointments} from '../../../actions/appointments'
+import {withRouter, Link} from 'react-router-dom'
+import AppointmentMaking from '../UserPages/AppointmentMaking'
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import img from '../../../assests/NewLanka.jpg';
 
 
-const ProfileTop =({history,profile: {
+
+
+const ProfileTop =({createAppointments,history,profile: {
     name,
     email,
     phoneNumber,
@@ -12,11 +20,37 @@ const ProfileTop =({history,profile: {
     businessId,
     summary,
     imageName,
+   
   
 }}) => {
 
+  const [formData, setFormData] = useState({
+    firstname:'',
+    lastname:'',
+    businessId:''
+   
+   })
+ 
+ const [displayAppointment, toggleAppointments] = useState(false) 
+ 
+ 
+ const{
+  firstname,
+  lastname,
+ }=formData; 
+
+  
+const onChange=e=>setFormData({...formData,[e.target.name]:e.target.value})
+
+  const onSubmit=e=>{
+      e.preventDefault()
+      createAppointments(formData,history)
+  }
+
     return (
       <Fragment>
+        <Link to={`/treatment/1`} className="bg-green-500 hover:bg-blue-800 text-xs text-white font-bold py-1 px-4 rounded">
+          Find Your Doctor</Link>
 <div className='container-around'>
         <section className="relative py-20">
         <div
@@ -29,7 +63,8 @@ const ProfileTop =({history,profile: {
         <div className=" mx-auto px-4">
           <div className="items-center flex flex-wrap">
             <div className="w-full md:w-4/12 ml-auto mr-auto px-4">
-              
+              <img
+              src={img}/>
                 {imageName}
             
             </div>
