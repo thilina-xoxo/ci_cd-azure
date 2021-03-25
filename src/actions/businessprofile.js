@@ -105,7 +105,7 @@ export const editProfile = (
     });
     
     if (!edit) {
-      history.push('/index');
+      history.push('/appointment');
     }
   } catch (err) {
     const errors =err.response.data.errors;
@@ -145,3 +145,41 @@ export const deleteAccount=()=>async dispatch=>{
   }
  
 }
+
+
+//create profile
+
+
+export const createProfile = (
+  formData,
+  history,
+) => async dispatch => {
+  try {
+
+    const config={
+      headers:{
+        'Content-Type':'application/json'
+      }
+    }
+    const res = await axios.post('https://localhost:5001/api/business', formData,config);
+
+    dispatch({
+      type: GET_PROFILE,
+      payload: res.data
+    });
+
+    dispatch(setAlert( 'Profile Created' ,'success',<i className="material-icons">done</i>));
+
+  } catch (err) {
+    const errors =err.response.data.errors;
+
+    if (errors) {
+    dispatch(setAlert(errors,'danger',  <i className="material-icons">report</i>));
+    }
+
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: "somthing went wrong"
+    });
+  }
+};

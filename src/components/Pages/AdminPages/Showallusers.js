@@ -6,7 +6,7 @@ import ShowUserItem from './ShowUserItem'
 import  {getAllUsers} from '../../../actions/auth'
 
 
-const Allusers = ({ getAllUsers,users:{users,loading}}) => {
+const Allusers = ({ getAllUsers,auth,users:{users,loading}}) => {
 
 useEffect(()=>{
  getAllUsers()
@@ -65,12 +65,16 @@ return(
     
 
 Allusers.propTypes = {
- getAllUsers:PropTypes.func.isRequired,
-users:PropTypes.arrayOf().isRequired,
+auth:PropTypes.object.isRequired,
+getAllUsers:PropTypes.func.isRequired,
+users:PropTypes.array.isRequired,
+
 }
 
 const mapStateToProps=state=>({
-   users:state.users,
+auth:state.auth,
+users:state.users
+   
 })
 
 export default connect(mapStateToProps,{getAllUsers}) (Allusers)

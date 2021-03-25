@@ -38,7 +38,7 @@ export const  getAppointments=()=>async dispatch=>{
     //create appointments
 
 
-    export const createAppointments=(formData,history)=>async dispatch=>{
+    export const createAppointments=(formData,history,businessId)=>async dispatch=>{
         try {
       
           const config={
@@ -46,7 +46,7 @@ export const  getAppointments=()=>async dispatch=>{
               'Content-Type':'application/json'
             }
           }
-          const res = await axios.post('https://localhost:5001/api/Appoinment', formData,config);
+          const res = await axios.post(`https://localhost:5001/api/Appoinment/${businessId}`, formData,config);
       
           dispatch({
             type:GET_APPOINTMENT,

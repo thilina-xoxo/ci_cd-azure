@@ -13,13 +13,14 @@ name:'',
 email:'',
 totalCrowd:'',
 currentCrowd:'',
-phoneNumber:''
+phoneNumber:'',
+summary:'',
 
     })
 
     useEffect(() => {
 
-    if (!profile) getProfilebyID();
+    if (!profile) getProfilebyID(match.params.businessId);
     if (!loading && profile) {
       const profileData = { ...formData };
       for (const key in profile) {
@@ -40,7 +41,8 @@ phoneNumber:''
             email,
             totalCrowd,
             currentCrowd,
-            phoneNumber
+            phoneNumber,
+            summary
           } = formData
 
 
@@ -186,6 +188,30 @@ phoneNumber:''
               />
             </div>
           </div>
+
+          <div className='flex flex-wrap -mx-3 mb-6'>
+            <div className='w-full'>
+              <label
+                className='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2'
+                htmlFor='grid-phoneNumber'
+              >
+             Summary
+              </label>
+              <input
+                className='appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
+                id='grid-phoneNumber'
+              
+                name='summary'
+                value={summary}
+               
+                onChange={e=>onChange(e)}
+                placeholder='summary'
+              />
+            </div>
+          </div>
+
+
+
 
           <button
             type='submit'
