@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Private from './components/routing/Private';
 
+//Routes
+import Private from './components/routing/Private';
+import Admin from './components/routing/Admin'
+import Business from './components/routing/Business'
 //redux
 import { Provider } from 'react-redux';
 import store from './Store';
@@ -31,10 +34,10 @@ import Allusers from './components/Pages/AdminPages/Showallusers'
 import EditProfile from './components/Pages/BusinessPage/EditProfile'
 import Appointments from './components/Pages/AdminPages/Appointments';
 import BusinessComponet from './components/Pages/BusinessPage/BusinessComponet';
-
+import BusinessDashboard from './components/Pages/BusinessPage/BusinessDashboarad'
 import AppointmentById from './components/Pages/BusinessPage/Appointments/AppointmentById';
 import TreatmentById from './components/Pages/BusinessPage/TreatmentById';
-
+import Privilage from './components/Pages/error/Privilage'
 if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
@@ -58,19 +61,20 @@ const App = () => {
           <Route path='/services' component={Services} />
           <Route path='/signin' component={SignIn} />
           <Route path='/signup' component={SignUp} />
-          <Route exact path='/appointmentmaking' component={AppointmentMaking} />
+          <Private exact path='/appointmentmaking/:businessId' component={AppointmentMaking} />
           <Route path='/forgotpassword' component={ForgotPassword} />
           <Route path='/contactus' component={Contact} />
-          <Private path='/business' component={BusinessRegister} />
+          <Business exact path='/business' component={BusinessRegister} />
           <Route exact path='/businessproffile/:businessId' component={Proffile} />
           <Route path='/appointment' component={BusinessComponet} />
           <Route exact path='/appoint/:businessId' component={AppointmentById} />
           <Route exact path='/treatment/:businessId' component={TreatmentById} />
           <Route path='/appointments' component={Appointments} />
-          <Route path='/allusers' component={Allusers} />
+          <Admin exact path='/allusers' component={Allusers} />
           <Route path='/map' component={Map} />
-           <Route path='/adminlog' component={AdminSignin} />
+           <Route exact path='/editProfile/:businessId' component={EditProfile} />
            <Route path='/editProfile/:businessId' component={EditProfile} />
+           <Route component={Privilage} />
         </Switch>
         <Footer />
       </Router>

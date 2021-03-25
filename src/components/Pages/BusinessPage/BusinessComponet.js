@@ -21,7 +21,7 @@ import ProfileItem from './ProfileItem'
 
 
   // Container Box
-  const ContainerBox = ({getProfiles,profile:{profiles,loading}}) => {
+  const ContainerBox = ({getProfiles,auth,profile:{profiles,loading}}) => {
     
     useEffect(()=>{
       getProfiles()
@@ -51,9 +51,11 @@ import ProfileItem from './ProfileItem'
 ContainerBox.propTypes = {
   getProfiles:PropTypes.func.isRequired,
   profile:PropTypes.object.isRequired,
+  auth:PropTypes.object.isRequired,
   }
   
   const mapStateToProps=state=>({
+    auth:state.auth,
       profile:state.profile
   })
   

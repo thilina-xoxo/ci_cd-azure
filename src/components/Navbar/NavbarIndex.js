@@ -121,7 +121,7 @@ const Navbar = ({ auth: { isAuthenticated, loading,user }, logout }) => {
         <NavLink to='/about' activeStyle>
           About
         </NavLink>
-        <NavLink to='/signin' activeStyle>
+        <NavLink to='/appointment' activeStyle>
           Appointment
         </NavLink>
         <NavLink to='/map' activeStyle>

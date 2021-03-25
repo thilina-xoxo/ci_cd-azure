@@ -2,7 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-const ShowUserItem =({user:{
+const ShowUserItem =({auth,user:{
    userID,
    email,
    userName 
@@ -29,6 +29,7 @@ const ShowUserItem =({user:{
 
 ShowUserItem.propTypes = {
 user:PropTypes.object.isRequired,
+auth:PropTypes.object.isRequired,
 }
 
 export default ShowUserItem

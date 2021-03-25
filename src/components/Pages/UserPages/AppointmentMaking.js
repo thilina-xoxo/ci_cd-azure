@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -19,6 +19,7 @@ import { setAlert } from '../../../actions/alert';
 import PropTypes from 'prop-types';
 import {withRouter} from 'react-router-dom'
 import {createAppointments} from '../../../actions/appointments'
+import {getProfilebyID} from '../../../actions/businessprofile'
 
 
 function Copyright() {
@@ -63,25 +64,39 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const AppointmentMaking = ({setAlert,createAppointments,history}) => {
+const AppointmentMaking = ({setAlert,createAppointments,history,auth,match,getProfilebyID,profile:{profile,loading}}) => {
 
   const [formData, setFormData] = useState({
    firstname:"",
    lastname:"",
    businessId:"",
     phonenumber:'',
-    email:"",
+    treatmentId:'',
     date:"",
     address1:"",
     address2:"",
     city:"",
     state:"",
     zip:"",
-    docname:"",
-    appdate:"",
+
   })
 
-const{firstname,lastname,businessId,age,phonenumber,email,date,line1,line2,city,state,zip,docname,appdate}=formData; 
+  useEffect(() => {
+
+    if (!profile) getProfilebyID(match.params.businessId);
+    if (!loading && profile) {
+      const profileData = { ...formData };
+      for (const key in profile) {
+        if (key in profileData) profileData[key] = profile[key];
+      }
+     
+      setFormData(profileData);
+        }
+          // eslint-disable-next-line
+    }, [loading,getProfilebyID,profile])
+
+
+const{firstname,lastname,businessId,age,phonenumber,treatmentId,date,line1,line2,city,state,zip}=formData; 
 
 const onChange=e=>setFormData(
   {
@@ -91,7 +106,7 @@ const onChange=e=>setFormData(
 
 const onSubmit=e=>{
   e.preventDefault();
-  if (firstname && lastname && businessId ) {
+  if (firstname && lastname && businessId && treatmentId && phonenumber ) {
 
     e.preventDefault()
     createAppointments(formData,history)
@@ -152,6 +167,19 @@ const onSubmit=e=>{
               value={businessId}
             />   
 
+
+
+<TextField
+             onChange={e=>onChange(e)}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="Treatment ID"
+              label="Treatment ID"
+              name="treatmentId"
+              value={treatmentId}
+            />  
             
 
 <Box mt={1}></Box>
@@ -189,17 +217,6 @@ const onSubmit=e=>{
               value={phonenumber}
             />
 
-           <TextField
-            onChange={e=>onChange(e)}
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              value={email}
-            /> 
 
 <TextField
  onChange={e=>onChange(e)}
@@ -288,66 +305,6 @@ Address
         </Grid>
         <Box mt={3}></Box>
 
-        <Typography component="h7" variant="h7"  className={classes.typo}>
-            Have you previously attended our facility?
-            </Typography>
-            
-              <FormGroup row>
-              <FormControlLabel
-                control={<Checkbox name="checkedA" />}
-                label="Yes"
-                color="primary"
-              />
-
-               <FormControlLabel
-        control={
-          <Checkbox
-            name="checkedB"/>}
-            label="No"
-            color="primary"
-          />
-           </FormGroup>
-           <Box mt={1}></Box>
-           <Typography component="h7" variant="h7"  className={classes.typo}>
-           If yes, state on which condition and when?
-           </Typography>
-
-           <TextField
-              variant="outlined"
-              margin="normal"
-              fullWidth
-              id="text"
-              name="text"
-            /> 
-
-           <TextField
-            onChange={e=>onChange(e)}
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="docname"
-              label="Doctor's Name"
-              name="docname"
-              value={docname}
-            /> 
-
-    <TextField
-     onChange={e=>onChange(e)}
-      variant="outlined"
-      margin="normal"
-      required
-      fullWidth
-      id="appdate"
-      label="Appointment Date"
-      type="appdate"
-      name="appdate"
-      value={appdate}
-      className={classes.textField}
-      InputLabelProps={{
-      shrink: true,
-    }}
-  />
 
             <Button
               type="submit"
@@ -371,6 +328,15 @@ Address
 AppointmentMaking.propTypes={
   setAlert:PropTypes.func.isRequired,
   createAppointments:PropTypes.func.isRequired,
+  auth:PropTypes.object.isRequired,
+  getProfilebyID:PropTypes.object.isRequired,
+  profile:PropTypes.object.isRequired
 };
 
-export default connect(null, { setAlert,createAppointments })(AppointmentMaking);
+const mapStateToProps=state=>({
+  auth:state.auth,
+ 
+  profile:state.profile
+})
+
+export default connect(mapStateToProps, { setAlert,createAppointments,getProfilebyID })(AppointmentMaking);
