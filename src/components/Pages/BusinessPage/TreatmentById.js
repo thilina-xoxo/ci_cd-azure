@@ -7,6 +7,28 @@ import TreatmentIdItem from './TreatmentIdItem'
 import {getTreatmentbyID} from '../../../actions/treatment'
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
+import { lightBlue } from '@material-ui/core/colors';
+
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+      height: '100vh',
+    },
+    paper: {
+      margin: theme.spacing(0,0),
+      display: 'flex',
+      flexDirection:'column',
+      alignItems: 'center',
+      backgroundColor: lightBlue[50],
+    },
+    form: {
+        width: '50%',
+        marginTop: theme.spacing(1),
+      },
+    }));
+
 
 const TreatmentById = ({ match,getTreatmentbyID,user,auth,treatment:{ treatment, loading}}) => {
 
@@ -15,19 +37,25 @@ useEffect(()=>{
 },[getTreatmentbyID])
 
 
-
+const classes = useStyles();
 
     return( 
+
+        <div className={classes.paper}>
+          
+          <Box mt={5}></Box>
+          <Typography component="h1" variant="h4">
+          <h6 className="font-sans text-xl font-semibold text-3xl text-blue-900">Find Your Doctor</h6>
+          </Typography>
+          <Box mt={2}></Box>
+
+          <form className={classes.form} noValidate>
      
 
         <Fragment>
 
         {treatment === null || loading ? <Spinner/>:<Fragment>
-         <div> <Grid item><Link to='/appointment' className="bg-green-500 hover:bg-blue-800 text-xs text-white font-bold py-1 px-4 rounded">
-          Back to Business</Link></Grid>      
-        </div>
          
-      
         <div className='card' >
         {treatment.length>0 ?(
                        treatment.map(treatment=>(
@@ -41,7 +69,9 @@ useEffect(()=>{
         
           </Fragment>}
          </Fragment>
- 
+         <Box mt={5}></Box>
+          </form>
+        </div>
          );
          };
          

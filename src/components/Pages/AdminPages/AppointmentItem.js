@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
       },
       card: {
         height: '100%',
-        width:'50%',  
+        width:'100%',  
         display: 'flex',
         flexDirection: 'row',
       },
@@ -51,10 +51,9 @@ const useStyles = makeStyles((theme) => ({
 
     }));
 
-function AppointmentItem({appointment:{  
+function AppointmentItem({profile:{  
     businessId,
-    firstName,
-    lastName
+    name
 }})
 
 
@@ -74,7 +73,7 @@ return(
                   
                     </Typography>
                     <Typography> Business Id: {businessId}</Typography>
-                    <Typography>Name:  {firstName} {lastName}</Typography>
+                    <Typography> Business Name: {name}</Typography>
                   </CardContent>
                   <CardActions>
                     <Button size='small' color='primary'>
