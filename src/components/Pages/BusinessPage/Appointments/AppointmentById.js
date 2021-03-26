@@ -5,10 +5,32 @@ import {connect} from 'react-redux'
 import Spinner from '../../../layouts/Spinner'
 import {getAppointmentbyID, getCurrentAppointment} from '../../../../actions/appointments'
 import AppointmentIdItem from './AppointmentIdItem'
+import { getProfilebyID} from '../../../../actions/businessprofile'
+import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
+import { lightBlue } from '@material-ui/core/colors';
+import Typography from '@material-ui/core/Typography';
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+      height: '100vh',
+    },
+    paper: {
+      margin: theme.spacing(0,0),
+      display: 'flex',
+      flexDirection:'column',
+      alignItems: 'center',
+      backgroundColor: lightBlue[50],
+    },
+    form: {
+        width: '70%',
+        marginTop: theme.spacing(1),
+      },
+    }));
 
 
-
-const AppointmentById = ({ match,getAppointmentbyID,user,auth,appointment:{appointment, loading}}) => {
+const AppointmentById = ({ match,getAppointmentbyID,user,auth,appointment:{appointment, loading}, profile}) => {
 
 useEffect(()=>{
     getAppointmentbyID(match.params.businessId)
@@ -18,9 +40,22 @@ useEffect(()=>{
     getCurrentAppointment(match.params.businessId)
 },[getCurrentAppointment])
 
+useEffect(()=>{
+    getProfilebyID(match.params.businessId)
+},[getProfilebyID])
 
+const classes = useStyles();
     return( 
      
+        <div className={classes.paper}>
+          
+          <Box mt={5}></Box>
+          <Typography component="h1" variant="h5">
+            Appointments of the Business
+          </Typography>
+          <Box mt={2}></Box>
+
+          <form className={classes.form} noValidate>
      
         <Fragment>
 
@@ -45,6 +80,9 @@ useEffect(()=>{
         </div>
           </Fragment>}
          </Fragment>
+         <Box mt={5}></Box>
+          </form>
+        </div>
  
          );
          };

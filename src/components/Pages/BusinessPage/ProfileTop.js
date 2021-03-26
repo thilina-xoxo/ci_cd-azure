@@ -9,8 +9,6 @@ import TextField from '@material-ui/core/TextField';
 import img from '../../../assests/NewLanka.jpg';
 
 
-
-
 const ProfileTop =({createAppointments,history,profile: {
     name,
     email,

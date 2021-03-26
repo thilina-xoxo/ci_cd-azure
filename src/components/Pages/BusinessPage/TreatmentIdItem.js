@@ -12,15 +12,20 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import img from '../../../assests/Doc.jpg'
+import { Button } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
-        maxWidth: '50ch',
+        maxWidth: '55ch',
         backgroundColor: theme.palette.background.paper,
       },
       inline: {
         display: 'inline',
+      },
+      large: {
+        width: theme.spacing(11),
+        height: theme.spacing(11),
       },
 
     }));
@@ -44,11 +49,11 @@ return(
     <Grid item xs={12} align='center' square>
     <List className={classes.root}>
     <ListItem alignItems="flex-start">
-      <ListItemAvatar>
-        <Avatar alt="Kavindya" src={img} />
-      </ListItemAvatar>
+      <ListItemAvatar><ListItemAvatar>
+        <Avatar className={classes.large} alt="Kavindya" src={img} />
+      </ListItemAvatar></ListItemAvatar>
       <ListItemText
-        primary={<Typography>Doctor's Name: {doctorName}</Typography>}
+        primary={<Typography>&nbsp;&nbsp;&nbsp;&nbsp;Doctor's Name: {doctorName}</Typography>}
         secondary={
           <React.Fragment>
             <Typography
@@ -57,18 +62,17 @@ return(
               className={classes.inline}
               color="textPrimary"
             >
-             <Typography>Category: {name}</Typography>
+             <Typography>&nbsp;&nbsp;&nbsp;&nbsp;Category: {name}</Typography>
             </Typography>
-            Doctor Fee: {price}
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Doctor Fee: {price}
           </React.Fragment>
         }
       />
     </ListItem>
     <Divider variant="inset" component="li" />
-  </List>
+  </List> 
 
-</Grid>
-  
+ </Grid>
     
           
         )
