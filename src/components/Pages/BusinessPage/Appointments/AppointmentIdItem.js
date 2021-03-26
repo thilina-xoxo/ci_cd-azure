@@ -1,77 +1,95 @@
-import React, { useState, useEffect } from 'react'
-import PropTypes from 'prop-types'
-import {Link} from 'react-router-dom'
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import Container from '@material-ui/core/Container';
+import React, {useState, useEffect, useRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Card from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia';
-import { useHistory } from 'react-router-dom';
-import {connect} from 'react-redux'
-import Paper from '@material-ui/core/Paper';
-import { blue } from '@material-ui/core/colors';
-import Box from '@material-ui/core/Box';
-import { Fragment } from 'react';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import PropTypes from 'prop-types'
+import Grid from '@material-ui/core/Grid';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+
 
 const useStyles = makeStyles((theme) => ({
-    cardContent: {
-        flexGrow: 1,
-      },
-      card: {
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-      },
-      cardMedia: {
-        paddingTop: '56.25%',
-        flexDirection:'row'
-      },
-      cardGrid: {
-        paddingTop: theme.spacing(8),
-        paddingBottom: theme.spacing(8),
-      },
+  root: {
+    width: '60%',
+  },
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    fontWeight: theme.typography.fontWeightRegular,
+  },
+}));
 
-    }));
+function renderRow(props) {
+  const {index} = props;
+
+  return (
+    <ListItem key={index}>
+      <ListItemText primary={`${index + 1}`} />
+    </ListItem>
+  );
+}
+
+renderRow.propTypes = {
+  index: PropTypes.number.isRequired,
+};
 
 function AppointmentIdItem({appointment:{
    
-    businessId,
-    firstName,
-    lastName
+  businessId,
+  firstName,
+  lastName,
+  phoneNumber,
+  treatmentId,
 
 }}) 
 
-
 {
-     
-    const classes = useStyles();
-  
-    
-return(
-  <Fragment>
-    <div>
-        
-      <Container className={classes.cardGrid} maxWidth='md'>
-          <Typography>Business Id: {businessId}</Typography>
-          <Typography>First Name: {firstName}</Typography>
-          <Typography>Last Name: {lastName}</Typography>
-                 
-                  </Container>
-                  </div></Fragment>
-          
-        )
-      
-}
 
+  const classes = useStyles();
+
+  return (
+    <Grid align='center'>
+    <div className={classes.root}>
+      <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <Typography className={classes.heading}>Appointment Number: {renderRow}
+      </Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            First Name: {firstName}
+          </Typography>
+        </AccordionDetails>
+        <AccordionDetails>
+          <Typography>
+            Last Name: {lastName}
+          </Typography>
+        </AccordionDetails>
+        <AccordionDetails>
+          <Typography>
+            Phone Number: {phoneNumber}
+          </Typography>
+        </AccordionDetails>
+        <AccordionDetails>
+          <Typography>
+            Treatment ID: {treatmentId}
+          </Typography>
+        </AccordionDetails>
+      </Accordion> 
+    </div>
+    </Grid>
+  );
+}
 
 AppointmentIdItem.propTypes = {
-appointment:PropTypes.array.isRequired,
-}
-
-
-export default AppointmentIdItem
+  appointment:PropTypes.array.isRequired,
+  }
+  
+  
+  export default AppointmentIdItem

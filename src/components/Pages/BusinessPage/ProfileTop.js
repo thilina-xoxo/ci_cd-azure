@@ -99,9 +99,19 @@ const ProfileTop =({profile: {
         </div>
 
 {isAuthenticated && !loading? 
-user.userRole=='Business'?( email==user.email?(<Link to= {`/editProfile/${businessId}`}className="bg-green-500 hover:bg-blue-800 text-xs text-white font-bold py-1 px-4 rounded">
+user.userRole=='Business'?( email==user.email?(
+<Fragment>
+<Link to= {`/editProfile/${businessId}`}className="bg-green-500 hover:bg-blue-800 text-xs text-white font-bold py-1 px-4 rounded">
 Edit Profile
-</Link>):null ):<Fragment>
+</Link>
+  
+<Link to= {`/treatmentmaking/${businessId}`}className="bg-green-500 hover:bg-blue-800 text-xs text-white font-bold py-1 px-4 rounded">
+Create Treatment
+</Link>
+
+</Fragment>
+
+):null ):<Fragment>
 <Link to={`/treatment/${businessId}`} className="bg-green-500 hover:bg-blue-800 text-xs text-white font-bold py-1 px-4 rounded">
           Find Your Doctor</Link>
           <Link to={`/appointmentmaking/${businessId}`} className="bg-green-500 hover:bg-blue-800 text-xs text-white font-bold py-1 px-4 rounded">
@@ -116,6 +126,9 @@ user.userRole=='Admin'?
 ( <Fragment>
   <Link to= {`/editProfile/${businessId}`}className="bg-green-500 hover:bg-blue-800 text-xs text-white font-bold py-1 px-4 rounded">
 Edit Profile
+</Link>
+<Link to= {`/treatmentmaking/${businessId}`}className="bg-green-500 hover:bg-blue-800 text-xs text-white font-bold py-1 px-4 rounded">
+Create Treatment
 </Link>
 </Fragment>):null:null}
 

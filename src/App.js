@@ -20,6 +20,7 @@ import About from './components/Pages/UserPages/About'
 import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/Signup';
 import AppointmentMaking from './components/Pages/UserPages/AppointmentMaking';
+import TreatmentMaking from './components/Pages/BusinessPage/TreatmentMaking';
 import ForgotPassword from './components/auth/ForgotPassword';
 import Contact from './components/Pages/UserPages/Contact';
 import Services from './components/Pages/UserPages/Services';
@@ -64,6 +65,7 @@ const App = () => {
           <Route path='/signin' component={SignIn} />
           <Route path='/signup' component={SignUp} />
           <Private exact path='/appointmentmaking/:businessId' component={AppointmentMaking} />
+          <Private exact path='/treatmentmaking/:businessId' component={TreatmentMaking} />
           <Route path='/forgotpassword' component={ForgotPassword} />
           <Route path='/contactus' component={Contact} />
           <Admin exact path='/business/register' component={BusinessRegister} />
