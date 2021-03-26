@@ -20,51 +20,23 @@ import PropTypes from 'prop-types';
 import {withRouter} from 'react-router-dom'
 import {createAppointments} from '../../../actions/appointments'
 import {getProfilebyID} from '../../../actions/businessprofile'
-
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="primary" href="./">
-        NoQueue Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import { Hidden } from '@material-ui/core';
+import {getTreatmentbyID} from '../../../actions/treatment'
+import  TreatmentIdItem from '../BusinessPage/TreatmentIdItem'
 
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100vh',
   },
-  paper: {
-    margin: theme.spacing(0,0),
-    display: 'flex',
-    flexDirection:'column',
-    alignItems: 'center',
-    backgroundColor: lightBlue[50],
-    
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: pink.A700,
-  },
-  form: {
-    width: '40%',
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3,0,2),
-  },
-  typo:{
-    color: blueGrey[700],
-    },
-
 }));
 
-const AppointmentMaking = ({setAlert,createAppointments,history,auth,match,getProfilebyID,profile:{profile,loading}}) => {
+const AppointmentMaking = ({setAlert
+  ,getTreatmentbyID,
+  createAppointments,
+  history,auth,match,
+  getProfilebyID,
+  profile:{profile,loading},
+  treatment:{treatment}}) => {
 
   const [formData, setFormData] = useState({
    firstname:"",
@@ -72,16 +44,14 @@ const AppointmentMaking = ({setAlert,createAppointments,history,auth,match,getPr
    businessId:"",
     phonenumber:'',
     treatmentId:'',
-    date:"",
-    address1:"",
-    address2:"",
-    city:"",
-    state:"",
-    zip:"",
+    age:'',
+    gender:''
 
   })
 
   useEffect(() => {
+
+    getTreatmentbyID(match.params.businessId); 
 
     if (!profile) getProfilebyID(match.params.businessId);
     if (!loading && profile) {
@@ -96,7 +66,7 @@ const AppointmentMaking = ({setAlert,createAppointments,history,auth,match,getPr
     }, [loading,getProfilebyID,profile])
 
 
-const{firstname,lastname,businessId,age,phonenumber,treatmentId,date,line1,line2,city,state,zip}=formData; 
+const{firstname,lastname,businessId,age,phonenumber,treatmentId,gender}=formData; 
 
 const onChange=e=>setFormData(
   {
@@ -120,208 +90,204 @@ const onSubmit=e=>{
 
   return (
     
-        <div className={classes.paper}>
+    
+          <div className='w-full bg-white rounded  p-8 m-4 '>
+
+        <h1 className='text-2xl xl:text-2xl font-extrabold text-orange-500 text-center '>
+        Make Your Appointment
+        </h1>
+
+        <form
+          className='mb-6 mx-3'
+          //className={classes.submit}
+          onSubmit={e=>onSubmit(e)}
+        >
+          <p className='text-red-500 text-xs italic mb-2'>
+            **Please fill out all the fields.
+          </p>
+
+         
+          <div className='flex flex-wrap -mx-3 mb-6'>
+            <div className='w-full'>
+              <label
+                className='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2'
+                htmlFor='grid-location'
+              >
+
+              </label>
+              <input
+                className='appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
+                id='grid-location'
+                type='HIDDEN'
+                name='businessId'
+                value={businessId}
+                hid
+                onChange={(e) => onChange(e)}
+                placeholder='Postal Code'
+              />
+              
+            </div>
+          </div>
+
+
+          <div className='flex flex-wrap -mx-3 mb-6'>
+            <div className='w-full '>
+              <label
+                className='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2'
+                htmlFor='bname'
+              >
+                First Name
+              </label>
+              <input
+                className='appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
+                id='BusinessName'
+                name='firstname'
+                value={firstname}
+                type='text'
+                placeholder='First Name'
+                onChange={(e) => onChange(e)}
+              />
+            </div>
+          </div>
+
+          <div className='flex flex-wrap -mx-3 mb-6'>
+            <div className='w-full '>
+              <label
+                className='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2'
+                htmlFor='bname'
+              >
+              Last Name
+              </label>
+              <input
+                className='appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
+                id='BusinessName'
+                name='lastname'
+                value={lastname}
+                type='text'
+                placeholder='Last Name'
+                onChange={(e) => onChange(e)}
+              />
+            </div>
+          </div>
+
+
+         
+
+
+          <div className='flex flex-wrap -mx-3 mb-6'>
+            <div className='w-full'>
+              <label
+                className='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2'
+                htmlFor='grid-location'
+              >
+              Treatment Id
+              </label>
+              <input
+                className='appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
+                id='grid-location'
+                type='string'
+                name='treatmentId'
+                value={treatmentId}
+                onChange={(e) => onChange(e)}
+                placeholder='Postal Code'
+              />
+             
+            </div>
+          </div>
+
+          <div className='flex flex-wrap -mx-3 mb-6'>
+            <div className='w-full'>
+              <label
+                className='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2'
+                htmlFor='grid-location'
+              >
+                Phone Number
+              </label>
+              <input
+                className='appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
+                id='grid-location'
+                type='tel'
+                name='phonenumber'
+                value={phonenumber}
+            
+                onChange={(e) => onChange(e)}
+                placeholder='Phone'
+              />
+             
+            </div>
+          </div>
+
+          <div className='flex flex-wrap -mx-3 mb-6'>
+            <div className='w-full'>
+              <label
+                className='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2'
+                htmlFor='grid-location'
+              >
+                Age
+              </label>
+              <input
+                className='appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
+                id='grid-location'
+                type='int'
+                name='age'
+                value={age}
+                onChange={(e) => onChange(e)}
+                placeholder='Age'
+              />
           
-          <Box mt={5}></Box>
-          <Typography component="h1" variant="h5">
-            Personal details of patient
-          </Typography>
-          <Box mt={2}></Box>
+            </div>
+          </div>
 
-          <form onSubmit = { e=>onSubmit(e)} className={classes.form} noValidate>
-            <TextField
-             onChange={e=>onChange(e)}
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="First Name"
-              label="First Name"
-              name="firstname"
-              value={firstname}
-            />       
-
-<TextField
-             onChange={e=>onChange(e)}
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="Last Name"
-              label="Last Name"
-              name="lastname"
-              value={lastname}
-            />     
-
-
-
-<TextField
-             onChange={e=>onChange(e)}
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="Business ID"
-              label="Business ID"
-              name="businessId"
-              value={businessId}
-            />   
+          <div className='w-full  mb-6 md:mb-0'>
+            <label
+              className='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2'
+              htmlFor='grid-state'
+            >
+             Gender
+            </label>
+            <div className='relative'>
+              <select
+                className='appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
+                id='grid-state'
+                name='gender'
+                value={gender}
+                onChange={(e) => onChange(e)}
+              >
+              
+                <option value='male'>Male</option>
+                <option value='female'>Female</option>
+              </select>
+              <div className='pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700'>
+                <svg
+                  className='fill-current h-4 w-4'
+                  xmlns='http://www.w3.org/2000/svg'
+                  viewBox='0 0 20 20'
+                >
+                  <path d='M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z' />
+                </svg>
+              </div>
+            </div>
+          </div>
 
 
 
-<TextField
-             onChange={e=>onChange(e)}
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="Treatment ID"
-              label="Treatment ID"
-              name="treatmentId"
-              value={treatmentId}
-            />  
-            
+<div className='grid grid-cols-3 gap-4'>
+  <div className='w-1/3' ></div>
+  <div className='w-full' >
+  <button
+            type='submit'
+            className=' items-center mt-5 w-full  font-semibold bg-blue-700 text-gray-100  py-4 rounded-sm hover:bg-blue-500 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none'
+          >
+            <i className='fas fa-user-plus fa 1x w-6  -ml-2' />
+            <span className='ml-3'>Submit</span>
+          </button>
 
-<Box mt={1}></Box>
-<Grid item xs={12}>
-      <InputLabel htmlFor="select">Gender</InputLabel>
-      <NativeSelect id="select" fullWidth>
-      <option value="1">Male</option>
-      <option value="2">Female</option>
-      </NativeSelect>
-      </Grid>
-
-      <TextField
-       onChange={e=>onChange(e)}
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="age"
-              label="Age"
-              type="number"
-              id="age"
-              value={age}
-            />
-     
-              <TextField
-               onChange={e=>onChange(e)}
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="phonenumber"
-              label="Telephone Number"
-              type="phonenumber"
-              id="phonenumber"
-              value={phonenumber}
-            />
-
-
-<TextField
- onChange={e=>onChange(e)}
-    variant="outlined"
-    margin="normal"
-    required
-    fullWidth
-    id="date"
-    label="Birthday"
-    type="date"
-    name="date"
-    value={date}
-    className={classes.textField}
-    InputLabelProps={{
-      shrink: true,
-    }}
-  />
-  <Box mt={1}></Box>
-
-  <Typography component="h7" variant="h7"  className={classes.typo}>
-Address
-</Typography>
-
-<Box mt={2}></Box>
-<Grid item xs={12}>
-          <TextField
-           onChange={e=>onChange(e)}
-            required
-            variant="outlined"
-            id="line1"
-            name="line1"
-            label="Address line 1"
-            fullWidth
-            autoComplete="shipping address-line1"
-            value={line1}
-          />
-           <Box mt={1}></Box>
-        
-          <TextField
-           onChange={e=>onChange(e)}
-          variant="outlined"
-            id="line2"
-            name="line2"
-            label="Address line 2"
-            fullWidth
-            autoComplete="shipping address-line2"
-            value={line2}
-          />
-           <Box mt={1}></Box>
-        
-          <TextField 
-           onChange={e=>onChange(e)}
-            required
-            variant="outlined"
-            id="city"
-            name="city"
-            label="City"
-            fullWidth
-            autoComplete="shipping address-level2"
-            value={city}
-          />
-           <Box mt={1}></Box>
-       
-          <TextField 
-           onChange={e=>onChange(e)}
-          required
-          variant="outlined"
-          id="state" 
-          name="state"
-          label="State/Province/Region"
-          value={state}
-          fullWidth />
-           <Box mt={1}></Box>
-       
-          <TextField
-           onChange={e=>onChange(e)}
-            required
-            variant="outlined"
-            id="zip"
-            name="zip"
-            label="Zip / Postal code"
-            fullWidth
-            autoComplete="shipping postal-code"
-            value={zip}
-          />
-        </Grid>
-        <Box mt={3}></Box>
-
-
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-            >  
-            Submit Form
-            </Button>
-            
-            <Box mt={4}>
-              <Copyright />
-            </Box>
-            <Box mt={5}></Box>
-          </form>
-        </div>
+  </div>
+          
+          <div className='w-1/3' ></div>
+          </div>
+        </form>
+      </div>
   );
 }
 
@@ -330,13 +296,15 @@ AppointmentMaking.propTypes={
   createAppointments:PropTypes.func.isRequired,
   auth:PropTypes.object.isRequired,
   getProfilebyID:PropTypes.object.isRequired,
-  profile:PropTypes.object.isRequired
+  profile:PropTypes.object.isRequired,
+  getTreatmentbyID:PropTypes.func.isRequired,
+  treatment:PropTypes.object.isRequired,
 };
 
 const mapStateToProps=state=>({
   auth:state.auth,
- 
+ treatment:state.treatment,
   profile:state.profile
 })
 
-export default connect(mapStateToProps, { setAlert,createAppointments,getProfilebyID })(AppointmentMaking);
+export default connect(mapStateToProps, { setAlert,createAppointments,getProfilebyID,getTreatmentbyID })(AppointmentMaking);

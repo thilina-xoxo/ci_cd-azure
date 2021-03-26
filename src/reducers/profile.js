@@ -36,6 +36,7 @@ export default function (state=initalState,action){
             return{
                 ...state,
                 profile:null,
+              
                 loading:false
             };
        

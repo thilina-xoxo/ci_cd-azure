@@ -1,17 +1,12 @@
 import React,{useState,Fragment,useEffect} from 'react'
 import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import {createAppointments} from '../../../actions/appointments'
-import {withRouter, Link} from 'react-router-dom'
-import AppointmentMaking from '../UserPages/AppointmentMaking'
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+import {Link} from 'react-router-dom'
 import img from '../../../assests/NewLanka.jpg';
+import { connect } from 'react-redux';
 
 
 
-
-const ProfileTop =({createAppointments,history,profile: {
+const ProfileTop =({profile: {
     name,
     email,
     phoneNumber,
@@ -22,35 +17,14 @@ const ProfileTop =({createAppointments,history,profile: {
     imageName,
    
   
+},auth:{
+  isAuthenticated,
+  user,
+  loading
 }}) => {
-
-  const [formData, setFormData] = useState({
-    firstname:'',
-    lastname:'',
-    businessId:''
-   
-   })
- 
- const [displayAppointment, toggleAppointments] = useState(false) 
- 
- 
- const{
-  firstname,
-  lastname,
- }=formData; 
-
-  
-const onChange=e=>setFormData({...formData,[e.target.name]:e.target.value})
-
-  const onSubmit=e=>{
-      e.preventDefault()
-      createAppointments(formData,history)
-  }
-
     return (
       <Fragment>
-        <Link to={`/treatment/1`} className="bg-green-500 hover:bg-blue-800 text-xs text-white font-bold py-1 px-4 rounded">
-          Find Your Doctor</Link>
+      
 <div className='container-around'>
         <section className="relative py-20">
         <div
@@ -124,13 +98,27 @@ const onChange=e=>setFormData({...formData,[e.target.name]:e.target.value})
           </div>
         </div>
 
-        <Link to= {`/editProfile/${businessId}`}className="bg-green-500 hover:bg-blue-800 text-xs text-white font-bold py-1 px-4 rounded">
-     Edit Profile
-    </Link>
-
-    <Link to={`/appointmentmaking/${businessId}`} className="bg-green-500 hover:bg-blue-800 text-xs text-white font-bold py-1 px-4 rounded">
+{isAuthenticated && !loading? 
+user.userRole=='Business'?( email==user.email?(<Link to= {`/editProfile/${businessId}`}className="bg-green-500 hover:bg-blue-800 text-xs text-white font-bold py-1 px-4 rounded">
+Edit Profile
+</Link>):null ):<Fragment>
+<Link to={`/treatment/${businessId}`} className="bg-green-500 hover:bg-blue-800 text-xs text-white font-bold py-1 px-4 rounded">
+          Find Your Doctor</Link>
+          <Link to={`/appointmentmaking/${businessId}`} className="bg-green-500 hover:bg-blue-800 text-xs text-white font-bold py-1 px-4 rounded">
    Make Appointment
     </Link>
+
+</Fragment> :null}
+       
+
+    {isAuthenticated && !loading? 
+user.userRole=='Admin'?
+( <Fragment>
+  <Link to= {`/editProfile/${businessId}`}className="bg-green-500 hover:bg-blue-800 text-xs text-white font-bold py-1 px-4 rounded">
+Edit Profile
+</Link>
+</Fragment>):null:null}
+
       </section>
 
 
@@ -142,6 +130,15 @@ const onChange=e=>setFormData({...formData,[e.target.name]:e.target.value})
 
 ProfileTop.propTypes = {
 profile: PropTypes.object.isRequired,
+auth: PropTypes.object.isRequired
 }
 
-export default  ProfileTop
+
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  user: state.auth.user,
+});
+
+export default connect(mapStateToProps)(ProfileTop);
+

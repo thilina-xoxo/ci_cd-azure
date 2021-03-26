@@ -1,22 +1,28 @@
 
-import React,{Fragment,useEffect} from 'react'
+import React,{Fragment,useEffect, useState} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import ShowUserItem from './ShowUserItem'
 import  {getAllUsers} from '../../../actions/auth'
+import Spinner from '../../layouts/Spinner'
 
 
 const Allusers = ({ getAllUsers,auth,users:{users,loading}}) => {
+
+const [q,setQ]=useState("")
 
 useEffect(()=>{
  getAllUsers()
 },[getAllUsers])
 
+function search(rows){
+    return rows.filter(row=>row.userName.toLoweCase().indexOf(q)>-1)
+}
 
 return( 
     <Fragment >
         { loading ? (
-   <h4>loading..</h4>
+   <h4><Spinner/></h4>
     ):(
 
 
@@ -25,30 +31,22 @@ return(
 
 
         
-{( <div className=' grid grid-cols-3 gap-4'>
+{( <div className=' container mx-auto'>
 
-    <div className=''>
-    
-    </div>
-    <div className='w-full bg-white rounded  p-8 m-4 ' >
-        <h1 className='text-3xl text-primary'>Users</h1>
+
+<div>
+    <input type='text' value={q} onChange={(e)=>setQ(e.target.value)}>
+    </input>
+</div>
+  
+    <div className='w-full bg-white rounded  mt-5' >
+      
     
 
-        <div className='w-full container' >
-        {users.length>0 ?(
-                users.map(user=>(
-                    <ShowUserItem key={user._id} user={user}/>
-                ))
-            ):(
-            <h4 className='text-2xl text-danger'>No users found</h4>
-            )}
-        </div>
+      <ShowUserItem users={search(users)}/>
         </div>
 
-        <div>
-    
-    </div>
-
+        
 
 </div>
 

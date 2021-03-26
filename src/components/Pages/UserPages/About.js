@@ -22,7 +22,7 @@ function Copyright() {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: '125vh',
+    height: '100vh',
   },
   image: {
     backgroundImage: 'url(https://image.shutterstock.com/image-photo/doctor-writing-on-medical-health-260nw-578137630.jpg)',

@@ -2,25 +2,42 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-const ShowUserItem =({auth,user:{
-   userID,
-   email,
-   userName 
-}}) => {
-    return <div class="  rounded rounded-t-lg overflow-hidden shadow max-w-xs my-3">
-    <img src="https://i.imgur.com/dYcYQ7E.png" class="w-full" />
-  <div class="flex justify-center -mt-8">
-      <img src="https://i.imgur.com/8Km9tLL.jpg" class="rounded-full border-solid border-white border-2 -mt-3"/>		
-  </div>
-  <div class="text-center px-3 pb-6 pt-2">
-      <h3 class="text-black text-sm bold font-sans">{userName}</h3>
-      <p class="mt-2 font-sans font-light text-grey-dark">{email}</p>
-  </div>
-    <div class="flex justify-center pb-3 text-grey-dark">
-    
-    </div>
-</div>
+const ShowUserItem =({users
+}) => {
+
+  const columns=users[0]  && Object.keys(users[0])
+
+    return <div className="bg-gray-900 border border-gray-800 rounded shadow p-5">
+  <div className="border-b border-gray-800 p-3">
+  <div className="flex flex-row items-center">
+                            <div className="flex-shrink pr-4">
+                                <div className="rounded p-3 bg-pink-600"><i className="fas fa-users fa-2x fa-fw fa-inverse"></i></div>
+                            </div>
+                            <div className="flex-1 text-right md:text-center">
+                                <h5 className="font-bold uppercase text-gray-400">All users </h5>
+                               
+                            </div>
+                        </div>
+                        </div>
+<table className="w-full p-5 text-white" cellSpacing={0} cellPadding={0}>
+<thead>
+  <tr>
+      {users[0] && columns.map((heading) => <th className="text-left text-white px-6">{heading} </th>)}</tr>
+
+</thead>
+
+<tbody className="px-3">
+    {users.map(row=> <tr >
+        {
+            columns.map(column=><td  className="px-3">{row[column]}</td> )
+        }
+    </tr>)}
+</tbody>
+
+    </table>
        
+
+    </div> 
         
       
     
@@ -28,7 +45,7 @@ const ShowUserItem =({auth,user:{
 }
 
 ShowUserItem.propTypes = {
-user:PropTypes.object.isRequired,
+users:PropTypes.array.isRequired,
 auth:PropTypes.object.isRequired,
 }
 

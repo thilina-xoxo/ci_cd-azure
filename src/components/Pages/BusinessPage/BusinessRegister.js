@@ -67,13 +67,6 @@ const onSubmit=(e)=>{
       });
     }
   };
-  //reset Form
-  const resetForm = () => {
-    setFormData(formData);
-    document.getElementById('image-uploader').value = null;
-    //setErrors({});
-  };
-
   
   return (
     <Fragment>

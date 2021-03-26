@@ -42,9 +42,7 @@ const Navbar = ({ auth: { isAuthenticated, loading,user }, logout }) => {
         <NavLink to='/contactus' activeStyle>
           Contact Us
         </NavLink>
-        <NavLink to='/business' activeStyle>
-          Business Registration
-        </NavLink>
+      
         {/*  <NavLink to='/admin' activeStyle>
             AdminDashboard
           </NavLink>
@@ -72,24 +70,13 @@ const Navbar = ({ auth: { isAuthenticated, loading,user }, logout }) => {
       </NavLink>
       <Bars />
 
-      <NavLink to='/allusers' activeStyle>
-        Show Users
-      </NavLink>
-      <NavMenu>
-        <NavLink to='/appointment' activeStyle>
-          Appointment
+      
+      
+        <NavLink to='/adminHome' activeStyle>
+       Dashboard
         </NavLink>
 
       
-        <NavLink to='/business' activeStyle>
-          Business Registration
-        </NavLink>
-        {/*  <NavLink to='/admin' activeStyle>
-            AdminDashboard
-          </NavLink>
-          {/* Second Nav */}
-        {/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}
-      </NavMenu>
       <NavBtn>
         <a onClick={logout} href='signin'>
           Logout
@@ -121,7 +108,7 @@ const Navbar = ({ auth: { isAuthenticated, loading,user }, logout }) => {
         <NavLink to='/about' activeStyle>
           About
         </NavLink>
-        <NavLink to='/appointment' activeStyle>
+        <NavLink to='/signin' activeStyle>
           Appointment
         </NavLink>
         <NavLink to='/map' activeStyle>

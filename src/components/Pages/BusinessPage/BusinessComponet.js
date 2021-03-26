@@ -42,6 +42,7 @@ import ProfileItem from './ProfileItem'
             <h4 className='text-2xl text-danger'>No Profiles found</h4>
             )}
         </div>
+
       </Fragment>
     );
   };

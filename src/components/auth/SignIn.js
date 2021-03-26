@@ -99,7 +99,7 @@ return <Redirect to="index"/>
 else if(
 user.userRole ==='Admin'
 )
-    return <Redirect to="/business"/>
+    return <Redirect to="/adminHome"/>
 
 
     else if(

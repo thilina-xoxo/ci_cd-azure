@@ -13,6 +13,7 @@ import {
   GET_USERS,
   USERS_ERROR,
   LOGOUT,
+  CLEAR_PROFILE
 } from './types';
 
 // register user
@@ -180,5 +181,6 @@ try {
 
 //logout
 export const logout = () => (dispatch) => {
+  dispatch({ type: CLEAR_PROFILE });
   dispatch({ type: LOGOUT });
 };
