@@ -98,23 +98,31 @@ const ProfileTop =({profile: {
           </div>
         </div>
 
+
+<div className="mt-20 flex mx-auto">
 {isAuthenticated && !loading? 
 user.userRole=='Business'?( email==user.email?(
-<Fragment>
-<Link to= {`/editProfile/${businessId}`}className="bg-green-500 hover:bg-blue-800 text-xs text-white font-bold py-1 px-4 rounded">
+<Fragment className='m-5'>
+<Link to= {`/editProfile/${businessId}`}className="bg-green-500 hover:bg-blue-400 text-xs text-white font-bold py-2 px-4 rounded m-2">
 Edit Profile
 </Link>
   
-<Link to= {`/treatmentmaking/${businessId}`}className="bg-green-500 hover:bg-blue-800 text-xs text-white font-bold py-1 px-4 rounded">
+<Link to= {`/treatmentmaking/${businessId}`}className="bg-green-500 hover:bg-blue-400 text-xs text-white font-bold py-2 px-4 rounded m-2">
 Create Treatment
+</Link>
+
+
+<Link to= {`/appoint/${businessId}`}className="bg-green-500 hover:bg-blue-400 text-xs text-white font-bold py-2 px-4 rounded m-2">
+Show Appoitnments
 </Link>
 
 </Fragment>
 
 ):null ):<Fragment>
-<Link to={`/treatment/${businessId}`} className="bg-green-500 hover:bg-blue-800 text-xs text-white font-bold py-1 px-4 rounded">
+<Link to={`/treatment/${businessId}`} className="bg-green-500 hover:bg-blue-400 text-xs text-white font-bold py-2 px-4 rounded m-2">
           Find Your Doctor</Link>
-          <Link to={`/appointmentmaking/${businessId}`} className="bg-green-500 hover:bg-blue-800 text-xs text-white font-bold py-1 px-4 rounded">
+
+          <Link to={`/appointmentmaking/${businessId}`} className="bg-green-500 hover:bg-blue-400 text-xs text-white font-bold py-2 px-4 rounded m-2">
    Make Appointment
     </Link>
 
@@ -123,15 +131,20 @@ Create Treatment
 
     {isAuthenticated && !loading? 
 user.userRole=='Admin'?
-( <Fragment>
-  <Link to= {`/editProfile/${businessId}`}className="bg-green-500 hover:bg-blue-800 text-xs text-white font-bold py-1 px-4 rounded">
+( <Fragment className='m-5'>
+  <Link to= {`/editProfile/${businessId}`}className="bg-green-500 hover:bg-blue-400 text-xs text-white font-bold py-2 px-4 rounded m-2">
 Edit Profile
 </Link>
-<Link to= {`/treatmentmaking/${businessId}`}className="bg-green-500 hover:bg-blue-800 text-xs text-white font-bold py-1 px-4 rounded">
+<Link to= {`/treatmentmaking/${businessId}`}className="bg-green-500 hover:bg-blue-400 text-xs text-white font-bold py-2 px-4 rounded m-2">
 Create Treatment
 </Link>
-</Fragment>):null:null}
+<Link to= {`/appoint/${businessId}`}className="bg-green-500 hover:bg-blue-400 text-xs text-white font-bold py-2 px-4 rounded m-2">
+Show Appoitnments
+</Link>
 
+
+</Fragment>):null:null}
+</div>
       </section>
 
 

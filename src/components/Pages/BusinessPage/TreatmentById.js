@@ -62,7 +62,10 @@ const classes = useStyles();
                            <TreatmentIdItem key={treatment._id} treatment={treatment}/>
                        ))
                    ):(
-                   <h4 className='text-2xl text-danger'>No treatments found</h4>
+                    
+                        <div className=''><h4 className='text-2xl text-red-600 text-center'>No treatments found</h4></div>
+
+                   
                    )}
         </div>
               

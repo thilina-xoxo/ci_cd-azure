@@ -51,56 +51,44 @@ export const register = (UserName, Email, Password, ConfirmPassword) => async (
   }
 };
 
-// REGISTER BUSINESS
 
-export const registerBusiness = (
-  BusinessType,
-  BusinessName,
-  TotalCrowd,
-  CurrentCrowd,
-  PostalCode,
-  PhoneNumber,
-  Email,
-  Summary
-) => async (dispatch) => {
+//
+export const businessrRegister = (UserName, Email, Password, ConfirmPassword) => async (
+  dispatch
+) => {
   const config = {
     headers: {
       'Content-Type': 'application/json',
     },
   };
 
-  const body = JSON.stringify({
-    BusinessType,
-    BusinessName,
-    TotalCrowd,
-    CurrentCrowd,
-    PostalCode,
-    PhoneNumber,
-    Email,
-    Summary,
-  });
+  const body = JSON.stringify({ UserName, Email, Password, ConfirmPassword });
 
   try {
     const res = await axios.post(
-      'https://localhost:5001/api/business',
+      'https://localhost:5001/api/auth/register-business',
       body,
-      config,
-      console.log('Thilina')
+      config
     );
     dispatch({
       type: REGISTER_SUCCESS,
-      //payload: res.data,
+      payload: res.data,
     });
+
+    dispatch(loadUser())
   } catch (err) {
-    //const errors = err.response.data.errors;
-    //console.log(errors);
+    const errors = err.response.data.errors;
+    console.log(errors);
     dispatch(setAlert('Something wrong at your end', 'danger'));
 
-    //dispatch({
-    //type: REGISTER_FAIL,
-    //});
+    dispatch({
+      type: REGISTER_FAIL,
+    });
   }
 };
+
+
+
 
 //LOAD USER
 

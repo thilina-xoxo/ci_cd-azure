@@ -105,7 +105,7 @@ export const editProfile = (
     });
     
     if (!edit) {
-      history.push('/appointment');
+      history.push('/businessess');
     }
   } catch (err) {
     const errors =err.response.data.errors;
@@ -169,7 +169,7 @@ export const createProfile = (
     });
 
     dispatch(setAlert( 'Profile Created' ,'success',<i className="material-icons">done</i>));
-
+    history.push('/businessess');
   } catch (err) {
     const errors =err.response.data.errors;
 

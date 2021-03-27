@@ -39,7 +39,8 @@ import ProfileItem from './ProfileItem'
                     <ProfileItem key={profile._id} profile={profile}/>
                 ))
             ):(
-            <h4 className='text-2xl text-danger'>No Profiles found</h4>
+              <div> <h4 className='text-2xl text-red-600 text-center'>No Profiles found</h4></div>
+           
             )}
         </div>
 

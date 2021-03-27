@@ -10,6 +10,7 @@ import { pink } from '@material-ui/core/colors';
 import { connect } from 'react-redux';
 import { setAlert } from '../../../actions/alert';
 import PropTypes from 'prop-types';
+import {createContact} from '../../../actions/contact'
 
 function Copyright() {
   return (
@@ -48,15 +49,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Contact = ({setAlert}) => {
+const Contact = ({setAlert,createContact,history}) => {
 
   const [formData, setFormData] = useState({
-    name:'',
+    fullname:'',
     email:"",
     message:"",
   })
 
-const{name,email,message}=formData; 
+const{fullname,email,message}=formData; 
 
 const onChange=e=>setFormData(
   {
@@ -66,14 +67,16 @@ const onChange=e=>setFormData(
 
 const onSubmit=e=>{
   e.preventDefault();
-  if (email && message) {
-    console.log('SUCCESS');}
+  if (fullname && email && message) {
+    e.preventDefault()
+    createContact(formData,history)}
         else{
           setAlert('Please fill all the fileds','warning');
         }
       }
       
   const classes = useStyles();
+
 
   return (
     <div className={classes.paper}>
@@ -97,8 +100,8 @@ const onSubmit=e=>{
           fullWidth
           id='name1'
           label='Full Name'
-          name='name'
-          value={name}
+          name='fullname'
+          value={fullname}
         />
 
         <TextField
@@ -156,8 +159,15 @@ const onSubmit=e=>{
 }
 
 Contact.propTypes={
-  setAlert:PropTypes.func.isRequired
+  setAlert:PropTypes.func.isRequired,
+  createContact:PropTypes.func.isRequired
 };
 
-export default connect(null, { setAlert })(Contact);
+
+const mapStateToProps=state=>({
+   
+  conatct:state.contact
+  })
+
+export default connect(mapStateToProps, { setAlert,createContact })(Contact);
 

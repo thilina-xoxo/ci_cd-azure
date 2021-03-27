@@ -23,9 +23,7 @@ import AppointmentMaking from './components/Pages/UserPages/AppointmentMaking';
 import TreatmentMaking from './components/Pages/BusinessPage/TreatmentMaking';
 import ForgotPassword from './components/auth/ForgotPassword';
 import Contact from './components/Pages/UserPages/Contact';
-import Services from './components/Pages/UserPages/Services';
-import AdminSignin from './components/layouts/AdminDashboard/AdminSignin';
-import Dashboard from './components/layouts/AdminDashboard/Navbar';
+import Services from './components/Pages/UserPages/Services'
 import Footer from './components/layouts/AdminDashboard/Footer';
 import BusinessRegister from './components/Pages/BusinessPage/BusinessRegister';
 import setAuthToken from './utils/setAuthtoken';
@@ -40,7 +38,7 @@ import BusinessDashboarad from './components/Pages/BusinessPage/BusinessDashboar
 import AppointmentById from './components/Pages/BusinessPage/Appointments/AppointmentById';
 import TreatmentById from './components/Pages/BusinessPage/TreatmentById';
 import Privilage from './components/Pages/error/Privilage'
-import { getProfilebyID } from './actions/businessprofile';
+import BusinessSignup from './components/Pages/AdminPages/BusinessSignup';
 if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
@@ -64,6 +62,7 @@ const App = () => {
           <Route path='/services' component={Services} />
           <Route path='/signin' component={SignIn} />
           <Route path='/signup' component={SignUp} />
+          <Route path='/business/signup' component={BusinessSignup} />
           <Private exact path='/appointmentmaking/:businessId' component={AppointmentMaking} />
           <Private exact path='/treatmentmaking/:businessId' component={TreatmentMaking} />
           <Route path='/forgotpassword' component={ForgotPassword} />
@@ -71,8 +70,8 @@ const App = () => {
           <Admin exact path='/business/register' component={BusinessRegister} />
           <Route exact path='/businessproffile/:businessId' component={Proffile} />
           <Private path='/businessess' component={BusinessComponet} />
-          <Route exact path='/appoint/:businessId' component={AppointmentById} />
-          <Route exact path='/treatment/:businessId' component={TreatmentById} />
+          <Business exact path='/appoint/:businessId' component={AppointmentById} />
+          <Private exact path='/treatment/:businessId' component={TreatmentById} />
           <Admin path='/appointments' component={Appointments} />
           <Admin exact path='/allusers' component={Allusers} />
           <Admin exact path='/adminHome' component={AdminHome}/>

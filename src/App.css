@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+:root{
+  height: 100vh;
+}
 .container {
   position: relative;
   line-height: 1.5;

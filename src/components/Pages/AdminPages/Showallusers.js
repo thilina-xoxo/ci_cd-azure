@@ -16,7 +16,7 @@ useEffect(()=>{
 },[getAllUsers])
 
 function search(rows){
-    return rows.filter(row=>row.userName.toLoweCase().indexOf(q)>-1)
+    return rows.filter(row=>row.userName.toString().toLoweCase().indexOf(q)>-1)
 }
 
 return( 

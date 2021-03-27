@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {createProfile} from '../../../actions/businessprofile'
 import {withRouter} from 'react-router-dom'
-
+import { setAlert } from "../../../actions/alert";
 const defaultImageSrc = '/img/image_placeholder.png';
 
 
@@ -27,7 +27,6 @@ const CreateProfile = ({profile:{profile,loading},createProfile,history}) => {
     BusinessType,
     Name,
     TotalCrowd,
-    CurrentCrowd,
     PostalCode,
     PhoneNumber,
     Email,
@@ -41,10 +40,17 @@ const CreateProfile = ({profile:{profile,loading},createProfile,history}) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   
-const onSubmit=(e)=>{
-  e.preventDefault()
-  createProfile(formData,history)
-}
+    const onSubmit=e=>{
+      e.preventDefault();
+      if (Name && BusinessType && TotalCrowd && PostalCode && Email && PhoneNumber) {
+        e.preventDefault()
+        createProfile(formData,history)}
+            else{
+              setAlert('Please fill all the fileds','warning');
+            }
+          }
+ 
+
 
  // show preview image
   const showPreview = (e) => {
@@ -54,7 +60,7 @@ const onSubmit=(e)=>{
       reader.onload = (x) => {
         setFormData({
           ...formData,
-          ImageFile: imageFile,
+          imageFile: ImageFile,
           ImageSrc: x.target.result,
         });
       };
@@ -68,6 +74,7 @@ const onSubmit=(e)=>{
     }
   };
   
+
   return (
     <Fragment>
       <div className='w-full bg-white rounded  p-8 m-4 '>
@@ -142,39 +149,21 @@ const onSubmit=(e)=>{
                 className='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2'
                 htmlFor='grid-website'
               >
-                Total Crowd
+               Estimated Max:Crowd
               </label>
               <input
                 className='appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
                 id='grid-totalCrowd'
-                type='number'
+                type='string'
                 name='TotalCrowd'
                 value={TotalCrowd}
                 onChange={(e) => onChange(e)}
-                placeholder='Total Crowd'
+                placeholder=' Estimated Max:Crowd'
               />
             </div>
           </div>
 
-          <div className='flex flex-wrap -mx-3 mb-6'>
-            <div className='w-full'>
-              <label
-                className='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2'
-                htmlFor='grid-currentCrowd'
-              >
-                Current Crowd
-              </label>
-              <input
-                className='appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
-                id='grid-currentCrowd'
-                type='number'
-                name='CurrentCrowd'
-                value={CurrentCrowd}
-                onChange={(e) => onChange(e)}
-                placeholder='Total Crowd'
-              />
-            </div>
-          </div>
+  
 
           <div className='flex flex-wrap -mx-3 mb-6'>
             <div className='w-full'>
@@ -187,15 +176,13 @@ const onSubmit=(e)=>{
               <input
                 className='appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
                 id='grid-location'
-                type='number'
+                type='string'
                 name='PostalCode'
                 value={PostalCode}
                 onChange={(e) => onChange(e)}
                 placeholder='Postal Code'
               />
-              <p className='text-red-500 text-xs italic'>
-                Please fill out this field.
-              </p>
+           
             </div>
           </div>
 
@@ -210,16 +197,13 @@ const onSubmit=(e)=>{
               <input
                 className='appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
                 id='grid-location'
-                type='number'
+                type='tel'
                 name='PhoneNumber'
                 value={PhoneNumber}
-                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                 onChange={(e) => onChange(e)}
                 placeholder='phone'
               />
-              <p className='text-red-500 text-xs italic'>
-                Please fill out this field.
-              </p>
+             
             </div>
           </div>
 
@@ -240,9 +224,7 @@ const onSubmit=(e)=>{
                 onChange={(e) => onChange(e)}
                 placeholder='email'
               />
-              <p className='text-red-500 text-xs italic'>
-                Please fill out this field.
-              </p>
+             
             </div>
           </div>
 
@@ -263,16 +245,14 @@ const onSubmit=(e)=>{
                 onChange={(e) => onChange(e)}
                 placeholder='Tell us a little about you'
               />
-              <p className='text-gray-600 text-xs italic'>
-                Make it more simpler
-              </p>
+           
             </div>
           </div>
 
           <div className='flex flex-wrap -mx-3 mb-6'>
             <div className='w-full'>
               <div class='bg-white rounded shadow border p-6 w-64'>
-                <img src={formData.ImageSrc} />
+                <img src={ImageSrc} />
                 <div>
                   <input
                     type='file'
@@ -305,6 +285,7 @@ const onSubmit=(e)=>{
 
 CreateProfile.propTypes = {
   createProfile:PropTypes.func.isRequired,
+  setAlert:PropTypes.func.isRequired,
 }
 
 
@@ -314,4 +295,4 @@ const mapStateToProps=state=>({
   })
 
 
-    export default connect(mapStateToProps,{createProfile}) (withRouter(CreateProfile))
+    export default connect(mapStateToProps,{createProfile,setAlert}) (withRouter(CreateProfile))

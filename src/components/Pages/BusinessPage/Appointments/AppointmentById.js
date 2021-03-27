@@ -51,7 +51,7 @@ const classes = useStyles();
           
           <Box mt={5}></Box>
           <Typography component="h1" variant="h5">
-            Appointments of the Business
+            Appointments
           </Typography>
           <Box mt={2}></Box>
 
@@ -60,8 +60,7 @@ const classes = useStyles();
         <Fragment>
 
         {appointment === null || loading ? <Spinner/>:<Fragment>
-          <div><Link to='/appointments' className="bg-green-500 hover:bg-blue-800 text-xs text-white font-bold py-1 px-4 rounded">
-          Back to Appointments</Link>
+          <div>
          
         
         </div>
@@ -73,7 +72,11 @@ const classes = useStyles();
                            <AppointmentIdItem key={appointment._id} appointment={appointment}/>
                        ))
                    ):(
-                   <h4 className='text-2xl text-danger'>No appointments found</h4>
+                     <div className=''>
+ <h4 className='text-2xl text-red-800 text-center '>No appointments found</h4>
+
+                     </div>
+                  
                    )}
         </div>
               

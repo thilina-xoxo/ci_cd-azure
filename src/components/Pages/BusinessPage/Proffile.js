@@ -21,12 +21,12 @@ useEffect(()=>{
      
 <Fragment>
 {profile === null || loading ? <Spinner/>:<Fragment>
-  <div><Link to='/appointment' className="bg-green-500 hover:bg-blue-800 text-xs text-white font-bold py-1 px-4 rounded">
+  <div className='mt-4 ml-1'><Link to='/businessess' className="bg-green-500 hover:bg-blue-400 text-xs text-white font-bold py-2 px-4 rounded mt-5">
   Back to Businesses</Link>
   
 
 </div>
-  <div class="profile-grid my-1">
+  <div class="profile-grid my-5">
     <ProfileTop profile={profile}/>
   </div>
   </Fragment>}

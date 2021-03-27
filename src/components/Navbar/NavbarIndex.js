@@ -28,14 +28,18 @@ const Navbar = ({ auth: { isAuthenticated, loading,user }, logout }) => {
       </NavLink>
       <Bars />
 
+      
+      <NavMenu>
+
       <NavLink to='/index' activeStyle>
         Home
       </NavLink>
-      <NavMenu>
         <NavLink to='/about' activeStyle>
           About
         </NavLink>
-        <NavLink to='/appointment' activeStyle>
+
+       
+        <NavLink to='/businessess' activeStyle>
           Appointment
         </NavLink>
 
@@ -78,7 +82,7 @@ const Navbar = ({ auth: { isAuthenticated, loading,user }, logout }) => {
 
       
       <NavBtn>
-        <a onClick={logout} href='signin'>
+        <a className='btn' onClick={logout} href='signin'>
           Logout
         </a>
       </NavBtn>

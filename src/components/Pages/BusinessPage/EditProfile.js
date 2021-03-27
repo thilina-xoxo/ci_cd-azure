@@ -9,12 +9,12 @@ const EditProfile =({match,profile:{profile,loading},editProfile,history,getProf
     const [formData,setFormData]=useState({
 
 businessId:'',
+businessType:'',
 name:'',
-email:'',
 totalCrowd:'',
-currentCrowd:'',
 phoneNumber:'',
 summary:'',
+postalCode:'',
 
     })
 
@@ -34,14 +34,15 @@ summary:'',
         }
           // eslint-disable-next-line
     }, [loading,getProfilebyID,profile])
+
+
           const {
             businessId,
             businessType,
             name,
-            email,
             totalCrowd,
-            currentCrowd,
             phoneNumber,
+            postalCode,
             summary
           } = formData
 
@@ -85,7 +86,7 @@ summary:'',
                 id='grid-state'
                 name='businessType'
                 value={businessType}
-                onChange={e=>onChange(e)}
+                onChange={(e) => onChange(e)}
               >
                 <option value='Self'>Self</option>
                 <option value='Goverment'>Goverment</option>
@@ -104,7 +105,29 @@ summary:'',
             </div>
           </div>
 
-         
+
+
+
+
+          <div className='flex flex-wrap -mx-3 mb-6'>
+            <div className='w-full '>
+              <label
+                className='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2'
+                htmlFor='bname'
+              >
+              
+              </label>
+              <input
+                className='appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
+                id='name'
+                name='businessId'
+                value={businessId}
+                type='hidden'
+                placeholder='Business Id'
+                onChange={e=>onChange(e)}
+              />
+            </div>
+          </div>
 
 
 
@@ -134,12 +157,12 @@ summary:'',
                 className='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2'
                 htmlFor='grid-website'
               >
-                Total Crowd
+               Estimated Crowd
               </label>
               <input
                 className='appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
                 id='grid-totalCrowd'
-                type='number'
+                type='int'
                 name='totalCrowd'
                 value={totalCrowd}
                 onChange={e=>onChange(e)}
@@ -148,25 +171,6 @@ summary:'',
             </div>
           </div>
 
-          <div className='flex flex-wrap -mx-3 mb-6'>
-            <div className='w-full'>
-              <label
-                className='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2'
-                htmlFor='grid-currentCrowd'
-              >
-                Current Crowd
-              </label>
-              <input
-                className='appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
-                id='grid-currentCrowd'
-                type='number'
-                name='currentCrowd'
-                value={currentCrowd}
-                onChange={e=>onChange(e)}
-                placeholder='Total Crowd'
-              />
-            </div>
-          </div>
        
           <div className='flex flex-wrap -mx-3 mb-6'>
             <div className='w-full'>
@@ -182,12 +186,34 @@ summary:'',
               
                 name='phoneNumber'
                 value={phoneNumber}
-               
+               type='string'
                 onChange={e=>onChange(e)}
                 placeholder='phoneNumber'
               />
             </div>
           </div>
+
+          <div className='flex flex-wrap -mx-3 mb-6'>
+            <div className='w-full'>
+              <label
+                className='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2'
+                htmlFor='grid-location'
+              >
+                Postal Code
+              </label>
+              <input
+                className='appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
+                id='grid-location'
+                type='string'
+                name='postalCode'
+                value={postalCode}
+                onChange={(e) => onChange(e)}
+                placeholder='Postal Code'
+              />
+           
+            </div>
+          </div>
+
 
           <div className='flex flex-wrap -mx-3 mb-6'>
             <div className='w-full'>
@@ -203,7 +229,7 @@ summary:'',
               
                 name='summary'
                 value={summary}
-               
+               type='string'
                 onChange={e=>onChange(e)}
                 placeholder='summary'
               />
@@ -211,7 +237,7 @@ summary:'',
           </div>
 
 
-
+       
 
           <button
             type='submit'
