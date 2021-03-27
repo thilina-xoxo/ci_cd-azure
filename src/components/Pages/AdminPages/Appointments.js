@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import { lightBlue } from '@material-ui/core/colors';
+import { green } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -19,7 +20,8 @@ const useStyles = makeStyles((theme) => ({
       display: 'flex',
       flexDirection:'column',
       alignItems: 'center',
-      backgroundColor: lightBlue[50],
+      //backgroundColor: lightBlue[50],
+      backgroundColor: green.A100,
     },
     form: {
         width: '55%',
@@ -41,7 +43,7 @@ const Appointments = ({getProfiles,auth,profile:{profiles,loading}}) => {
           
         <Box mt={5}></Box>
         <Typography component="h1" variant="h5">
-          Appointments of the Business
+          All Appointments
         </Typography>
         <Box mt={2}></Box>
 
