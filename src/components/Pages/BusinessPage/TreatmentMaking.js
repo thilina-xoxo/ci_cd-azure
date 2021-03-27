@@ -9,8 +9,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { pink } from '@material-ui/core/colors';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import InputLabel from '@material-ui/core/InputLabel';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { lightBlue } from '@material-ui/core/colors';
 import { blueGrey } from '@material-ui/core/colors';
@@ -45,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection:'column',
     alignItems: 'center',
-    backgroundColor: lightBlue[50],
+    //backgroundColor: lightBlue[50],
     
   },
   avatar: {
@@ -69,14 +67,15 @@ const TreatmentMaking = ({setAlert,createTreatments,history,auth,match,getProfil
 
   const [formData, setFormData] = useState({
    businessId:"",
-   specialization:"",
+   specification:"",
+   name:"",
    doctorName:"",
    price:'',
-   availability:"",
-   day:"",
-   date:"",
-   timefrom:"",
-   timeto:""
+   availability:'',
+   day:'',
+   date:'',
+   timeFrom:'',
+   timeTo:''
 
   })
 
@@ -95,7 +94,7 @@ const TreatmentMaking = ({setAlert,createTreatments,history,auth,match,getProfil
     }, [loading,getProfilebyID,profile])
 
 
-const{businessId,specialization,doctorName,price,availability,day,date,timefrom,timeto}=formData; 
+const{businessId,specification,name,doctorName,price,availability,day,date,timeFrom,timeTo}=formData; 
 
 const onChange=e=>setFormData(
   {
@@ -105,7 +104,7 @@ const onChange=e=>setFormData(
 
 const onSubmit=e=>{
   e.preventDefault();
-  if (businessId && specialization && doctorName && price && availability && day && date && timefrom && timeto) {
+  if (businessId && name && specification && doctorName && price) {
 
     e.preventDefault()
     createTreatments(formData,history)
@@ -115,7 +114,7 @@ const onSubmit=e=>{
         }
       }
 
-      const [dayDisabled, toggleDisabled] = useState(false);
+     
 
   const classes = useStyles();
 
@@ -125,7 +124,7 @@ const onSubmit=e=>{
           
           <Box mt={5}></Box>
           <Typography component="h1" variant="h5">
-            Details of the Doctor
+            Create the Treatment
           </Typography>
           <Box mt={2}></Box>
 
@@ -133,14 +132,26 @@ const onSubmit=e=>{
             <TextField
             onChange={e=>onChange(e)}
         
-            margin="normal"
+           
             required
             fullWidth
             id="Business ID"
            
             name="businessId"
-            type="hidden"
+            type="HIDDEN"
             value={businessId}
+            />     
+
+            <TextField
+             onChange={e=>onChange(e)}
+              variant="outlined"
+              margin="normal"
+              
+              fullWidth
+              id="name"
+              label="Medical Center"
+              name="name"
+              value={name}
             />       
 
 <TextField
@@ -149,10 +160,10 @@ const onSubmit=e=>{
               margin="normal"
               required
               fullWidth
-              id="name"
-              label="Category"
-              name="specialization"
-              value={specialization}
+              id="specification"
+              label="Specialized Area"
+              name="specification"
+              value={specification}
             />     
 
 
@@ -178,7 +189,7 @@ const onSubmit=e=>{
               required
               fullWidth
               id="Price"
-              label="Doctor Fee"
+              label="Charge"
               name="price"
               value={price}
             />  
@@ -187,31 +198,76 @@ const onSubmit=e=>{
 <Box mt={2}></Box>
 
 <Grid item xs={12}>
-      <InputLabel htmlFor="select" onChange={e=>onChange(e)} value={availability}>Availability</InputLabel>
-      <NativeSelect id="select" fullWidth>
-      <option value="1">Daily</option>
-      <option value="2">Weekdays</option>
-      <option value="3">Weekends</option>
-      <option value="4">Weekly</option>
-      <option value="5"  onChange={e => {
-          setFormData({...formData, 5: !5});
-          toggleDisabled(!dayDisabled);}}>Monthly</option>
-
-      </NativeSelect>
-      </Grid>
+<div className='w-full  mb-6 md:mb-0'>
+            <label
+              className='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2'
+              htmlFor='grid-state'
+            >
+              Availability
+            </label>
+            <div className='relative'>
+              <select
+                className='appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
+                id='grid-state'
+                name='availability'
+                value={availability}
+                onChange={(e) => onChange(e)}
+              >
+               <option value='daily'>Daily</option>
+      <option value='weekdays'>Weekdays</option>
+      <option value='weekends'>Weekends</option>
+      <option value='weekly'>Weekly</option>
+      <option value='monthly' >Monthly</option>
+              </select>
+              <div className='pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700'>
+                <svg
+                  className='fill-current h-4 w-4'
+                  xmlns='http://www.w3.org/2000/svg'
+                  viewBox='0 0 20 20'
+                >
+                  <path d='M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z' />
+                </svg>
+              </div>
+            </div>
+          </div></Grid>
 
       <Box mt={3}></Box>
 <Grid item xs={12}>
-      <InputLabel htmlFor="select" value={day} onChange={e=>onChange(e)}>If weekly, choose the day</InputLabel>
-      <NativeSelect id="select" fullWidth>
-      <option value="1">Sunday</option>
-      <option value="2">Monday</option>
-      <option value="3">Tuesday</option>
-      <option value="4">Wednesday</option>
-      <option value="5">Thursday</option>
-      <option value="6">Friday</option>
-      <option value="7">Saturday</option>
-      </NativeSelect>
+<div className='w-full  mb-6 md:mb-0'>
+            <label
+              className='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2'
+              htmlFor='grid-state'
+            >
+              If weekly, choose the day
+            </label>
+            <div className='relative'>
+              <select
+                className='appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
+                id='grid-state'
+                name='day'
+                value={day}
+                onChange={(e) => onChange(e)}
+              >
+           <option value='none'></option>
+      <option value='sunday'>Sunday</option>
+      <option value='monday'>Monday</option>
+      <option value='tuesday'>Tuesday</option>
+      <option value='wednesday'>Wednesday</option>
+      <option value='thursday'>Thursday</option>
+      <option value='friday'>Friday</option>
+      <option value='saturday'>Saturday</option>
+              </select>
+              <div className='pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700'>
+                <svg
+                  className='fill-current h-4 w-4'
+                  xmlns='http://www.w3.org/2000/svg'
+                  viewBox='0 0 20 20'
+                >
+                  <path d='M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z' />
+                </svg>
+              </div>
+            </div>
+            </div>
       </Grid>
 
       <Box mt={2}></Box>
@@ -224,6 +280,7 @@ const onSubmit=e=>{
     fullWidth
     id="date"
     label="Available Date"
+
     type="date"
     name="date"
     value={date}
@@ -245,10 +302,11 @@ Available Time
               variant="outlined"
               margin="normal"
               fullWidth
-              id="timefrom"
+              
+              id="timeFrom"
               label="From"
-              name="timefrom"
-              value={timefrom}
+              name="timeFrom"
+              value={timeFrom}
             />  
         </Grid>
         <Grid item xs={6}>
@@ -257,10 +315,11 @@ Available Time
               variant="outlined"
               margin="normal"
               fullWidth
-              id="timeto"
+              
+              id="timeTo"
               label="To"
-              name="timeto"
-              value={timeto}
+              name="timeTo"
+              value={timeTo}
             />  
         </Grid>
         </Grid>

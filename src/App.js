@@ -12,7 +12,6 @@ import store from './Store';
 import Alert from './components/layouts/AdminDashboard/Alert';
 
 
-//
 import AdminHome from './components/Pages/AdminPages/AdminHome'
 import Navbar from './components/Navbar/NavbarIndex';
 import Home from './components/Pages/Home';
@@ -35,6 +34,7 @@ import {loadUser} from './actions/auth'
 import Allusers from './components/Pages/AdminPages/Showallusers'
 import EditProfile from './components/Pages/BusinessPage/EditProfile'
 import Appointments from './components/Pages/AdminPages/Appointments';
+import ConfirmAppointment from './components/Pages/BusinessPage/ConfirmAppointment';
 import BusinessComponet from './components/Pages/BusinessPage/BusinessComponet';
 import BusinessDashboarad from './components/Pages/BusinessPage/BusinessDashboarad'
 import AppointmentById from './components/Pages/BusinessPage/Appointments/AppointmentById';
@@ -66,6 +66,7 @@ const App = () => {
           <Route path='/signup' component={SignUp} />
           <Private exact path='/appointmentmaking/:businessId' component={AppointmentMaking} />
           <Private exact path='/treatmentmaking/:businessId' component={TreatmentMaking} />
+          <Admin path='/confirm/appoint/:appointmentId' component={ConfirmAppointment} />
           <Route path='/forgotpassword' component={ForgotPassword} />
           <Route path='/contactus' component={Contact} />
           <Admin exact path='/business/register' component={BusinessRegister} />

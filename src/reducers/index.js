@@ -5,6 +5,7 @@ import profile from './profile'
 import users from './users'
 import appointment from './appointment'
 import treatment from './treatment'
+import confirm from './confirm'
 
 export default combineReducers({
   alert,
@@ -12,5 +13,6 @@ export default combineReducers({
   profile,
   users,
   appointment,
-  treatment
+  treatment,
+  confirm
 });

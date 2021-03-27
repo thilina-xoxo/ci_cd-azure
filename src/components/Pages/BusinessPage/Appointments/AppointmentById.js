@@ -11,6 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import { lightBlue } from '@material-ui/core/colors';
 import Typography from '@material-ui/core/Typography';
+import { green } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -21,7 +22,8 @@ const useStyles = makeStyles((theme) => ({
       display: 'flex',
       flexDirection:'column',
       alignItems: 'center',
-      backgroundColor: lightBlue[50],
+      //backgroundColor: lightBlue[50],
+      backgroundColor: green.A100,
     },
     form: {
         width: '70%',
@@ -60,11 +62,7 @@ const classes = useStyles();
         <Fragment>
 
         {appointment === null || loading ? <Spinner/>:<Fragment>
-          <div><Link to='/appointments' className="bg-green-500 hover:bg-blue-800 text-xs text-white font-bold py-1 px-4 rounded">
-          Back to Appointments</Link>
-         
-        
-        </div>
+          
         <div className='card' >
       
         <div className='card' >
