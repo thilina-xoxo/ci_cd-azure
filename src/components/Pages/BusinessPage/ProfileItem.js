@@ -18,6 +18,7 @@ import Paper from '@material-ui/core/Paper';
 import { blue } from '@material-ui/core/colors';
 import ProfileItemTop from './ProfileItemTop';
 import Box from '@material-ui/core/Box';
+import image from '../../../assests/business.JPG'
 
 const useStyles = makeStyles((theme) => ({
   
@@ -82,7 +83,7 @@ return(
                 <Card align='left' className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
-                    image='https://media.gettyimages.com/photos/doctors-walking-in-clinic-picture-id941762276?s=612x612'
+                    image={image}
                     
                   />
 

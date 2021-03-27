@@ -17,7 +17,7 @@ import { pink } from '@material-ui/core/colors';
 import { connect } from 'react-redux';
 import { setAlert } from '../../../actions/alert';
 import PropTypes from 'prop-types';
-import {businessrRegister } from '../../../actions/auth';
+import {businessRegister } from '../../../actions/auth';
 import { Redirect } from 'react-router-dom'
 
 
@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SignUp = ({ setAlert, register,isAuthenticated }) => {
+const SignUp = ({ setAlert, businessRegister,isAuthenticated }) => {
   const classes = useStyles();
 
   const [formData, setFormData] = useState({
@@ -84,7 +84,7 @@ const SignUp = ({ setAlert, register,isAuthenticated }) => {
     e.preventDefault();
 if(UserName && email && password && ConfirmPassword){
  if (password === ConfirmPassword) {
-    businessrRegister(UserName, email, password, ConfirmPassword);
+    businessRegister(UserName, email, password, ConfirmPassword);
      
     } else {
       setAlert('Password do not match', 'danger');
@@ -97,6 +97,9 @@ if(UserName && email && password && ConfirmPassword){
 
 
 
+  if(isAuthenticated){
+    return <Redirect to="/index"/>
+  }
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -195,7 +198,7 @@ if(UserName && email && password && ConfirmPassword){
 
 SignUp.prototype = {
   setAlert: PropTypes.func.isRequired,
-  businessrRegister: PropTypes.func.isRequired,
+  businessRegister: PropTypes.func.isRequired,
   isAuthenticated:PropTypes.bool,
 };
 
@@ -204,4 +207,4 @@ const mapStateToProps=state=>({
   isAuthenticated:state.auth.isAuthenticated
 })
 
-export default connect(mapStateToProps, { setAlert, businessrRegister })(SignUp);
+export default connect(mapStateToProps, { setAlert, businessRegister })(SignUp);

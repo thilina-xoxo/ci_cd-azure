@@ -47,6 +47,10 @@ const Navbar = ({ auth: { isAuthenticated, loading,user }, logout }) => {
           Contact Us
         </NavLink>
       
+ 
+       
+
+
         {/*  <NavLink to='/admin' activeStyle>
             AdminDashboard
           </NavLink>
@@ -121,7 +125,9 @@ const Navbar = ({ auth: { isAuthenticated, loading,user }, logout }) => {
         <NavLink to='/contactus' activeStyle>
           Contact Us
         </NavLink>
-
+        <NavLink to='/business/signup' activeStyle>
+         Signup-Business
+        </NavLink>
         {/*  <NavLink to='/admin' activeStyle>
             AdminDashboard
           </NavLink>

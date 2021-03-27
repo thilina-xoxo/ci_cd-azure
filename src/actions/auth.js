@@ -53,7 +53,7 @@ export const register = (UserName, Email, Password, ConfirmPassword) => async (
 
 
 //
-export const businessrRegister = (UserName, Email, Password, ConfirmPassword) => async (
+export const businessRegister = (UserName, Email, Password, ConfirmPassword) => async (
   dispatch
 ) => {
   const config = {
@@ -66,13 +66,14 @@ export const businessrRegister = (UserName, Email, Password, ConfirmPassword) =>
 
   try {
     const res = await axios.post(
-      'https://localhost:5001/api/auth/register-business',
+      'http://localhost:5000/api/auth/register-business',
       body,
       config
+      
     );
     dispatch({
       type: REGISTER_SUCCESS,
-      payload: res.data,
+      payload: 'Something wrong at your end',
     });
 
     dispatch(loadUser())

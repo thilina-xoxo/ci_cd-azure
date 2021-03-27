@@ -34,4 +34,7 @@ export const GET_TREATMENTS = 'GET_TREATMENTS';
 export const GET_CONTACT='GET_CONTACT';
 export const CRAETE_CONTACT='CREATE_CONTACT';
 export const CONTACT_ERROR='CONTACT_ERROR';
+export const GET_CONFIRM = 'GET_CONFIRM';
+export const CONFIRM_ERROR = 'CONFIRM_ERROR';
+
 

@@ -1,6 +1,5 @@
 import React,{Fragment,useEffect} from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
 import {connect} from 'react-redux'
 import Spinner from '../../layouts/Spinner'
 import TreatmentIdItem from './TreatmentIdItem'
@@ -10,7 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import { lightBlue } from '@material-ui/core/colors';
-
+import { green } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -21,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
       display: 'flex',
       flexDirection:'column',
       alignItems: 'center',
-      backgroundColor: lightBlue[50],
+      backgroundColor: green.A100,
     },
     form: {
         width: '50%',

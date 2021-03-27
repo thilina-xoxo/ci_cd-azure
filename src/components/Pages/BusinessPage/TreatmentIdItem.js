@@ -32,10 +32,16 @@ const useStyles = makeStyles((theme) => ({
 
 function TreatmentIdItem({treatment:{
    
+   treatmentId,
     businessId,
-    name,
+    specification,
     price,
-    doctorName
+    doctorName,
+    availability,
+    day,
+    date,
+    timeFrom,
+    timeTo
 
 }}) 
 
@@ -53,7 +59,7 @@ return(
         <Avatar className={classes.large} alt="Kavindya" src={img} />
       </ListItemAvatar></ListItemAvatar>
       <ListItemText
-        primary={<Typography>&nbsp;&nbsp;&nbsp;&nbsp;Doctor's Name: {doctorName}</Typography>}
+        primary={<Typography>&nbsp;&nbsp;&nbsp;&nbsp;Doctor's Name&nbsp;&nbsp;&nbsp;: {doctorName}</Typography>}
         secondary={
           <React.Fragment>
             <Typography
@@ -62,9 +68,14 @@ return(
               className={classes.inline}
               color="textPrimary"
             >
-             <Typography>&nbsp;&nbsp;&nbsp;&nbsp;Category: {name}</Typography>
+             <Typography>&nbsp;&nbsp;&nbsp;&nbsp;Specialized Area: {specification}</Typography>
+             <Typography>&nbsp;&nbsp;&nbsp;&nbsp;Treatment ID &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:{treatmentId}</Typography>
+             <Typography>&nbsp;&nbsp;&nbsp;&nbsp;Availability&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {availability}</Typography>
+             <Typography>&nbsp;&nbsp;&nbsp;&nbsp;Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {date}</Typography>
+             <Typography>&nbsp;&nbsp;&nbsp;&nbsp;Day&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {day}</Typography>
+             <Typography>&nbsp;&nbsp;&nbsp;&nbsp;Available Time&nbsp;&nbsp;&nbsp;&nbsp;: From:{timeFrom} To:{timeTo}</Typography>
             </Typography>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Doctor Fee: {price}
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Charge: Rs.{price}
           </React.Fragment>
         }
       />

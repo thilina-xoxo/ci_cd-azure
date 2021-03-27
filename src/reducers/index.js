@@ -6,6 +6,8 @@ import users from './users'
 import appointment from './appointment'
 import treatment from './treatment'
 import contact from './contact'
+import confirm from './confirm'
+
 export default combineReducers({
   alert,
   auth,
@@ -13,5 +15,6 @@ export default combineReducers({
   users,
   appointment,
   treatment,
-  contact
+  contact,
+  confirm
 });
