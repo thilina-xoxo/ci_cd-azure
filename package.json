@@ -42,8 +42,8 @@
   },
   "scripts": {
     "start": "craco start",
-    "build": "craco build",
-    "test": "craco test",
+    "build": "babel src -d lib",
+    "test": "jest"
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
